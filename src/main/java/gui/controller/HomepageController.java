@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 
@@ -115,6 +116,16 @@ public class HomepageController {
     public void clickfriends(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Friends.fxml").toURL();
+        secondview = FXMLLoader.load(url);
+        Scene newscene = new Scene(secondview);
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
+        curstage.setScene(newscene);
+    }
+
+    @FXML
+    public void clickyourprofile(ActionEvent event) throws Exception {
+        Parent secondview;
+        URL url = new File("src/main/java/gui/fxml/Profile.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();

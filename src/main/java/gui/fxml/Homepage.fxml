@@ -10,9 +10,9 @@
    <children>
       <AnchorPane fx:id="rootpane" prefHeight="500.0" prefWidth="500.0">
          <children>
-            <Button layoutX="15.0" layoutY="47.0" mnemonicParsing="false" onAction="#clickyourprogress" prefHeight="31.0" prefWidth="118.0" text="Your Progress" />
-            <Button layoutX="15.0" layoutY="89.0" mnemonicParsing="false" onAction="#clickleaderboard" prefHeight="31.0" prefWidth="118.0" text="Leaderboard" />
-            <Button layoutX="15.0" layoutY="131.0" mnemonicParsing="false" onAction="#clickabouttheapp" text="About the App" />
+            <Button layoutX="15.0" layoutY="92.0" mnemonicParsing="false" onAction="#clickyourprogress" prefHeight="31.0" prefWidth="118.0" text="Your Progress" />
+            <Button layoutX="15.0" layoutY="139.0" mnemonicParsing="false" onAction="#clickleaderboard" prefHeight="31.0" prefWidth="118.0" text="Leaderboard" />
+            <Button layoutX="15.0" layoutY="187.0" mnemonicParsing="false" onAction="#clickabouttheapp" prefHeight="27.0" prefWidth="118.0" text="About the App" />
             <Line endX="45.5" endY="500.0" layoutX="105.0" layoutY="8.0" startX="45.49998474121094" startY="-6.7071075439453125" />
             <ImageView fitHeight="170.0" fitWidth="352.0" layoutX="150.0" onMouseClicked="#foodclicked">
                <image>
@@ -30,7 +30,8 @@
                </image>
             </ImageView>
 
-            <Button fx:id="friendsButton" layoutX="15.0" layoutY="172.0" mnemonicParsing="false" onAction="#clickfriends" prefHeight="27.0" prefWidth="107.0" text="Friends" />
+            <Button fx:id="friendsButton" layoutX="15.0" layoutY="228.0" mnemonicParsing="false" onAction="#clickfriends" prefHeight="27.0" prefWidth="118.0" text="Friends" />
+            <Button layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickyourprofile" prefHeight="27.0" prefWidth="118.0" text="Profile" />
          </children>
       </AnchorPane>
    </children>

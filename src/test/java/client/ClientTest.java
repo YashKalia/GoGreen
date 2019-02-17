@@ -162,6 +162,17 @@ public class ClientTest {
     }
 
     @Test
+    public void getAllBadgesTest() {
+        HashSet<String> badges = new HashSet<>();
+        badges.add("You can literally put whatever you want in here");
+
+        when(restTemplate.getForObject(localUrl+"/badges/getallbadges/"+user5.getUsername(),Set.class))
+                .thenReturn(badges);
+
+        assertEquals(badges,Client.getMyBadges(localUrl,user5,restTemplate));
+    }
+
+    @Test
     public void getLocalProduceTest() {
 
         when(restTemplate.getForObject(localUrl+"/entries/getlocalproduce/user5",Integer.class))
