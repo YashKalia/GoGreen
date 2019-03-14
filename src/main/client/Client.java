@@ -1,9 +1,8 @@
-package client;
+package main.client;
 
-import Entity.Entry;
-import Entity.Feature;
-import Entity.User;
-import org.json.JSONException;
+import main.Entity.Entry;
+import main.Entity.Feature;
+import main.Entity.User;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -14,9 +13,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Client {
-    public static void main(String[] args) throws Exception {
-        System.out.println(sendLoginRequest(new User("Andrei", "andreiu")));
+
+    private static User user;
+
+    public static User getUser() {
+        return user;
     }
+
+    public static void setUser(User user1) {
+        user=user1;
+    }
+
+    public static final Feature vegetarianmeal = new Feature("Eating a vegan meal");
 
     public static String sendLoginRequest(User user) throws Exception {
         String url = "http://localhost:8080/users/authenticate";
@@ -42,10 +50,25 @@ public class Client {
         con.setRequestProperty("Content-Type","application/json");
 
         JSONObject send = new JSONObject();
-        send.put("feature",feature.getFeature());
-        send.put("username",user.getUsername());
+        JSONObject ft = new JSONObject();
+        JSONObject us = new JSONObject();
+        ft.put("featureName",feature.getFeature());
+        us.put("username",user.getUsername());
+        send.put("feature",ft);
+        send.put("user",us);
 
         return getOutput(con,send);
+    }
+
+    public static int getVeganMealCount(User user) throws Exception {
+        String url = "http://localhost:8080/entries/getvegetarianmeals";
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("Content-Type","application/json");
+        JSONObject us = new JSONObject();
+        us.put("username",user.getUsername());
+        return Integer.parseInt(getOutput(con,us));
     }
 
     public static String getOutput(HttpURLConnection con, JSONObject send) throws IOException {
