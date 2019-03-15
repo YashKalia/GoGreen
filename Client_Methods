@@ -1,0 +1,72 @@
+//User Controller
+//getAllUsers
+public static String displayAllUsers(){
+
+String url = "http://localhost:8080/users/getall";
+
+URL obj = new URL(url);
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+con.setRequestMethod("POST");
+        
+con.setRequestProperty("Content-Type","application/json");
+
+JSONObject empty=new JSONObject();
+return getOutput(con,empty);
+
+}
+
+//getOneUser
+public static String askforOneUser(User user){
+String url = "http://localhost:8080/users/getone";
+
+URL obj = new URL(url);
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+con.setRequestMethod("POST");
+        
+con.setRequestProperty("Content-Type","application/json");
+
+JSONObject details=new JSONObject();
+details.put("username",user.getUsername());
+return getOutput(con,details);
+}
+
+//AddUser
+public static String addnewuser(User user){
+String url = "http://localhost:8080/users/register";
+
+URL obj = new URL(url);
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+con.setRequestMethod("POST");
+        
+con.setRequestProperty("Content-Type","application/json");
+
+JSONObject newuser=new JSONObject();
+newuser.put("username",user.getUsername());
+newuser.put("password",user.getPassword());
+return getOutput(con,newuser);
+}
+
+
+public static String removefromdb(User user){
+String url = "http://localhost:8080/users/delete";
+
+URL obj = new URL(url);
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+con.setRequestMethod("POST");
+        
+con.setRequestProperty("Content-Type","application/json");
+
+return getOutput(con,empty);
+JSONObject usertbd=new JSONObject();
+usertbd.put("username",user.getUsername());
+usertbd.put("password",user.getPassword());
+return getOutput(con,usertbd);
+}
+
+
+
+
