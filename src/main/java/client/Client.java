@@ -1,8 +1,9 @@
-package main.client;
+package client;
 
-import main.Entity.Entry;
-import main.Entity.Feature;
-import main.Entity.User;
+
+import entity.Entry;
+import entity.Feature;
+import entity.User;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;

@@ -3,9 +3,7 @@ package gui.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import main.Entity.User;
-import main.client.Client;
-
+import client.Client;
 public class AddingMealController {
 	
 	@FXML
