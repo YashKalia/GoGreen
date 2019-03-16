@@ -1,4 +1,4 @@
-package main.Entity;
+package entity;
 
 public class Feature {
     String feature;
