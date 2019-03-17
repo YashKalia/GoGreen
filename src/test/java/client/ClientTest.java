@@ -25,7 +25,7 @@ public class ClientTest {
 
     private User user5;
     private User user2;
-    private Feature vegetarianmeal;
+    private Feature vegetarianMeal;
 
     @Before
     public void setup2() {
@@ -33,7 +33,7 @@ public class ClientTest {
         user5 = new User("user5", "password");
         user2 = new User("user2", "password");
 
-        vegetarianmeal = new Feature("Eating a vegan meal");
+        vegetarianMeal = new Feature("Eating a vegan meal");
 
         client = new Client();
         client.setUser(user5);
@@ -66,7 +66,7 @@ public class ClientTest {
     @Test
     public void testAddEntry() throws Exception {
 
-        String response = client.addEntry(vegetarianmeal, user5);
+        String response = client.addEntry(vegetarianMeal, user5);
 
         assertTrue(response.contains("Eating a vegan meal"));
 
