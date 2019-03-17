@@ -8,18 +8,28 @@ public class AddingMealController {
 	
 	@FXML
 	private Label lblMeal;
-	
+
+	@FXML
+	private Label getMeals;
+
 	public void addmeal (ActionEvent event) {
 		try {
 			Client.addEntry(Client.vegetarianmeal, Client.getUser());
-		} catch (Exception e) {
-
-		}
-		try {
-			lblMeal.setText("You've had " + Client.getVeganMealCount(Client.getUser()) + " vegetarian meals!");
+			if(Client.getVeganMealCount(Client.getUser())!=0) {
+				lblMeal.setText("Meal added successfully!");
+			}
 		} catch (Exception e) {
 
 		}
 	}
 
+	public void getMeals(ActionEvent event) {
+
+		try {
+			getMeals.setText("You've had " + Client.getVeganMealCount(Client.getUser()) + " vegetarian meals!");
+		} catch (Exception e) {
+
+		}
+	}
 }
+

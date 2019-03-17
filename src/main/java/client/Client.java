@@ -65,8 +65,8 @@ public class Client {
         String url = "http://localhost:8080/entries/getvegetarianmeals";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type","application/json");
+        con.setRequestMethod("POST");
         JSONObject us = new JSONObject();
         us.put("username",user.getUsername());
         return Integer.parseInt(getOutput(con,us));
