@@ -7,8 +7,12 @@
    <children>
       <AnchorPane prefHeight="280.0" prefWidth="243.0">
          <children>
-            <Button layoutX="57.0" layoutY="125.0" mnemonicParsing="false" onAction="#addmeal" text="Vegetarian Meal" />
+            <Button layoutX="5" layoutY="125.0" mnemonicParsing="false" onAction="#addmeal" text="Vegetarian Meal" />
             <Label fx:id="lblMeal" alignment="CENTER" layoutY="44.0" prefHeight="21.0" prefWidth="243.0" textFill="RED" />
+         </children>
+         <children>
+            <Button layoutX="5"  layoutY="200.0" mnemonicParsing="false" onAction="#getMeals" text="Show my number of vegetarian" />
+            <Label fx:id="getMeals" alignment="CENTER" layoutY="66.0" prefHeight="50.0" prefWidth="243.0" textFill="RED" />
          </children>
       </AnchorPane>
    </children>
