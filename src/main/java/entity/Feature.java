@@ -1,39 +1,44 @@
 package entity;
 
 public class Feature {
-    String feature;
+        String feature;
     private long id;
-    private String featureName;
+    private int featureValue;
 
     public Feature() {}
 
-    public Feature(String feature,long id, String featureName) {
+    public Feature(String feature){
+        this.feature=feature;
+    }
+
+    public Feature(String feature,int featureValue) {
         this.feature = feature;
-        this.id=id;
-        this.featureName=featureName;
+        this.featureValue=featureValue;
+
     }
 
     public String getFeature() {
-        return this.feature;
+        return feature;
     }
-    
-    public String getFeatureName() {
-        return this.featureName;
+    public void setFeature(String feature) {
+        this.feature = feature;
     }
-    
-    public String setFeatureName(String featureName) {
-        this.featureName=featureName;
-    }
-    
+
+
     public long getFeatureId(){
         return this.id;
     }
 
-    public void setFeature(String feature) {
-        this.feature = feature;
-    }
     public void setFeatureId(long id){
-        this.id=id;
+       this.id=id;
+        
+    }
+
+    public int getfeatureValue(){
+        return this.featureValue;
+    }
+    public void setFeatureValue(int featureValue){
+        this.featureValue=featureValue;
     }
 
     @Override
@@ -50,5 +55,4 @@ public class Feature {
         }
         return true;
     }
-
 }
