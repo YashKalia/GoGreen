@@ -2,19 +2,28 @@ package entity;
 
 public class Feature {
     String feature;
+    private long id;
 
     public Feature() {}
 
-    public Feature(String feature) {
+    public Feature(String feature,long id) {
         this.feature = feature;
+        this.id=id
     }
 
     public String getFeature() {
         return feature;
     }
+    
+    public long getFeatureId(){
+        return this.id;
+    }
 
     public void setFeature(String feature) {
         this.feature = feature;
+    }
+    public void setFeatureId(long id){
+        this.id=id;
     }
 
     @Override
