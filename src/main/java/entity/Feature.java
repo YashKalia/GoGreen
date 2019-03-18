@@ -3,16 +3,26 @@ package entity;
 public class Feature {
     String feature;
     private long id;
+    private String featureName;
 
     public Feature() {}
 
-    public Feature(String feature,long id) {
+    public Feature(String feature,long id, String featureName) {
         this.feature = feature;
-        this.id=id
+        this.id=id;
+        this.featureName=featureName;
     }
 
     public String getFeature() {
-        return feature;
+        return this.feature;
+    }
+    
+    public String getFeatureName() {
+        return this.featureName;
+    }
+    
+    public String setFeatureName(String featureName) {
+        this.featureName=featureName;
     }
     
     public long getFeatureId(){
