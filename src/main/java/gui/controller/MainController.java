@@ -10,59 +10,79 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.json.JSONException;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class MainController {
 
-	public static User user;
+    private static User user;
 
-	public static User getUser() {
-		return user;
-	}
+    @FXML
+    private TextField txtPassword;
 
-	public static void setUser(User user) {
-		MainController.user = user;
-	}
+    @FXML
+    private TextField txtUsername;
 
-	@FXML
-	private Label lblStatus;
+    @FXML
+    private Label lblStatus;
 
-	@FXML
-	private TextField txtUsername;
+    public static User getUser() {
+        return user;
+    }
 
-	@FXML
-	private TextField txtPassword;
+    public static void setUser(User user) {
+        MainController.user = user;
+    }
 
-	public void login (ActionEvent event) throws Exception {
+    /**
+     * Tries to log in a user.
+     * If the response of the client is the boolean true, the username and password are correct.
+     * Then, the local variable user is update with the credentials,
+     * And a new screen is brought up.
+     * Otherwise, an error message is displayed.
+     *
+     * @param event on click
+     * @throws Exception HUGE OFF
+     */
+    public void login(ActionEvent event) throws IOException {
 
-		User newuser = new User(txtUsername.getText(),txtPassword.getText());
-		if (Client.sendLoginRequest(newuser).equals("true")) {
-			Client.setUser(newuser);
-			lblStatus.setText("Login Success");
-			Stage primaryStage = new Stage();
-			URL url = new File("src/main/java/gui/fxml/AddingMeal.fxml").toURL();
-			Parent root = FXMLLoader.load(url);
-			Scene scene = new Scene(root);
-//			scene.getStylesheets().add(getClass().getResource("/gui/application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+        User newuser = new User(txtUsername.getText(), txtPassword.getText());
+        try {
+            if (Client.sendLoginRequest(newuser).equals("true")) {
+                Client.setUser(newuser);
+                lblStatus.setText("Login Success");
+                Stage primaryStage = new Stage();
+                URL url = new File("src/main/java/gui/fxml/AddingMeal.fxml").toURL();
+                Parent root = FXMLLoader.load(url);
+                Scene scene = new Scene(root);
+                primaryStage.setScene(scene);
+                primaryStage.show();
 
-		} else {
-			lblStatus.setText("Bad Credentials");
-		}
-	}
+            } else {
+                lblStatus.setText("Bad Credentials");
+            }
+        } catch (JSONException e) {
+            lblStatus.setText("Error in creating a new request!");
+        }
+    }
 
-	public void register (ActionEvent event) throws Exception {
+    /**
+     * Emprt for now, just brings up new screen.
+     * @param event on click
+     * @throws IOException GIGANTIC OOF
+     */
+    public void register(ActionEvent event) throws IOException {
 
-		Stage primaryStage = new Stage();
-		Parent root = FXMLLoader.load(getClass().getResource("/application/Register.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.show();
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/application/Register.fxml"));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
-	}
+    }
 
 }
