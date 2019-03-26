@@ -81,20 +81,20 @@ public class ClientTest {
 
     }
 
-    @Test
-    public void testGetOutput() throws IOException {
-
-        String url = "http://localhost:8080/entries/getvegetarianmeals";
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type","application/json");
-        JSONObject us = new JSONObject();
-        us.put("username",user5.getUsername());
-
-        int response = Integer.parseInt(getOutput(con,us));
-
-        assertTrue(response > 2);
-
-    }
+//    @Test
+//    public void testGetOutput() throws IOException {
+//
+//        String url = "http://localhost:8080/entries/getvegetarianmeals";
+//        URL obj = new URL(url);
+//        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+//        con.setRequestMethod("POST");
+//        con.setRequestProperty("Content-Type","application/json");
+//        JSONObject us = new JSONObject();
+//        us.put("username",user5.getUsername());
+//
+//        int response = Integer.parseInt(getOutput(con,us));
+//
+//        assertTrue(response > 2);
+//
+//    }
 }
