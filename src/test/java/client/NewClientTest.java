@@ -1,6 +1,7 @@
 package client;
 
 import entity.Feature;
+import entity.RequestUserFeature;
 import entity.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,12 +27,14 @@ public class NewClientTest {
     User user2;
     User user3;
     Feature feature;
+    RequestUserFeature ruf;
 
     @Before
     public void setup() {
     	user2=new User("Andrei","password");
     	user3=new User("Buddy","Guy");
     	feature=new Feature("Eating a vegan meal");
+    	ruf=new RequestUserFeature(feature,user2);
     }
     
     
@@ -60,23 +63,25 @@ public class NewClientTest {
     
     @Test
     public void addEntryTest() {
-    	String url = "http://http://localhost:8080/entries/add";
+    	String url = "http://localhost:8080/entries/add/";
     	
-    	when(restTemplate.getForObject(url,boolean.class)).thenReturn(null);
+    	when(restTemplate.postForObject(url,ruf,boolean.class)).thenReturn(true);
     	
-    	assertEquals(null, Client.addEntry(feature,user2,restTemplate));
+    	assertEquals(true, Client.addEntry(feature,restTemplate));
     }
     
     @Test
-    public void getVeganMealCount() throws IOException {
-    	String url = "http://http://localhost:8080/entries/getvegetarianmeals";
-    	
-    	when(restTemplate.getForObject(url,int.class)).thenReturn(null);
-    	
-    	assertEquals(null,Client.getVeganMealCount(user2,restTemplate));
-    	
-    	
+    public void testGetVeganMealCount() throws Exception {
+
+        String url = "http://localhost:8080/entries/getvegetarianmeals/user2";
+
+        when(restTemplate.getForObject(url,Integer.class)).thenReturn(2);
+
+        assertEquals(2,Client.getVeganMealCount(user2,restTemplate));
+
     }
+    
+
     
     @Test
     public void addnewuserTest() {

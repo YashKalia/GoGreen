@@ -1,27 +1,18 @@
 package client;
 
-import entity.Feature;
-import entity.RequestUserFeature;
-import entity.User;
-import org.json.JSONException;
-import org.json.JSONObject;
+import entity.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 public class Client {
 
     public static final Feature vegetarianmeal = new Feature("Eating a vegan meal");
-
+    private static RestTemplate restTemplate = new RestTemplate();
+    private static boolean isInitiated = false;
     private static User user;
     ArrayList<String> friends = new ArrayList<String>();
 
@@ -29,33 +20,36 @@ public class Client {
         return user;
     }
 
+
     public static void setUser(User user1) {
         user = user1;
     }
 
-    //calin's link-  http://wlan-145-94-214-196.wlan.tudelft.nl:8080/users/getall
-    //db link-   http://localhost:8080
-
-    /**
-     * Sends a login request to the server with the username and the password
-     * stored in the local variable.
+    /**Sends a login request with username,password.
      *
-     * @param user the user to be logged in.
-     * @return the response from the server in string format.
+     * @param restTemplate restTemplate object for connection
+     * @return string response
      * @throws IOException oof
      */
-    public static String sendLoginRequest(User user) throws IOException, JSONException {
-        String url = "http://http://localhost:8080/users/authenticate";
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type", "application/json");
+    public static boolean sendLoginRequest(RestTemplate restTemplate) throws IOException {
+        String url = "http://localhost:8080/users/authenticate";
+        Boolean response = (Boolean)restTemplate.postForObject(url,Client.getUser().getUsername(),Boolean.class);
+        return response;
+    }
 
-        JSONObject us = new JSONObject();
-        us.put("password", user.getPassword());
-        us.put("username", user.getUsername());
-
-        return getOutput(con, us);
+    /**
+     * Initiate a connection
+     */
+    public static void initiate() {
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+        //Add the Jackson Message converter
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        // Note: here we are making this converter to process any kind of response,
+        // not only application/*json, which is the default behaviour
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
+        messageConverters.add(converter);
+        Client.restTemplate.setMessageConverters(messageConverters);
+        Client.isInitiated = true;
     }
 
     /**
@@ -66,9 +60,9 @@ public class Client {
      * @return a string version of the server response
      * @throws IOException oof
      */
-    public static boolean addEntry(Feature feature,User user,RestTemplate restTemplate) {
-        String url = "http://http://localhost:8080/entries/add";
-        RequestUserFeature obj2 = new RequestUserFeature(feature, user);
+    public static boolean addEntry(Feature feature,RestTemplate restTemplate) {
+        String url = "http://localhost:8080/entries/add";
+        RequestUserFeature obj2 = new RequestUserFeature(feature, Client.getUser());
         Boolean response = restTemplate.postForObject(url, obj2, boolean.class);
         return response;
     }
@@ -86,10 +80,11 @@ public class Client {
      * @return the number of meals
      * @throws IOException BIG OOFF
      */
-    public static int getVeganMealCount(User user,RestTemplate restTemplate) throws IOException, JSONException {
-        String url = "http://http://localhost:8080/entries/getvegetarianmeals";
-        int response=restTemplate.postForObject(url,user,int.class);
-        return response;
+ 
+    public static int getVeganMealCount(User user, RestTemplate restTemplate) {
+        String url = "http://localhost:8080/entries/getvegetarianmeals/";
+        url+= user.getUsername();
+        return (int)restTemplate.getForObject(url,Integer.class);
 
     }
 
@@ -104,9 +99,9 @@ public class Client {
      * @param user object og type User.
      * @return boolean
      */
-    public static boolean addnewuser(User user,RestTemplate restTemplate) throws IOException {
-        String url = "http://http://localhost:8080/users/register";
-        boolean response=restTemplate.postForObject(url,user,boolean.class);
+    public static boolean addnewuser(User user, RestTemplate restTemplate) throws IOException {
+        String url = "http://localhost:8080/users/register";
+        boolean response = restTemplate.postForObject(url, user, boolean.class);
         return response;
 
 
@@ -122,133 +117,121 @@ public class Client {
      * @return String
      * @throws IOException in case getOutput method returns wrong result.
      */
-    public static String get_entries_per_username(User user) throws IOException {
-        String url = "http://http://localhost:8080/entries/getbyuser";
 
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+    @SuppressWarnings("unchecked")
+    public static List<Entry> get_entries_per_username(User user, RestTemplate restTemplate){
+        String url = "http://localhost:8080/entries/getbyuser";
 
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type", "application/json");
+        return (List<Entry>) restTemplate.postForObject(url, user, List.class);
 
-        JSONObject details = new JSONObject();
-        details.put("username", user.getUsername());
-        return getOutput(con, details);
     }
 
 
     //Friend Controller methods
 
-    /**Adds the friend supplied as parameter as a friend of the user in the database.
+    /**
+     * Adds the friend supplied as parameter as a friend of the user in the database.
      *
      * @param friend User object representing a friend
      * @return a response from GetOutput method
      * @throws IOException Uh-oh
      */
-    public static String addaFriend(User friend) throws IOException {
-        String url = "http://http://localhost:8080/friends/add";
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type", "application/json");
-        JSONObject send = new JSONObject();
-        send.put("user", user);
-        send.put("friend", friend);
-        return getOutput(con, send);
+    public static boolean addaFriend(User friend, RestTemplate restTemplate) throws IOException {
+        String url = "http://localhost:8080/friends/add";
+        boolean response = (Boolean) restTemplate.postForObject(url, friend, Boolean.class);
+        return response;
+
     }
 
-    /**Returns a set containing a list of yor friends.
+    /**
+     * Returns a set containing a list of yor friends.
      *
      * @param restTemplate a restTemplate object for communication.
      * @return a Set of String which contains yor list of friends
      * @throws IOException Uh-oh
      */
-    @SuppressWarnings("unchecked")
     public static Set<String> getMyFriends(RestTemplate restTemplate) throws IOException {
-        String uri = "http://http://localhost:8080/friends/getmyfriends/{username}";
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("username", user.getUsername());
-        return (Set<String>) restTemplate.getForObject(uri, Set.class, params);
+        String uri = "http://localhost:8080/friends/getmyfriends/" + Client.getUser().getUsername();
+        @SuppressWarnings("unchecked")
+        Set<String> response = (Set<String>) restTemplate.getForObject(uri, Set.class);
+        return response;
+
     }
 
-    /**Returns a list of the people who befriended you.
+    /**
+     * Returns a list of the people who befriended you.
      *
      * @return a String
      * @throws IOException Uh-oh
      */
-    public static String getPeopleWhoBefriendedMe() throws IOException {
-        String url = "http://http://localhost:8080/friends/getpeoplewhobefriendedme/" + user.getUsername();
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        return getOutputwithoutobject(con);
+    public static Set<String> getPeopleWhoBefriendedMe(RestTemplate restTemplate) {
+        String url = "http://localhost:8080/friends/getpeoplewhobefriendedme/" + Client.getUser().getUsername();
+        @SuppressWarnings("unchecked")
+        Set<String> response = (Set<String>) restTemplate.getForObject(url, Set.class);
+        return response;
+
     }
 
-    /**gets your friends who are friends with you as well.
+    /**
+     * gets your friends who are friends with you as well.
      *
      * @return String
      * @throws IOException Uh-oh
      */
-    public static String mymutualFriends() throws IOException {
-        String url = "http://http://localhost:8080/friends/getmutualfriends/" + user.getUsername();
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        return getOutputwithoutobject(con);
+    public static Set<String> mymutualFriends(RestTemplate restTemplate) throws IOException {
+        String url = "http://localhost:8080/friends/getmutualfriends/" + Client.getUser().getUsername();
+        @SuppressWarnings("unchecked")
+        Set<String> response = (Set<String>) restTemplate.getForObject(url, Set.class);
+        return response;
     }
 
-    /**Return a list of requests which were sent to you.
+    /**
+     * Return a list of requests which were sent to you.
      *
      * @return a String containing the requests
      * @throws IOException Uh-oh
      */
-    public static String pendingrequests() throws IOException {
-        String url = "http://http://localhost:8080/friends/getpendingfriendrequests/" + user.getUsername();
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        return getOutputwithoutobject(con);
+    public static Set<String> pendingrequests(RestTemplate restTemplate) throws IOException {
+        String url = "http://localhost:8080/friends/getpendingfriendrequests/" + Client.getUser().getUsername();
+        @SuppressWarnings("unchecked")
+        Set<String> response = (Set<String>) restTemplate.getForObject(url, Set.class);
+        return response;
+
 
     }
 
-    /**returns a list of request that you sent to people but are still unconfirmed.
+    /**
+     * returns a list of request that you sent to people but are still unconfirmed.
      *
      * @return a String containing the list.
      * @throws IOException Uh-oh
      */
-    public static String sentpendingrequests() throws IOException {
-        String url = "http://http://localhost:8080/friends/getsentpendingfriendsrequests/" + user.getUsername();
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        return getOutputwithoutobject(con);
+    public static Set<String> sentpendingrequests(RestTemplate restTemplate) throws IOException {
+        String url = "http://localhost:8080/friends/getsentpendingfriendsrequests/" + Client.getUser().getUsername();
+        @SuppressWarnings("unchecked")
+        Set<String> response = (Set<String>) restTemplate.getForObject(url, Set.class);
+        return response;
+
 
     }
 
-    /**Get all the badges you have earned from the database.
+    /**
+     * Get all the badges you have earned from the database.
      *
      * @return a String containing the badges
      * @throws IOException Uh-oh
      */
-    public static String iwantmybadges() throws IOException {
-        String url = "http://http://localhost:8080/badgesearned/getmybadges/" + user.getUsername();
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        return getOutputwithoutobject(con);
+    @SuppressWarnings("unchecked")
+    public static List<BadgesEarned> iwantmybadges(RestTemplate restTemplate) throws IOException {
+        String url="http://localhost:8080/badgesearned/getmybadges/" + Client.getUser().getUsername();
+        List<BadgesEarned> response =(List<BadgesEarned>) restTemplate.getForObject(url, List.class);
+        return response;
+
 
     }
     //OUTPUT METHODS
+/*
 
-    /**
-     * Gets the string output of the server response given a connection and a json object
-     * For post and put requests.
-     *
-     * @param con  the connection from which to get the response
-     * @param send the json object to send
-     * @return the string output of the server
-     * @throws IOException VERY BIG OOFF
-     */
     public static String getOutput(HttpURLConnection con, JSONObject send) throws IOException {
         //writing to the server
         con.setDoOutput(true);
@@ -270,13 +253,9 @@ public class Client {
         return response.toString();
     }
 
-    /**
-     * Methods used when client sends request without object.
-     *
-     * @param con of type HTTPURLConnection
-     * @return String
-     * @throws IOException in case getOutput method returns wrong result.
-     */
+    *//**
+
+     *//*
     public static String getOutputwithoutobject(HttpURLConnection con) throws IOException {
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -292,5 +271,5 @@ public class Client {
         }
 
         return response.toString();
-    }
+    }*/
 }
