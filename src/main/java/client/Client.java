@@ -86,15 +86,11 @@ public class Client {
      * @return the number of meals
      * @throws IOException BIG OOFF
      */
-    public static int getVeganMealCount(User user) throws IOException, JSONException {
+    public static int getVeganMealCount(User user,RestTemplate restTemplate) throws IOException, JSONException {
         String url = "http://http://localhost:8080/entries/getvegetarianmeals";
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestProperty("Content-Type", "application/json");
-        con.setRequestMethod("POST");
-        JSONObject us = new JSONObject();
-        us.put("username", user.getUsername());
-        return Integer.parseInt(getOutput(con, us));
+        int response=restTemplate.postForObject(url,user,int.class);
+        return response;
+
     }
 
 
@@ -106,22 +102,14 @@ public class Client {
      * Takes a new user and adds it to the database.
      *
      * @param user object og type User.
-     * @return String
+     * @return boolean
      */
-    public static String addnewuser(User user) throws IOException {
+    public static boolean addnewuser(User user,RestTemplate restTemplate) throws IOException {
         String url = "http://http://localhost:8080/users/register";
+        boolean response=restTemplate.postForObject(url,user,boolean.class);
+        return response;
 
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        con.setRequestMethod("POST");
-
-        con.setRequestProperty("Content-Type", "application/json");
-
-        JSONObject newuser = new JSONObject();
-        newuser.put("username", user.getUsername());
-        newuser.put("password", user.getPassword());
-        return getOutput(con, newuser);
     }
     //Entry Controller client side methods
     //all entry info
