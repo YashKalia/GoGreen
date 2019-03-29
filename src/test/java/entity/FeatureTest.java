@@ -23,7 +23,7 @@ public class FeatureTest {
     @Test
     public void testGetFeature() {
 
-        assertEquals("Eating a vegetarian meal", feature1.getFeature());
+        assertEquals("Eating a vegetarian meal", feature1.getFeatureName());
 
     }
 
@@ -32,7 +32,7 @@ public class FeatureTest {
 
         feature1.setFeature("Riding a bike to work");
 
-        assertEquals("Riding a bike to work", feature1.getFeature());
+        assertEquals("Riding a bike to work", feature1.getFeatureName());
 
     }
 

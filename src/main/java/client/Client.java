@@ -1,19 +1,48 @@
 package client;
 
 import entity.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.nio.charset.Charset;
+import java.util.*;
 
 public class Client {
 
-    public static final Feature vegetarianmeal = new Feature("Eating a vegan meal");
-    private static RestTemplate restTemplate = new RestTemplate();
+    public static void main(String[] args) {
+//        User calin = new User("calin","password");
+//        System.out.println(sendLoginRequest(Client.herokuUrl,Client.restTemplate,new User("calin","password")));
+//        Feature meal = new Feature("Eating a vegetarian meal");
+//        Client.addEntry(Client.herokuUrl, new User("calin", null),meal,Client.restTemplate);
+//        System.out.println(getVegetarianMealCount(herokuUrl,calin,restTemplate));
+        Client client = new Client();
+        System.out.print(client.callSecurityService());
+    }
+
+    public ArrayList<Feature> callSecurityService() {
+       RestTemplate restTemplate = new RestTemplate();
+               restTemplateBuilder.basicAuthentication("Andrei","andreiu").build();
+        Client.initiate(restTemplate);
+        System.out.print(restTemplate.getForObject(localUrl+"features/secure/sth",ArrayList.class));
+       return restTemplate.getForObject(localUrl+"features/secure/sth",ArrayList.class);
+    }
+
+    @Autowired
+    private RestTemplateBuilder restTemplateBuilder;
+    private RestTemplate restTemplate = new RestTemplate();
     private static boolean isInitiated = false;
     private static User user;
+    private static final String herokuUrl = "https://projectgogreen.herokuapp.com/";
+    private static final String localUrl = "http://localhost:8080/";
     ArrayList<String> friends = new ArrayList<String>();
 
     public static User getUser() {
@@ -25,53 +54,37 @@ public class Client {
         user = user1;
     }
 
-    /**Sends a login request with username,password.
+    /**
+     * Sends a login request with username,password.
      *
      * @param restTemplate restTemplate object for connection
      * @return string response
      * @throws IOException oof
      */
-    public static boolean sendLoginRequest(RestTemplate restTemplate) throws IOException {
-        String url = "http://localhost:8080/users/authenticate";
-        Boolean response = (Boolean)restTemplate.postForObject(url,Client.getUser().getUsername(),Boolean.class);
-        return response;
+    public static boolean sendLoginRequest(String url, RestTemplate restTemplate, User user) {
+        url += "/users/authenticate";
+        return restTemplate.postForObject(url, user, Boolean.class);
     }
 
     /**
      * Initiate a connection
      */
-    public static void initiate() {
+    public static void initiate(RestTemplate restTemplate) {
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-        //Add the Jackson Message converter
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        // Note: here we are making this converter to process any kind of response,
-        // not only application/*json, which is the default behaviour
         converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
         messageConverters.add(converter);
-        Client.restTemplate.setMessageConverters(messageConverters);
+        restTemplate.setMessageConverters(messageConverters);
         Client.isInitiated = true;
     }
 
-    /**
-     * Adds sends a post request to the server adding a new entry.
-     *
-     * @param feature the feature to be added (i.e. Eating a vegan meal)
-     * @param user    the username who ate the meal
-     * @return a string version of the server response
-     * @throws IOException oof
-     */
-    public static boolean addEntry(Feature feature,RestTemplate restTemplate) {
-        String url = "http://localhost:8080/entries/add";
-        RequestUserFeature obj2 = new RequestUserFeature(feature, Client.getUser());
-        Boolean response = restTemplate.postForObject(url, obj2, boolean.class);
-        return response;
+
+    public static boolean addEntry(String url, User user, Feature feature, RestTemplate restTemplate) {
+        url += "/entries/add";
+        RequestUserFeature obj2 = new RequestUserFeature(feature, user);
+        return restTemplate.postForObject(url, obj2, Boolean.class);
     }
 
-
-    @SuppressWarnings("unchecked")
-    public static ArrayList<Feature> getAllFeatures(RestTemplate restTemplate) {
-        return (ArrayList<Feature>) restTemplate.getForObject("http://localhost:8080/features/getall", ArrayList.class);
-    }
 
     /**
      * Gets the number of vegan / vegetarian meals the user has had.
@@ -80,18 +93,12 @@ public class Client {
      * @return the number of meals
      * @throws IOException BIG OOFF
      */
- 
-    public static int getVeganMealCount(User user, RestTemplate restTemplate) {
-        String url = "http://localhost:8080/entries/getvegetarianmeals/";
-        url+= user.getUsername();
-        return (int)restTemplate.getForObject(url,Integer.class);
 
+    public static int getVegetarianMealCount(String url, User user, RestTemplate restTemplate) {
+        url += "/entries/getvegetarianmeals/";
+        url += user.getUsername();
+        return restTemplate.getForObject(url, Integer.class);
     }
-
-
-    //User Controller Client Methods
-
-    //AddUser
 
     /**
      * Takes a new user and adds it to the database.
@@ -99,35 +106,10 @@ public class Client {
      * @param user object og type User.
      * @return boolean
      */
-    public static boolean addnewuser(User user, RestTemplate restTemplate) throws IOException {
-        String url = "http://localhost:8080/users/register";
-        boolean response = restTemplate.postForObject(url, user, boolean.class);
-        return response;
-
-
+    public static boolean register(String url, User user, RestTemplate restTemplate) {
+        url += "/users/register";
+        return restTemplate.postForObject(url, user, Boolean.class);
     }
-    //Entry Controller client side methods
-    //all entry info
-
-
-    /**
-     * Gets all the entries of a particular username from the database.
-     *
-     * @param user of type User
-     * @return String
-     * @throws IOException in case getOutput method returns wrong result.
-     */
-
-    @SuppressWarnings("unchecked")
-    public static List<Entry> get_entries_per_username(User user, RestTemplate restTemplate){
-        String url = "http://localhost:8080/entries/getbyuser";
-
-        return (List<Entry>) restTemplate.postForObject(url, user, List.class);
-
-    }
-
-
-    //Friend Controller methods
 
     /**
      * Adds the friend supplied as parameter as a friend of the user in the database.
@@ -136,11 +118,10 @@ public class Client {
      * @return a response from GetOutput method
      * @throws IOException Uh-oh
      */
-    public static boolean addaFriend(User friend, RestTemplate restTemplate) throws IOException {
-        String url = "http://localhost:8080/friends/add";
-        boolean response = (Boolean) restTemplate.postForObject(url, friend, Boolean.class);
-        return response;
-
+    public static boolean addFriend(String url, User user, User friend, RestTemplate restTemplate) {
+        url += "/friends/add";
+        Friends friends = new Friends(user, friend);
+        return restTemplate.postForObject(url, friends, Boolean.class);
     }
 
     /**
@@ -150,27 +131,11 @@ public class Client {
      * @return a Set of String which contains yor list of friends
      * @throws IOException Uh-oh
      */
-    public static Set<String> getMyFriends(RestTemplate restTemplate) throws IOException {
-        String uri = "http://localhost:8080/friends/getmyfriends/" + Client.getUser().getUsername();
-        @SuppressWarnings("unchecked")
-        Set<String> response = (Set<String>) restTemplate.getForObject(uri, Set.class);
-        return response;
-
+    public static HashSet<String> getMyFriends(String url, User user, RestTemplate restTemplate) {
+        url += "/friends/getmyfriends/" + user.getUsername();
+        return (HashSet<String>) restTemplate.getForObject(url, Set.class);
     }
 
-    /**
-     * Returns a list of the people who befriended you.
-     *
-     * @return a String
-     * @throws IOException Uh-oh
-     */
-    public static Set<String> getPeopleWhoBefriendedMe(RestTemplate restTemplate) {
-        String url = "http://localhost:8080/friends/getpeoplewhobefriendedme/" + Client.getUser().getUsername();
-        @SuppressWarnings("unchecked")
-        Set<String> response = (Set<String>) restTemplate.getForObject(url, Set.class);
-        return response;
-
-    }
 
     /**
      * gets your friends who are friends with you as well.
@@ -178,11 +143,9 @@ public class Client {
      * @return String
      * @throws IOException Uh-oh
      */
-    public static Set<String> mymutualFriends(RestTemplate restTemplate) throws IOException {
-        String url = "http://localhost:8080/friends/getmutualfriends/" + Client.getUser().getUsername();
-        @SuppressWarnings("unchecked")
-        Set<String> response = (Set<String>) restTemplate.getForObject(url, Set.class);
-        return response;
+    public static HashSet<String> getMutualFriends(String url, User user, RestTemplate restTemplate) {
+        url += "/friends/getmutualfriends/" + user.getUsername();
+        return (HashSet<String>) restTemplate.getForObject(url, Set.class);
     }
 
     /**
@@ -191,13 +154,9 @@ public class Client {
      * @return a String containing the requests
      * @throws IOException Uh-oh
      */
-    public static Set<String> pendingrequests(RestTemplate restTemplate) throws IOException {
-        String url = "http://localhost:8080/friends/getpendingfriendrequests/" + Client.getUser().getUsername();
-        @SuppressWarnings("unchecked")
-        Set<String> response = (Set<String>) restTemplate.getForObject(url, Set.class);
-        return response;
-
-
+    public static HashSet<String> getPendingRequests(String url, User user, RestTemplate restTemplate) {
+        url += "/friends/getpendingfriendsrequests/" + user.getUsername();
+        return (HashSet<String>) restTemplate.getForObject(url, Set.class);
     }
 
     /**
@@ -206,13 +165,9 @@ public class Client {
      * @return a String containing the list.
      * @throws IOException Uh-oh
      */
-    public static Set<String> sentpendingrequests(RestTemplate restTemplate) throws IOException {
-        String url = "http://localhost:8080/friends/getsentpendingfriendsrequests/" + Client.getUser().getUsername();
-        @SuppressWarnings("unchecked")
-        Set<String> response = (Set<String>) restTemplate.getForObject(url, Set.class);
-        return response;
-
-
+    public static HashSet<String> getSentPendingRequests(String url, User user, RestTemplate restTemplate) {
+        url += "friends/getsentpendingfriendsrequests/" + user.getUsername();
+        return (HashSet<String>) restTemplate.getForObject(url, Set.class);
     }
 
     /**
@@ -222,54 +177,8 @@ public class Client {
      * @throws IOException Uh-oh
      */
     @SuppressWarnings("unchecked")
-    public static List<BadgesEarned> iwantmybadges(RestTemplate restTemplate) throws IOException {
-        String url="http://localhost:8080/badgesearned/getmybadges/" + Client.getUser().getUsername();
-        List<BadgesEarned> response =(List<BadgesEarned>) restTemplate.getForObject(url, List.class);
-        return response;
-
-
+    public static ArrayList<BadgesEarned> getMyBadges(String url, User user, RestTemplate restTemplate) {
+        url += "/badgesearned/getmybadges/" + user.getUsername();
+        return (ArrayList<BadgesEarned>) restTemplate.getForObject(url, List.class);
     }
-    //OUTPUT METHODS
-/*
-
-    public static String getOutput(HttpURLConnection con, JSONObject send) throws IOException {
-        //writing to the server
-        con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(send.toString());
-        wr.flush();
-        wr.close();
-
-        //reading from the server
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-
-        return response.toString();
-    }
-
-    *//**
-
-     *//*
-    public static String getOutputwithoutobject(HttpURLConnection con) throws IOException {
-        con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.flush();
-        wr.close();
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-
-        return response.toString();
-    }*/
 }

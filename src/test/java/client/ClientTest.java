@@ -2,18 +2,11 @@ package client;
 
 import entity.Feature;
 import entity.User;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import static client.Client.getOutput;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -57,29 +50,11 @@ public class ClientTest {
     }
 
     @Test
-    public void testSendLoginRequest() throws Exception {
+    public void testSendLoginRequest() {
 
-        assertEquals("true", client.sendLoginRequest(user5));
-
-    }
-
-    @Test
-    public void testAddEntry() throws Exception {
-
-        String response = client.addEntry(vegetarianMeal, user5);
-
-        assertTrue(response.contains("Eating a vegan meal"));
 
     }
 
-    @Test
-    public void testGetVeganMealCount() throws Exception {
-
-        int veganMeals = client.getVeganMealCount(user5);
-
-        assertTrue(veganMeals > 2);
-
-    }
 
 //    @Test
 //    public void testGetOutput() throws IOException {
