@@ -1,49 +1,30 @@
 package client;
 
-import entity.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
+import entity.Feature;
+import entity.Friends;
+import entity.RequestUserFeature;
+import entity.User;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Client {
 
-    public static void main(String[] args) {
-//        User calin = new User("calin","password");
-//        System.out.println(sendLoginRequest(Client.herokuUrl,Client.restTemplate,new User("calin","password")));
-//        Feature meal = new Feature("Eating a vegetarian meal");
-//        Client.addEntry(Client.herokuUrl, new User("calin", null),meal,Client.restTemplate);
-//        System.out.println(getVegetarianMealCount(herokuUrl,calin,restTemplate));
-        Client client = new Client();
-        System.out.print(client.callSecurityService());
-    }
-
-    public ArrayList<Feature> callSecurityService() {
-       RestTemplate restTemplate = new RestTemplate();
-               restTemplateBuilder.basicAuthentication("Andrei","andreiu").build();
-        Client.initiate(restTemplate);
-        System.out.print(restTemplate.getForObject(localUrl+"features/secure/sth",ArrayList.class));
-       return restTemplate.getForObject(localUrl+"features/secure/sth",ArrayList.class);
-    }
-
-    @Autowired
-    private RestTemplateBuilder restTemplateBuilder;
-    private RestTemplate restTemplate = new RestTemplate();
+    private static RestTemplate restTemplate = new RestTemplate();
     private static boolean isInitiated = false;
     private static User user;
     private static final String herokuUrl = "https://projectgogreen.herokuapp.com/";
     private static final String localUrl = "http://localhost:8080/";
-    ArrayList<String> friends = new ArrayList<String>();
+
+    private static void enableBasicAuthentication() {
+        Client.restTemplate = new RestTemplateBuilder()
+                .basicAuthentication(Client.getUser().getUsername(), Client.getUser().getPassword()).build();
+
+    }
 
     public static User getUser() {
         return user;
@@ -56,48 +37,32 @@ public class Client {
 
     /**
      * Sends a login request with username,password.
-     *
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * This is only in case of backup. Use BA otherwise.
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      * @param restTemplate restTemplate object for connection
      * @return string response
      * @throws IOException oof
      */
-    public static boolean sendLoginRequest(String url, RestTemplate restTemplate, User user) {
+    public static boolean sendLoginRequest(String url, User user, RestTemplate restTemplate) {
         url += "/users/authenticate";
         return restTemplate.postForObject(url, user, Boolean.class);
     }
 
     /**
-     * Initiate a connection
+     * Adds an entry to the database.
+     *
+     * @param url          base url (localhost/heroku)
+     * @param user         the user who adds the entry
+     * @param feature      the feature which they add
+     * @param restTemplate .
+     * @return true if adding worked.
      */
-    public static void initiate(RestTemplate restTemplate) {
-        List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
-        messageConverters.add(converter);
-        restTemplate.setMessageConverters(messageConverters);
-        Client.isInitiated = true;
-    }
-
-
-    public static boolean addEntry(String url, User user, Feature feature, RestTemplate restTemplate) {
+    public static boolean addEntry(String url, User user,
+                                   Feature feature, RestTemplate restTemplate) {
         url += "/entries/add";
         RequestUserFeature obj2 = new RequestUserFeature(feature, user);
         return restTemplate.postForObject(url, obj2, Boolean.class);
-    }
-
-
-    /**
-     * Gets the number of vegan / vegetarian meals the user has had.
-     *
-     * @param user the user whose meals to get
-     * @return the number of meals
-     * @throws IOException BIG OOFF
-     */
-
-    public static int getVegetarianMealCount(String url, User user, RestTemplate restTemplate) {
-        url += "/entries/getvegetarianmeals/";
-        url += user.getUsername();
-        return restTemplate.getForObject(url, Integer.class);
     }
 
     /**
@@ -106,7 +71,8 @@ public class Client {
      * @param user object og type User.
      * @return boolean
      */
-    public static boolean register(String url, User user, RestTemplate restTemplate) {
+    public static boolean register(String url, User user,
+                                   RestTemplate restTemplate) throws HttpServerErrorException {
         url += "/users/register";
         return restTemplate.postForObject(url, user, Boolean.class);
     }
@@ -114,36 +80,23 @@ public class Client {
     /**
      * Adds the friend supplied as parameter as a friend of the user in the database.
      *
-     * @param friend User object representing a friend
+     * @param friends User object representing a friend
      * @return a response from GetOutput method
      * @throws IOException Uh-oh
      */
-    public static boolean addFriend(String url, User user, User friend, RestTemplate restTemplate) {
+    public static boolean addFriend(String url, Friends friends,
+                                    RestTemplate restTemplate) throws HttpServerErrorException {
         url += "/friends/add";
-        Friends friends = new Friends(user, friend);
         return restTemplate.postForObject(url, friends, Boolean.class);
     }
-
-    /**
-     * Returns a set containing a list of yor friends.
-     *
-     * @param restTemplate a restTemplate object for communication.
-     * @return a Set of String which contains yor list of friends
-     * @throws IOException Uh-oh
-     */
-    public static HashSet<String> getMyFriends(String url, User user, RestTemplate restTemplate) {
-        url += "/friends/getmyfriends/" + user.getUsername();
-        return (HashSet<String>) restTemplate.getForObject(url, Set.class);
-    }
-
 
     /**
      * gets your friends who are friends with you as well.
      *
      * @return String
-     * @throws IOException Uh-oh
      */
-    public static HashSet<String> getMutualFriends(String url, User user, RestTemplate restTemplate) {
+    public static HashSet<String> getMutualFriends(String url,
+                                                   User user, RestTemplate restTemplate) {
         url += "/friends/getmutualfriends/" + user.getUsername();
         return (HashSet<String>) restTemplate.getForObject(url, Set.class);
     }
@@ -152,10 +105,10 @@ public class Client {
      * Return a list of requests which were sent to you.
      *
      * @return a String containing the requests
-     * @throws IOException Uh-oh
      */
-    public static HashSet<String> getPendingRequests(String url, User user, RestTemplate restTemplate) {
-        url += "/friends/getpendingfriendsrequests/" + user.getUsername();
+    public static HashSet<String> getPendingRequests(String url,
+                                                     User user, RestTemplate restTemplate) {
+        url += "/friends/getpendingfriendrequests/" + user.getUsername();
         return (HashSet<String>) restTemplate.getForObject(url, Set.class);
     }
 
@@ -163,10 +116,10 @@ public class Client {
      * returns a list of request that you sent to people but are still unconfirmed.
      *
      * @return a String containing the list.
-     * @throws IOException Uh-oh
      */
-    public static HashSet<String> getSentPendingRequests(String url, User user, RestTemplate restTemplate) {
-        url += "friends/getsentpendingfriendsrequests/" + user.getUsername();
+    public static HashSet<String> getSentPendingRequests(String url,
+                                                         User user, RestTemplate restTemplate) {
+        url += "/friends/getsentpendingfriendsrequests/" + user.getUsername();
         return (HashSet<String>) restTemplate.getForObject(url, Set.class);
     }
 
@@ -176,9 +129,143 @@ public class Client {
      * @return a String containing the badges
      * @throws IOException Uh-oh
      */
-    @SuppressWarnings("unchecked")
-    public static ArrayList<BadgesEarned> getMyBadges(String url, User user, RestTemplate restTemplate) {
+    public static HashSet<String> getMyBadges(String url,
+                                              User user, RestTemplate restTemplate) {
         url += "/badgesearned/getmybadges/" + user.getUsername();
-        return (ArrayList<BadgesEarned>) restTemplate.getForObject(url, List.class);
+        return (HashSet<String>) restTemplate.getForObject(url, Set.class);
+    }
+
+    /**
+     * Gets the total number of vegetarian meals for one user.
+     *
+     * @param url          the url to send the request to (heroku/localhost)
+     * @param user         the user.
+     * @param restTemplate the initiated template including BA
+     * @return the number of features consumed
+     */
+    public static int getVegetarianMeals(String url, User user, RestTemplate restTemplate) {
+        url += "/entries/getvegetarianmeals/";
+        url += user.getUsername();
+        return restTemplate.getForObject(url, Integer.class);
+    }
+
+    /**
+     * Gets the total number of times a user has bought local produce.
+     *
+     * @param url          the url to send the request to (heroku/localhost)
+     * @param user         the user.
+     * @param restTemplate the initiated template including BA
+     * @return the number of features consumed
+     */
+    public static int getLocalProduce(String url, User user, RestTemplate restTemplate) {
+        url += "/entries/getlocalproduce/";
+        url += user.getUsername();
+        return restTemplate.getForObject(url, Integer.class);
+    }
+
+    /**
+     * Gets the total number of times a user has used a bike instead of a car.
+     *
+     * @param url          the url to send the request to (heroku/localhost)
+     * @param user         the user.
+     * @param restTemplate the initiated template including BA
+     * @return the number of features consumed
+     */
+    public static int getBikeRides(String url, User user, RestTemplate restTemplate) {
+        url += "/entries/getbikerides/";
+        url += user.getUsername();
+        return restTemplate.getForObject(url, Integer.class);
+    }
+
+    /**
+     * Gets the number of times a use has used the public transport feature.
+     *
+     * @param url          the url to send the request to (heroku/localhost)
+     * @param user         the user.
+     * @param restTemplate the initiated template including BA
+     * @return the number of features consumed
+     */
+    public static int getPublicTransport(String url, User user, RestTemplate restTemplate) {
+        url += "/entries/getpublictransport/";
+        url += user.getUsername();
+        return restTemplate.getForObject(url, Integer.class);
+    }
+
+    /**
+     * Gets the total number of times a use has lowered the temperature of their home.
+     *
+     * @param url          the url to send the request to (heroku/localhost)
+     * @param user         the user.
+     * @param restTemplate the initiated template including BA
+     * @return the number of features consumed
+     */
+    public static int getLoweringTemperature(String url, User user, RestTemplate restTemplate) {
+        url += "/entries/getloweringtemperature/";
+        url += user.getUsername();
+        return restTemplate.getForObject(url, Integer.class);
+    }
+
+    /**
+     * Gets the total number of solar panels for one user.
+     *
+     * @param url          the url to send the request to (heroku/localhost)
+     * @param user         the user.
+     * @param restTemplate the initiated template including BA
+     * @return the number of features consumed
+     */
+    public static int getSolarPanels(String url, User user, RestTemplate restTemplate) {
+        url += "/entries/getsolarpanels/";
+        url += user.getUsername();
+        return restTemplate.getForObject(url, Integer.class);
+    }
+
+    /**
+     * Total amount of co2 which you saved.
+     *
+     * @param url          local/heroku
+     * @param user         the user
+     * @param restTemplate the initiated resttemplate including BA
+     * @return the amount of co2 saved
+     */
+    public static double getTotalCo2(String url, User user, RestTemplate restTemplate) {
+        url += "/entries/gettotalco2/" + user.getUsername();
+        return restTemplate.getForObject(url, Double.class);
+    }
+
+    /**
+     * Amount of co2 saved in a week.
+     *
+     * @param url          local/heroku
+     * @param user         the use
+     * @param restTemplate same as the rest
+     * @param week         a number between 1 and 52
+     * @return the amount of co2 saved by that user in that week
+     */
+    public static double getWeekCo2(String url, User user, RestTemplate restTemplate, int week) {
+        url += "/entries/getweekco2/" + user.getUsername() + "/" + week;
+        return restTemplate.getForObject(url, Double.class);
+    }
+
+    /**
+     * Amount of co2 saved in a month.
+     *
+     * @param url          local/heroku
+     * @param user         the user
+     * @param restTemplate initiated with BA
+     * @param month        !!!A string of 2 digits following this pattern:
+     *                     January = 01
+     *                     February = 02
+     *                     .
+     *                     .
+     *                     .
+     *                     October = 10
+     *                     November = 11
+     *                     December = 12
+     * @return
+     */
+    public static double getMonthCo2(String url, User user,
+                                    RestTemplate restTemplate, String month) {
+        url += "/entries/getmonthco2/" + user.getUsername() + "/" + month;
+        return restTemplate.getForObject(url, Double.class);
     }
 }

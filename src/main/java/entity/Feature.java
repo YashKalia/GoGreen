@@ -3,15 +3,17 @@ package entity;
 public class Feature {
     private String feature;
 
-    public Feature() {}
+    public Feature() {
+    }
 
-    public Feature(String feature){
-        this.feature=feature;
+    public Feature(String feature) {
+        this.feature = feature;
     }
 
     public String getFeatureName() {
         return feature;
     }
+
     public void setFeature(String feature) {
         this.feature = feature;
     }
