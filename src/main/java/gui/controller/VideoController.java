@@ -13,29 +13,26 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 public class VideoController implements Initializable {
-	
-	@FXML 
-	private MediaView mv;
-	
-	private MediaPlayer mp;
-	private Media me;
-	
-	
-	
-	
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		String path = new File ("C:\\Users\\PRADHYUMNAA.G\\Downloads\\AboutApp.mp4").getAbsolutePath();
-		me = new Media(new File(path).toURI().toString());
-		mp = new MediaPlayer(me); 
-		mv.setMediaPlayer(mp);
-		mp.setAutoPlay(true);
-		DoubleProperty height= mv.fitHeightProperty();
-		DoubleProperty width = mv.fitWidthProperty();
-		width.bind(Bindings.selectDouble(mv.sceneProperty(), "width"));
-		height.bind(Bindings.selectDouble(mv.sceneProperty(), "height"));
-		
-	}
+    @FXML
+    private MediaView mv;
+
+    private MediaPlayer mp;
+    private Media me;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+        String path = new File("C:\\Users\\PRADHYUMNAA.G\\Downloads\\AboutApp.mp4").getAbsolutePath();
+        me = new Media(new File(path).toURI().toString());
+        mp = new MediaPlayer(me);
+        mv.setMediaPlayer(mp);
+        mp.setAutoPlay(true);
+        DoubleProperty height = mv.fitHeightProperty();
+        DoubleProperty width = mv.fitWidthProperty();
+        width.bind(Bindings.selectDouble(mv.sceneProperty(), "width"));
+        height.bind(Bindings.selectDouble(mv.sceneProperty(), "height"));
+
+    }
 }
