@@ -53,7 +53,7 @@ public class MainController {
 
         User newuser = new User(txtUsername.getText(), txtPassword.getText());
         try {
-            if (Client.sendLoginRequest(newuser).equals("true")) {
+            if (Client.sendLoginRequest(Client.getUrl(),newuser,Client.getRestTemplate())) {
                 Client.setUser(newuser);
                 lblStatus.setText("Login Success");
                 Stage primaryStage = new Stage();
