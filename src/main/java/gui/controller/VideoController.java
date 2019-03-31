@@ -1,9 +1,6 @@
-package application;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
@@ -16,15 +13,17 @@ public class VideoController implements Initializable {
 
     @FXML
     private MediaView mv;
-
     private MediaPlayer mp;
     private Media me;
+
+
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
-        String path = new File("C:\\Users\\PRADHYUMNAA.G\\Downloads\\AboutApp.mp4").getAbsolutePath();
+        String path = new File("src/main/java/gui/resources/AboutApp.mp4").getAbsolutePath();
         me = new Media(new File(path).toURI().toString());
         mp = new MediaPlayer(me);
         mv.setMediaPlayer(mp);

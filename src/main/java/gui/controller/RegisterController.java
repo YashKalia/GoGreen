@@ -1,4 +1,4 @@
-package application;
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,12 +17,12 @@ public class RegisterController {
     private TextField passwordconfirm;
 
     /**
-     * GUI people please check yur comments.
-     * @param event .
+     * Checks if the first password supplied by the user matches the second one.
+     * @param event on Button click
      */
-    public void checkregisteration(ActionEvent event) {
+    public void checkregistration (ActionEvent event) {
         if (passwordfield.getText().equals(passwordconfirm.getText())) {
-            lblregisterstatus.setText("Registeration Confirmed");
+            lblregisterstatus.setText("Registration Confirmed");
         } else {
             lblregisterstatus.setText("Password Do Not Match");
         }
