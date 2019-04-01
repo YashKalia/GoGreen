@@ -40,7 +40,7 @@ public class Client {
     }
 
     public static String getUrl() {
-        return localUrl;
+        return herokuUrl;
     }
 
     /**

@@ -69,7 +69,7 @@ public class MainController {
             } else {
                 lblStatus.setText("Bad Credentials");
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             lblStatus.setText("Error in creating a new request!");
         }
     }

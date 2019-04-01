@@ -13,6 +13,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.File;
 import java.net.URL;
@@ -115,10 +116,12 @@ public class FriendsController implements Initializable {
     void addFriend(ActionEvent event){
         User friend = new User(FriendSearch.getText(),null);
         Friends newFriend = new Friends(Client.getUser(),friend);
-        if (Client.addFriend(Client.getUrl(),newFriend,Client.getRestTemplate())) {
-            FriendSearchButton.setText("Friend Added");
+        try {
+            if (Client.addFriend(Client.getUrl(), newFriend, Client.getRestTemplate())) {
+                FriendSearchButton.setText("Friend Added");
+            }
         }
-        else {
+        catch (HttpServerErrorException e) {
             FriendSearchButton.setText("User invalid");
         }
     }
