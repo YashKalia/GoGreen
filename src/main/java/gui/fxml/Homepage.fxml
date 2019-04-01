@@ -19,12 +19,12 @@
                   <Image url="@../resources/Food.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="170.0" fitWidth="352.0" layoutX="150.0" layoutY="170.0" onMouseClicked="#transportclicked">
+            <ImageView fitHeight="170.0" fitWidth="352.0" layoutX="150.0" layoutY="170.0" onMouseClicked="#energyclicked">
                <image>
                   <Image url="@../resources/Electricity.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="177.0" fitWidth="352.0" layoutX="150.0" layoutY="333.0" onMouseClicked="#energyclicked">
+            <ImageView fitHeight="177.0" fitWidth="352.0" layoutX="150.0" layoutY="333.0" onMouseClicked="#transportclicked">
                <image>
                   <Image url="@../resources/Transportation.jpg" />
                </image>
