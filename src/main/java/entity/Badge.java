@@ -28,4 +28,22 @@ public class Badge {
         this.pointsNeeded = points;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Badge)) {
+            return false;
+        }
+        Badge other = (Badge) obj;
+        if (!badgeName.equals(other.badgeName)) {
+            return false;
+        }
+        if (pointsNeeded != other.pointsNeeded) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -30,4 +30,22 @@ public class BadgesEarned {
         this.user = user;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof BadgesEarned)) {
+            return false;
+        }
+        BadgesEarned other = (BadgesEarned) obj;
+        if (!badge.equals(other.badge)) {
+            return false;
+        }
+        if (!user.equals(other.user)) {
+            return false;
+        }
+        return true;
+    }
+
 }
