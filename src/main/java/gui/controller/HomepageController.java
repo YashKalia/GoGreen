@@ -1,34 +1,23 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
-import javafx.scene.control.ToolBar;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 
-import java.util.ResourceBundle;
-
-
 public class HomepageController {
     @FXML
     private AnchorPane rootpane;
 
 
-
-
-
     /**
      * Opens up the your progress page inside the window.
+     *
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
@@ -44,6 +33,7 @@ public class HomepageController {
 
     /**
      * Opens up the about the app page inside the window.
+     *
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
@@ -58,6 +48,7 @@ public class HomepageController {
 
     /**
      * Opens up the food page inside the window.
+     *
      * @throws Exception in case the file isn't found
      */
     public void foodclicked() throws Exception {
@@ -71,6 +62,7 @@ public class HomepageController {
 
     /**
      * Opens up the energy page inside the window.
+     *
      * @throws Exception in case the file isn't found
      */
     public void energyclicked() throws Exception {
@@ -84,6 +76,7 @@ public class HomepageController {
 
     /**
      * Opens up the transport page inside the window.
+     *
      * @throws Exception in case the file isn't found
      */
     public void transportclicked() throws Exception {
@@ -96,23 +89,29 @@ public class HomepageController {
     }
 
     /**
-     * Opens up the leaderboard page inside the current window
-     * @param event
+     * Opens up the leaderboard page inside the current window.
+     *
+     * @param event click click click
      * @throws Exception in case the fxml file is not found
      */
-    
-    public void clickleaderboard(ActionEvent event) throws Exception {
-	
-	    Parent secondview;
-	    URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
- 	    secondview = FXMLLoader.load(url);
-	    Scene newscene = new Scene(secondview);
-	    Stage curstage = (Stage) rootpane.getScene().getWindow();
-	    curstage.setScene(newscene);
-	
-		
-	}
 
+    public void clickleaderboard(ActionEvent event) throws Exception {
+
+        Parent secondview;
+        URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
+        secondview = FXMLLoader.load(url);
+        Scene newscene = new Scene(secondview);
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
+        curstage.setScene(newscene);
+
+
+    }
+
+    /**
+     * Opens the friends page.
+     * @param event clicks
+     * @throws Exception oops
+     */
     @FXML
     public void clickfriends(ActionEvent event) throws Exception {
         Parent secondview;

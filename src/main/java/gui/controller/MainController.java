@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,7 +68,7 @@ public class MainController {
             } else {
                 lblStatus.setText("Bad Credentials");
             }
-        } catch (JSONException e) {
+        } catch (IOException e) {
             lblStatus.setText("Error in creating a new request!");
         }
     }

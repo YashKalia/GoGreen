@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootpane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EnergyController">
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="500.0">
          <children>
-            <Label layoutX="215.0" layoutY="204.0" prefHeight="21.0" prefWidth="91.0" text="Energy" />
+            <Label layoutX="171.0" layoutY="25.0" prefHeight="55.0" prefWidth="160.0" text="Energy">
+               <font>
+                  <Font size="44.0" />
+               </font></Label>
+            <Button fx:id="clickhome" layoutX="46.0" layoutY="375.0" mnemonicParsing="false" onAction="#clickhome" text="Home" />
+            <Button fx:id="solarpanel" layoutX="176.0" layoutY="237.0" mnemonicParsing="false" onAction="#solarpanel" text="Installing solar panels" />
+            <Button fx:id="temperature" layoutX="119.0" layoutY="303.0" mnemonicParsing="false" onAction="#temperature" text="Lowering the temperature of your home" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

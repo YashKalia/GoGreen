@@ -10,7 +10,7 @@
    <children>
       <AnchorPane layoutX="70.0" layoutY="-14.0" prefHeight="766.0" prefWidth="900.0">
          <children>
-            <LineChart fx:id="Weekly" layoutX="229.0" layoutY="55.0" prefHeight="376.0" prefWidth="442.0">
+            <LineChart fx:id="weekly" layoutX="229.0" layoutY="55.0" prefHeight="376.0" prefWidth="442.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" fx:id="x1" />
               </xAxis>
@@ -18,7 +18,7 @@
                 <NumberAxis fx:id="y1" side="LEFT" />
               </yAxis>
             </LineChart>
-            <LineChart fx:id="Monthly" layoutX="229.0" layoutY="430.0" prefHeight="376.0" prefWidth="442.0">
+            <LineChart fx:id="monthly" layoutX="229.0" layoutY="430.0" prefHeight="376.0" prefWidth="442.0">
                <xAxis>
                   <CategoryAxis side="BOTTOM" fx:id="x2" />
                </xAxis>
