@@ -35,6 +35,14 @@ public class Client {
         user = user1;
     }
 
+    public static RestTemplate getRestTemplate() {
+        return restTemplate;
+    }
+
+    public static String getUrl() {
+        return localUrl;
+    }
+
     /**
      * Sends a login request with username,password.
      * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
