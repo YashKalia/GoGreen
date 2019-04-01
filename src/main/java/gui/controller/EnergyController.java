@@ -24,6 +24,12 @@ public class EnergyController {
     private Button solarpanel;
 
     @FXML
+    private Button getsolarpanel;
+
+    @FXML
+    private Button gettemperature;
+
+    @FXML
     private Button temperature;
 
     @FXML
@@ -42,6 +48,20 @@ public class EnergyController {
                 new Feature("Installing solar panels"), Client.getRestTemplate())) {
             solarpanel.setText("Thanks for your submission!");
         }
+    }
+
+    @FXML
+    void getsolarpanel(ActionEvent event) {
+        getsolarpanel.setText("You've installed a total of "
+                + Integer.toString(Client.getSolarPanels(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())) + " solar panels. Click to update.");
+    }
+
+    @FXML
+    void gettemperature(ActionEvent event) {
+        gettemperature.setText("You've lowered the temperature of your home "
+                + Integer.toString(Client.getLoweringTemperature(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())) + " times. Click to update.");
     }
 
     @FXML

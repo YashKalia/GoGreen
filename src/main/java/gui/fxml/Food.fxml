@@ -16,8 +16,10 @@
                </font></Label>
             <Button fx:id="clickhome" layoutX="39.0" layoutY="383.0" mnemonicParsing="false" onAction="#clickhome" text="Home" />
             <Button fx:id="vegeteraininin" layoutX="164.0" layoutY="135.0" mnemonicParsing="false" onAction="#vegeteraininin" text="Ate a vegetarian meal" />
-            <Text layoutX="204.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add entries" />
+            <Button fx:id="getvegetarian" layoutX="164.0" layoutY="89.0" mnemonicParsing="false" onAction="#getvegetarian" text="Show the amount of vegetarian meals I've had" />
+<!--            <Text layoutX="204.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add entries" />-->
             <Button fx:id="locolproduce" layoutX="165.0" layoutY="189.0" mnemonicParsing="false" onAction="#locolproduce" text="Bought local produce" />
+            <Button fx:id="getlocalproduce" layoutX="165.0" layoutY="223.0" mnemonicParsing="false" onAction="#getlocalproduce" text="Show the amount of times I've bought local produce" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

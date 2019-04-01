@@ -21,6 +21,12 @@ public class FoodController {
     private AnchorPane rootpane;
 
     @FXML
+    private Button getvegetarian;
+
+    @FXML
+    private Button getlocalproduce;
+
+    @FXML
     private Button vegeteraininin;
 
     @FXML
@@ -42,6 +48,21 @@ public class FoodController {
                 new Feature("Buying local produce"), Client.getRestTemplate())) {
             locolproduce.setText("Thanks for your submission!");
         }
+    }
+
+    @FXML
+    void getlocalproduce() {
+        getlocalproduce.setText("You've bought local produce "
+                + Integer.toString(Client.getLocalProduce(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())) + " times. Click again to update.");
+    }
+
+    @FXML
+    void getvegetarian() {
+        getvegetarian.setText("You've had "
+                + Integer.toString(Client.getVegetarianMeals(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate()))
+                + " vegetarian meals. Click again to update.");
     }
 
     @FXML
