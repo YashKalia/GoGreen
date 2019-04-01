@@ -36,6 +36,15 @@ public class ClientTest {
         vegetarianMeal = new Feature("Eating a vegetarian meal");
         Client.setUser(user5);
     }
+    @Test
+    public void testGetRestTemplate() {
+        assertEquals(restTemplate,Client.getRestTemplate());
+    }
+
+    @Test
+    public void testGetUrl() {
+        assertEquals(localUrl,Client.getUrl());
+    }
 
     @Test
     public void testGetUser() {
