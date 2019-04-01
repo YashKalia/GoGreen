@@ -270,7 +270,7 @@ public class Client {
      *                     October = 10
      *                     November = 11
      *                     December = 12
-     * @return
+     * @return A double representing the amount of CO2 saved in a month
      */
     public static double getMonthCo2(String url, User user,
                                     RestTemplate restTemplate, String month) {

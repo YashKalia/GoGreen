@@ -107,7 +107,9 @@
                 <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <excludes>
-                        <exclude>com/server/config/**/*</exclude>
+                        <exclude>gui/***/**/*</exclude>
+                        <exclude>client/web/**/*</exclude>
+                        <exclude>application/**/*</exclude>
                     </excludes>
                 </configuration>
 
