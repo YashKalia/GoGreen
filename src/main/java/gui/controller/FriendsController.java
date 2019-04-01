@@ -8,8 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -29,32 +32,32 @@ public class FriendsController implements Initializable {
     private Button friendsButton;
 
     @FXML
-    private TitledPane ReceivedInvites;
+    private TitledPane receivedInvites;
 
     @FXML
-    private TextField FriendSearch;
+    private TextField friendSearch;
 
     @FXML
-    private Button FriendSearchButton;
+    private Button friendSearchButton;
 
     @FXML
     private VBox vbox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        HashSet<String> friendRequests = Client.getPendingRequests(Client.getUrl(), Client.getUser(), Client.getRestTemplate());
-        for (String friendRequest : friendRequests){
+        HashSet<String> friendRequests = Client
+                .getPendingRequests(Client.getUrl(), Client.getUser(), Client.getRestTemplate());
+        for (String friendRequest : friendRequests) {
             Button b1 = new Button(friendRequest);
             vbox.getChildren().add(new ToolBar(new Label("Accept Invite"), b1));
             b1.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    User friend = new User(b1.getText(),null);
-                    Friends newFriend = new Friends(Client.getUser(),friend);
-                    if(Client.addFriend(Client.getUrl(),newFriend,Client.getRestTemplate())) {
+                    User friend = new User(b1.getText(), null);
+                    Friends newFriend = new Friends(Client.getUser(), friend);
+                    if (Client.addFriend(Client.getUrl(), newFriend, Client.getRestTemplate())) {
                         b1.setText("Invite Accepted");
-                    }
-                    else{
+                    } else {
                         b1.setText("Accept Failed");
                     }
                 }
@@ -67,6 +70,7 @@ public class FriendsController implements Initializable {
 
     /**
      * Opens up the your progress page inside the window.
+     *
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
@@ -82,6 +86,7 @@ public class FriendsController implements Initializable {
 
     /**
      * Opens up the about the app page inside the window.
+     *
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
@@ -95,37 +100,36 @@ public class FriendsController implements Initializable {
     }
 
     /**
-     * Opens up the leaderboard page inside the current window
-     * @param event
+     * Opens up the leaderboard page inside the current window.
+     *
+     * @param event clickity click
      * @throws Exception in case the fxml file is not found
      */
 
     public void clickleaderboard(ActionEvent event) throws Exception {
 
-	    Parent secondview;
-	    URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
- 	    secondview = FXMLLoader.load(url);
-	    Scene newscene = new Scene(secondview);
-	    Stage curstage = (Stage) rootpane.getScene().getWindow();
-	    curstage.setScene(newscene);
+        Parent secondview;
+        URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
+        secondview = FXMLLoader.load(url);
+        Scene newscene = new Scene(secondview);
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
+        curstage.setScene(newscene);
 
 
-	}
-
-	@FXML
-    void addFriend(ActionEvent event){
-        User friend = new User(FriendSearch.getText(),null);
-        Friends newFriend = new Friends(Client.getUser(),friend);
-        try {
-            if (Client.addFriend(Client.getUrl(), newFriend, Client.getRestTemplate())) {
-                FriendSearchButton.setText("Friend Added");
-            }
-        }
-        catch (HttpServerErrorException e) {
-            FriendSearchButton.setText("User invalid");
-        }
     }
 
+    @FXML
+    void addFriend(ActionEvent event) {
+        User friend = new User(friendSearch.getText(), null);
+        Friends newFriend = new Friends(Client.getUser(), friend);
+        try {
+            if (Client.addFriend(Client.getUrl(), newFriend, Client.getRestTemplate())) {
+                friendSearchButton.setText("Friend Added");
+            }
+        } catch (HttpServerErrorException e) {
+            friendSearchButton.setText("User invalid");
+        }
+    }
 
 
 }

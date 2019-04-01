@@ -1,4 +1,5 @@
 import client.Client;
+import entity.Feature;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ public class EnergyController {
     private Button temperature;
 
     @FXML
-    void clickhome(ActionEvent event) throws Exception{
+    void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -37,13 +38,18 @@ public class EnergyController {
 
     @FXML
     void solarpanel(ActionEvent event) {
-        Client.addEntry(Client.getUrl(),asdf,Client.getRestTemplate());
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Installing solar panels"), Client.getRestTemplate())) {
+            solarpanel.setText("Thanks for your submission!");
+        }
     }
 
     @FXML
     void temperature(ActionEvent event) {
-        Client.addEntry(Client.getUrl(),asdf,Client.getRestTemplate());
-
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Lowering the temperature of your home"), Client.getRestTemplate())) {
+            temperature.setText("Thanks for your submission!");
+        }
     }
 
 }

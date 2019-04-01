@@ -1,6 +1,3 @@
-import java.io.File;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
@@ -9,15 +6,17 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
+import java.io.File;
+import java.net.URL;
+
+import java.util.ResourceBundle;
+
 public class VideoController implements Initializable {
 
     @FXML
     private MediaView mv;
     private MediaPlayer mp;
     private Media me;
-
-
-
 
 
     @Override

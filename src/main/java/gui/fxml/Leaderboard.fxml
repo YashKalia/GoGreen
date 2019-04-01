@@ -6,19 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="application.LeaderboardController">
-   <children>
-      <AnchorPane prefHeight="669.0" prefWidth="650.0">
-         <children>
-            <BarChart fx:id="Leaderboard" layoutX="33.0" layoutY="101.0" prefHeight="467.0" prefWidth="584.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" fx:id="x1" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis fx:id="y1" side="LEFT" />
-              </yAxis>
-            </BarChart>
-         </children>
-      </AnchorPane>
-   </children>
+<?import javafx.scene.control.Button?>
+<AnchorPane fx:id="rootpane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171"
+            fx:controller="application.LeaderboardController">
+    <children>
+        <AnchorPane prefHeight="669.0" prefWidth="650.0">
+            <children>
+                <Button fx:id="clickhome" layoutX="0.0" layoutY="0.0" mnemonicParsing="false" onAction="#clickhome"
+                        text="Home"/>
+                <BarChart fx:id="leaderboard" layoutX="33.0" layoutY="101.0" prefHeight="467.0" prefWidth="584.0">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" fx:id="x1"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="y1" side="LEFT"/>
+                    </yAxis>
+                </BarChart>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

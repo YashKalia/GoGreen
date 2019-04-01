@@ -1,4 +1,5 @@
 import client.Client;
+import entity.Feature;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,12 +38,18 @@ public class FoodController {
 
     @FXML
     void locolproduce(ActionEvent event) {
-        Client.addEntry(Client.getUrl(),asdf,Client.getRestTemplate());
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Buying local produce"), Client.getRestTemplate())) {
+            locolproduce.setText("Thanks for your submission!");
+        }
     }
 
     @FXML
     void vegeteraininin(ActionEvent event) {
-        Client.addEntry(Client.getUrl(),asdf,Client.getRestTemplate());
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Eating a vegetarian meal"), Client.getRestTemplate())) {
+            vegeteraininin.setText("Thanks for your submission!");
+        }
 
     }
 

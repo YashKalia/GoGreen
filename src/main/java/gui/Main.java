@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class Main extends Application {
@@ -18,13 +19,14 @@ public class Main extends Application {
             URL url = new File("src/main/java/gui/fxml/MainFXML.fxml").toURL();
             Parent root = FXMLLoader.load(url);
             Scene scene = new Scene(root);
-            //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            //scene.getStylesheets().add(getClass()
+            // .getResource("application.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.sizeToScene();
             primaryStage.show();
       
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

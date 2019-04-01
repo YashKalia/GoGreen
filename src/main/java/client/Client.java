@@ -22,7 +22,8 @@ public class Client {
 
     private static void enableBasicAuthentication() {
         Client.restTemplate = new RestTemplateBuilder()
-                .basicAuthentication(Client.getUser().getUsername(), Client.getUser().getPassword()).build();
+                .basicAuthentication(Client.getUser().getUsername(),
+                        Client.getUser().getPassword()).build();
 
     }
 

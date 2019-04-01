@@ -1,6 +1,5 @@
-
-
 import client.Client;
+
 import entity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class RegisterController {
@@ -24,21 +22,22 @@ public class RegisterController {
 
     @FXML
     private TextField usernamefield;
+
     /**
      * Checks if the first password supplied by the user matches the second one.
+     *
      * @param event on Button click
      */
-    public void checkregistration (ActionEvent event) throws InterruptedException {
+    public void checkregistration(ActionEvent event) throws InterruptedException {
         if (passwordfield.getText().equals(passwordconfirm.getText())) {
-            User newUser = new User(usernamefield.getText(),passwordfield.getText());
+            User newUser = new User(usernamefield.getText(), passwordfield.getText());
 
-            if(Client.register(Client.getUrl(),newUser,Client.getRestTemplate())) {
+            if (Client.register(Client.getUrl(), newUser, Client.getRestTemplate())) {
                 lblregisterstatus.setText("Registration Confirmed");
                 TimeUnit.SECONDS.sleep(2);
                 Stage firstStage = (Stage) passwordfield.getScene().getWindow();
                 firstStage.close();
-            }
-            else {
+            } else {
                 lblregisterstatus.setText("Username already exists");
             }
 
