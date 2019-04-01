@@ -13,9 +13,12 @@
                <font>
                   <Font size="44.0" />
                </font></Label>
+
             <Button fx:id="clickhome" layoutX="46.0" layoutY="375.0" mnemonicParsing="false" onAction="#clickhome" text="Home" />
             <Button fx:id="solarpanel" layoutX="176.0" layoutY="237.0" mnemonicParsing="false" onAction="#solarpanel" text="Installing solar panels" />
+            <Button fx:id="getsolarpanel" layoutX="176.0" layoutY="176.0" mnemonicParsing="false" onAction="#getsolarpanel" text="Get amount of solar panels installed" />
             <Button fx:id="temperature" layoutX="119.0" layoutY="303.0" mnemonicParsing="false" onAction="#temperature" text="Lowering the temperature of your home" />
+            <Button fx:id="gettemperature" layoutX="119.0" layoutY="369.0" mnemonicParsing="false" onAction="#gettemperature" text="Show the amount of times I lowered the temperature of my home" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
