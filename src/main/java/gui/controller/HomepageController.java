@@ -9,11 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class HomepageController {
     @FXML
     private AnchorPane rootpane;
+    private Stage primaryStage;
 
 
     /**
@@ -128,6 +130,24 @@ public class HomepageController {
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
+    }
+    
+    public void logOut(ActionEvent event) {
+    	try {
+            File file=new File("src/main/java/gui/fxml/MainFXML.fxml");
+            URL url = file.toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(getClass()
+            // .getResource("application.css").toExternalForm());
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.sizeToScene();
+            primaryStage.show();
+      
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
