@@ -1,4 +1,4 @@
-package application;
+package gui.controller;
 
 import client.Client;
 import entity.User;
@@ -31,7 +31,8 @@ public class LeaderboardController implements Initializable {
     private CategoryAxis x1;
     @FXML
     private NumberAxis y1;
-    @FXML
+    @SuppressWarnings("rawtypes")
+	@FXML
     private BarChart leaderboard;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -62,7 +63,8 @@ public class LeaderboardController implements Initializable {
 
     }
 
-    @FXML
+    @SuppressWarnings("deprecation")
+	@FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();

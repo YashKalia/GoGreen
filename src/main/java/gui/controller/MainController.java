@@ -48,7 +48,8 @@ public class MainController {
      * @param event on click
      * @throws Exception HUGE OFF
      */
-    public void login(ActionEvent event) throws IOException {
+    @SuppressWarnings("deprecation")
+	public void login(ActionEvent event) throws IOException {
 
         User newuser = new User(txtUsername.getText(), txtPassword.getText());
         try {
@@ -69,7 +70,7 @@ public class MainController {
                 lblStatus.setText("Bad Credentials");
             }
         } catch (IOException e) {
-            lblStatus.setText("Error in creating a new request!");
+            lblStatus.setText("Error creating new request!");
         }
     }
 
@@ -78,13 +79,14 @@ public class MainController {
      * @param event on click
      * @throws IOException GIGANTIC OOF
      */
-    public void register(ActionEvent event) throws IOException {
+	public void register(ActionEvent event) throws IOException {
 
         Stage primaryStage = new Stage();
-        URL url = new File("src/main/java/gui/fxml/Register.fxml").toURL();
+        File file=new File("src/main/java/gui/fxml/Register.fxml");
+        URL url = file.toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
 

@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import entity.Feature;
 import javafx.event.ActionEvent;
@@ -32,7 +34,8 @@ public class EnergyController {
     @FXML
     private Button temperature;
 
-    @FXML
+    @SuppressWarnings("deprecation")
+	@FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();

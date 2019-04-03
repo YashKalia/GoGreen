@@ -16,7 +16,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
    
         try {
-            URL url = new File("src/main/java/gui/fxml/MainFXML.fxml").toURL();
+
+            File file=new File("src/main/java/gui/fxml/MainFXML.fxml");
+            URL url = file.toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Scene scene = new Scene(root);
             //scene.getStylesheets().add(getClass()

@@ -1,3 +1,5 @@
+package gui.controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,8 @@ public class HomepageController {
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
-    public void clickyourprogress(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickyourprogress(ActionEvent event) throws Exception {
 
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/YourProgress.fxml").toURL();
@@ -36,7 +39,8 @@ public class HomepageController {
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
-    public void clickabouttheapp(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickabouttheapp(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/AboutTheAppVideo.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -50,7 +54,8 @@ public class HomepageController {
      *
      * @throws Exception in case the file isn't found
      */
-    public void foodclicked() throws Exception {
+    @SuppressWarnings("deprecation")
+	public void foodclicked() throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Food.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -64,7 +69,8 @@ public class HomepageController {
      *
      * @throws Exception in case the file isn't found
      */
-    public void energyclicked() throws Exception {
+    @SuppressWarnings("deprecation")
+	public void energyclicked() throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Energy.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -78,7 +84,8 @@ public class HomepageController {
      *
      * @throws Exception in case the file isn't found
      */
-    public void transportclicked() throws Exception {
+    @SuppressWarnings("deprecation")
+	public void transportclicked() throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Transport.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -94,7 +101,8 @@ public class HomepageController {
      * @throws Exception in case the fxml file is not found
      */
 
-    public void clickleaderboard(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickleaderboard(ActionEvent event) throws Exception {
 
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
@@ -111,7 +119,8 @@ public class HomepageController {
      * @param event clicks
      * @throws Exception oops
      */
-    @FXML
+    @SuppressWarnings("deprecation")
+	@FXML
     public void clickfriends(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Friends.fxml").toURL();

@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import entity.Feature;
 import javafx.event.ActionEvent;
@@ -35,7 +37,8 @@ public class FoodController {
     @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
-        URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
+        @SuppressWarnings("deprecation")
+		URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
