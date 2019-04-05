@@ -30,11 +30,6 @@
             <Image url="@../resources/Electricity.jpg" />
           </image>
         </ImageView>
-        <ImageView fitHeight="177.0" fitWidth="352.0" layoutX="150.0" layoutY="333.0" onMouseClicked="#transportclicked">
-          <image>
-            <Image url="@../resources/Transportation.jpg" />
-          </image>
-        </ImageView>
         <Button fx:id="friendsButton" layoutX="15.0" layoutY="186.0" mnemonicParsing="false" onAction="#clickfriends" prefHeight="27.0" prefWidth="107.0" text="Friends" />
         <Label layoutX="41.0" layoutY="14.0" prefHeight="31.0" prefWidth="81.0" text="Welcome" textAlignment="CENTER" textFill="#10cc00" underline="false" wrapText="false">
           <font>
@@ -42,6 +37,12 @@
           </font>
         </Label>
         <Button layoutX="17.0" layoutY="430.0" mnemonicParsing="false" onAction="#logOut" prefHeight="46.0" text="&lt;- Log Out" textFill="#ff6433" />
+        <ImageView fitHeight="167.25" fitWidth="223.0" layoutX="150.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fitHeight="166.25" fitWidth="352.0" layoutX="150.0" layoutY="341.0" onMouseClicked="#transportclicked" pickOnBounds="true" preserveRatio="false">
+          <image>
+            <Image url="@../resources/Transportation.jpg" />
+          </image>
+        </ImageView>
       </children>
     </AnchorPane>
   </children>
