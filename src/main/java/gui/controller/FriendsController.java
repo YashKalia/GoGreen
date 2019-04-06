@@ -16,7 +16,6 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.File;
 import java.net.URL;
@@ -55,7 +54,8 @@ public class FriendsController implements Initializable {
                 public void handle(ActionEvent event) {
                     User friend = new User(b1.getText(), null);
                     Friends newFriend = new Friends(Client.getUser(), friend);
-                    if (Client.addFriend(Client.getUrl(), newFriend, Client.getRestTemplate()).equals("Friend added successfully")) {
+                    if (Client.addFriend(Client.getUrl(), newFriend,
+                            Client.getRestTemplate()).equals("Friend added successfully")) {
                         b1.setText("Invite Accepted");
                     } else {
                         b1.setText("Accept Failed");
@@ -123,7 +123,8 @@ public class FriendsController implements Initializable {
         User friend = new User(friendSearch.getText(), null);
         Friends newFriend = new Friends(Client.getUser(), friend);
         try {
-            friendSearchButton.setText(Client.addFriend(Client.getUrl(), newFriend, Client.getRestTemplate()));
+            friendSearchButton.setText(Client.addFriend(Client.getUrl(),
+                    newFriend, Client.getRestTemplate()));
         } catch (IllegalArgumentException e) {
             friendSearchButton.setText(e.getMessage());
         }

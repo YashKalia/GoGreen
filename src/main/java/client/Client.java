@@ -20,12 +20,15 @@ public class Client {
     private static final String herokuUrl = "https://projectgogreen.herokuapp.com/";
     private static final String localUrl = "http://localhost:8080/";
 
+    /**
+     * Enables basic authentication with the user stored on login.
+     */
     public static void enableBasicAuthentication() {
         if (!Client.isInitiated) {
             Client.restTemplate = new RestTemplateBuilder()
                     .basicAuthentication(Client.getUser().getUsername(),
                             Client.getUser().getPassword()).build();
-            Client.isInitiated=true;
+            Client.isInitiated = true;
         }
     }
 
@@ -71,7 +74,7 @@ public class Client {
      * @return true if adding worked.
      */
     public static String addEntry(String url, User user,
-                                   Feature feature, RestTemplate restTemplate) {
+                                  Feature feature, RestTemplate restTemplate) {
         url += "/entries/add";
         RequestUserFeature obj2 = new RequestUserFeature(feature, user);
         return restTemplate.postForObject(url, obj2, String.class);
@@ -84,7 +87,7 @@ public class Client {
      * @return boolean
      */
     public static String register(String url, User user,
-                                   RestTemplate restTemplate) throws HttpServerErrorException {
+                                  RestTemplate restTemplate) throws HttpServerErrorException {
         url += "/users/register";
         return restTemplate.postForObject(url, user, String.class);
     }
@@ -97,7 +100,7 @@ public class Client {
      * @throws IOException Uh-oh
      */
     public static String addFriend(String url, Friends friends,
-                                    RestTemplate restTemplate) throws HttpServerErrorException {
+                                   RestTemplate restTemplate) throws HttpServerErrorException {
         url += "/friends/add";
         return restTemplate.postForObject(url, friends, String.class);
     }
