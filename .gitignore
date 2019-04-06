@@ -40,3 +40,4 @@ local.properties
 
 # Mac
 .DS_Store
+src/main/java/Run\.java

@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
@@ -27,6 +28,7 @@ public class ClientTest {
     private User user2;
     private Feature vegetarianMeal;
     private static final String localUrl = "http://localhost:8080/";
+    private static final String herokuUrl = "https://projectgogreen.herokuapp.com/";
 
     @Before
     public void setup() {
@@ -57,6 +59,16 @@ public class ClientTest {
     }
 
     @Test
+    public void getUrlTest() {
+        assertEquals(herokuUrl, Client.getUrl());
+    }
+
+//    @Test
+//    public void getRestTemplateTest() {
+//        assertEquals(restTemplate,Client.getRestTemplate());
+//    }
+
+    @Test
     public void setUser() {
 
         Client.setUser(user2);
@@ -78,9 +90,9 @@ public class ClientTest {
 
         RequestUserFeature re = new RequestUserFeature(vegetarianMeal,user5);
 
-        when(restTemplate.postForObject(localUrl+"/entries/add",re,Boolean.class)).thenReturn(true);
+        when(restTemplate.postForObject(localUrl+"/entries/add",re,String.class)).thenReturn("cute");
 
-        assertEquals(true, Client.addEntry(localUrl,user5,vegetarianMeal,restTemplate));
+        assertEquals("cute", Client.addEntry(localUrl,user5,vegetarianMeal,restTemplate));
     }
 
     @Test
@@ -94,20 +106,20 @@ public class ClientTest {
 
     @Test
     public void registerTest() {
-        when(restTemplate.postForObject(localUrl+"/users/register",user5,Boolean.class))
-                .thenReturn(false);
+        when(restTemplate.postForObject(localUrl+"/users/register",user5,String.class))
+                .thenReturn("lol");
 
-        assertEquals(false,Client.register(localUrl,user5,restTemplate));
+        assertEquals("lol",Client.register(localUrl,user5,restTemplate));
     }
 
     @Test
     public void addFriendTest() {
         Friends fr = new Friends(user5,user2);
 
-        when(restTemplate.postForObject(localUrl+"/friends/add",fr,Boolean.class))
-                .thenReturn(true);
+        when(restTemplate.postForObject(localUrl+"/friends/add",fr,String.class))
+                .thenReturn("nice");
 
-        assertEquals(true, Client.addFriend(localUrl,fr,restTemplate));
+        assertEquals("nice", Client.addFriend(localUrl,fr,restTemplate));
     }
 
     @Test

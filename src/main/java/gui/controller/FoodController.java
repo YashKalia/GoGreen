@@ -45,7 +45,7 @@ public class FoodController {
     @FXML
     void locolproduce(ActionEvent event) {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Buying local produce"), Client.getRestTemplate())) {
+                new Feature("Buying local produce"), Client.getRestTemplate()).equals("Entry added successfully")) {
             locolproduce.setText("Thanks for your submission!");
         }
     }
@@ -68,7 +68,7 @@ public class FoodController {
     @FXML
     void vegeteraininin(ActionEvent event) {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Eating a vegetarian meal"), Client.getRestTemplate())) {
+                new Feature("Eating a vegetarian meal"), Client.getRestTemplate()).equals("Entry added successfully")) {
             vegeteraininin.setText("Thanks for your submission!");
         }
 
