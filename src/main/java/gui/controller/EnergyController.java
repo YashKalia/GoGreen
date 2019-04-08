@@ -46,7 +46,7 @@ public class EnergyController {
     }
 
     @FXML
-    void solarpanel(ActionEvent event) {
+    void solarpanel() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Installing solar panels"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
@@ -69,7 +69,7 @@ public class EnergyController {
     }
 
     @FXML
-    void temperature(ActionEvent event) {
+    void temperature() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Lowering the temperature of your home"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {

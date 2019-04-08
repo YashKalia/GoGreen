@@ -46,7 +46,7 @@ public class TransportController {
     }
     
     @FXML
-    void usedtrain(ActionEvent event) {
+    void usedtrain() {
     	if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Using public transport instead of car"), Client.getRestTemplate()).equals("Entry added successfully")) {
     		treglabel.setText("Registered!!");
@@ -62,7 +62,7 @@ public class TransportController {
     }
     
     @FXML
-    void cycledtowork(ActionEvent event) {
+    void cycledtowork() {
     	if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Using bike instead of car"), Client.getRestTemplate()).equals("Entry added successfully")) {
     		creglabel.setText("Registered!!");
