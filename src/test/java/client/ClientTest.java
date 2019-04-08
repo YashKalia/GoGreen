@@ -9,14 +9,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ClientTest {
@@ -36,6 +37,15 @@ public class ClientTest {
         user2 = new User("user2",null);
         vegetarianMeal = new Feature("Eating a vegetarian meal");
         Client.setUser(user5);
+    }
+
+    @Test
+    public void testEnableBasicAuthentication() {
+
+        Client.setUser(user5);
+
+        Client.enableBasicAuthentication();
+
     }
 
 //    @Test
