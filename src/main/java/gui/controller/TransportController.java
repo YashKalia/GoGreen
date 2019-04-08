@@ -58,7 +58,7 @@ public class TransportController {
     void getUsedTrain(ActionEvent event) {
     	trainlabel.setText("You've taken the train "
                 + Integer.toString(Client.getPublicTransport(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " times. Click button to update.");
+                Client.getUser(), Client.getRestTemplate())) + " times.");
     }
     
     @FXML
@@ -73,7 +73,7 @@ public class TransportController {
     void getCycles(ActionEvent event) {
     	cyclelabel.setText("You've cycled to work  "
                 + Integer.toString(Client.getBikeRides(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " times. Click button to update.");
+                Client.getUser(), Client.getRestTemplate())) + " times.");
     }
     
 

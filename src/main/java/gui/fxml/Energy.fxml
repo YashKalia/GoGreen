@@ -30,6 +30,7 @@
         <Label layoutX="46.0" layoutY="98.0" text="Have you  lowered the temperature of you home?">
           <font>
             <Font name="System Bold Italic" size="18.0" />
+            <Font name="System Bold Italic" size="18.0" fx:id="x1" />
           </font>
         </Label>
         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="151.0" layoutY="136.0" onMouseClicked="#temperature" pickOnBounds="true" preserveRatio="true">

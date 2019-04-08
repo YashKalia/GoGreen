@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controller.RegisterController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controller.TransportController">
   <children>
     <AnchorPane prefHeight="500.0" prefWidth="500.0">
       <children>
@@ -38,10 +38,10 @@
             <Image url="@../resources/cycle.jpeg" />
           </image>
         </ImageView>
-        <Label font="$x1" layoutX="57.0" layoutY="331.0" prefHeight="30.0" prefWidth="227.0" text="Did you cycle to work?" textFill="#ff3333" />
+        <Label font="$x1" layoutX="57.0" layoutY="316.0" prefHeight="45.0" prefWidth="227.0" text="Did you cycle to work?" textFill="#ff3333" />
         <Button layoutX="27.0" layoutY="265.0" mnemonicParsing="false" onMouseClicked="#getUsedTrain" prefWidth="309.0" text="Show how many times I have taken public transport." />
         <Button layoutX="27.0" layoutY="506.0" mnemonicParsing="false" onMouseClicked="#getCycles" prefWidth="309.0" text="Show how many times I have cycled to work." />
-        <Button layoutX="445.0" layoutY="476.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="79.0" text="&lt;--Home" />
+        <Button layoutX="445.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#clickhome" prefHeight="45.0" prefWidth="79.0" text="&lt;--Home" />
         <Label id="trainlabel" fx:id="treglabel" layoutX="336.0" layoutY="79.0" prefHeight="83.0" prefWidth="120.0" text="">
           <font>
             <Font size="20.0" fx:id="x3" />
@@ -60,7 +60,7 @@
             <Font size="14.0" />
           </font>
         </Label>
-        <Label id="trainlabel" fx:id="creglabel" font="$x3" layoutX="325.0" layoutY="318.0" prefHeight="83.0" prefWidth="120.0" text="" textFill="#fff500" />
+        <Label fx:id="creglabel" font="$x3" layoutX="325.0" layoutY="318.0" prefHeight="83.0" prefWidth="120.0" text="" textFill="#fff500" />
       </children>
     </AnchorPane>
   </children>

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -32,8 +33,20 @@ public class FoodController {
     private Button vegeteraininin;
 
     @FXML
-   private Button localproduce;
-
+    private Button localproduce;
+    
+    @FXML
+    private Label mealadded;
+    
+    @FXML
+    private Label getvegmeals;
+    
+    @FXML
+    private Label localproduceadded;
+    
+    @FXML
+    private Label localproducecount;
+    
     @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
@@ -50,31 +63,31 @@ public class FoodController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Buying local produce"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            localproduce.setText("Thanks for your submission!");
+            localproduceadded.setText("Thanks for your submission!");
         }
     }
 
     @FXML
     void getlocalproduce() {
-        getlocalproduce.setText("You've bought local produce "
+    	localproducecount.setText("local produce bought :"
                 + Integer.toString(Client.getLocalProduce(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " times. Click again to update.");
+                Client.getUser(), Client.getRestTemplate())) + " times.");
     }
 
     @FXML
     void getvegetarian() {
-        getvegetarian.setText("You've had "
+        getvegmeals.setText("You've had "
                 + Integer.toString(Client.getVegetarianMeals(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate()))
-                + " vegetarian meals. Click again to update.");
+                + " vegetarian meals.");
     }
 
     @FXML
-    void vegeteraininin(ActionEvent event) {
+    void addvegetarian(ActionEvent event) {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Eating a vegetarian meal"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            vegeteraininin.setText("Thanks for your submission!");
+            mealadded.setText("Thanks for your submission!");
         }
 
     }
