@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import entity.Friends;
 import entity.User;
@@ -74,7 +76,8 @@ public class FriendsController implements Initializable {
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
-    public void clickyourprogress(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickyourprogress(ActionEvent event) throws Exception {
 
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/YourProgress.fxml").toURL();
@@ -90,7 +93,8 @@ public class FriendsController implements Initializable {
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
-    public void clickabouttheapp(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickabouttheapp(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/AboutTheAppVideo.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -106,7 +110,8 @@ public class FriendsController implements Initializable {
      * @throws Exception in case the fxml file is not found
      */
 
-    public void clickleaderboard(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickleaderboard(ActionEvent event) throws Exception {
 
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();

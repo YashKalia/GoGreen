@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import entity.Feature;
 import javafx.event.ActionEvent;
@@ -30,12 +32,13 @@ public class FoodController {
     private Button vegeteraininin;
 
     @FXML
-    private Button locolproduce;
+   private Button localproduce;
 
     @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
-        URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
+        @SuppressWarnings("deprecation")
+		URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
@@ -43,11 +46,11 @@ public class FoodController {
     }
 
     @FXML
-    void locolproduce(ActionEvent event) {
+    void localproduce(ActionEvent event) {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Buying local produce"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            locolproduce.setText("Thanks for your submission!");
+            localproduce.setText("Thanks for your submission!");
         }
     }
 
