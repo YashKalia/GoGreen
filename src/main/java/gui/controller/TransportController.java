@@ -49,8 +49,11 @@ public class TransportController {
     void usedtrain() {
     	if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Using public transport instead of car"), Client.getRestTemplate()).equals("Entry added successfully")) {
-    		treglabel.setText("Registered!!");
+    		
     	}
+    	else {
+        	treglabel.setText("Thanks for the submission!");
+        }
     	
     }
     
@@ -65,8 +68,11 @@ public class TransportController {
     void cycledtowork() {
     	if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Using bike instead of car"), Client.getRestTemplate()).equals("Entry added successfully")) {
-    		creglabel.setText("Registered!!");
+    		
     	}
+    	else {
+        	creglabel.setText("Thanks for the submission!");
+        }
     }
     
     @FXML

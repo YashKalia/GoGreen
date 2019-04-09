@@ -30,10 +30,10 @@ public class FoodController {
     private Button getlocalproduce;
     
     @FXML
-    private Label mealregistered;
+    private Label meal;
     
     @FXML
-    private Label localproduceregistered;
+    private Label localproduce;
     
     @FXML
     private Label getvegmeals;
@@ -57,7 +57,10 @@ public class FoodController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Buying local produce"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            localproduceregistered.setText("Thanks for your submission!");
+          
+        }
+        else {
+        	localproduce.setText("Thanks for your submission!");
         }
     }
 
@@ -81,8 +84,10 @@ public class FoodController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Eating a vegetarian meal"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            mealregistered.setText("Thanks for your submission!");
-        }
+            }
+            else {
+            	meal.setText("Thanks for the submission!");
+            }
 
     }
 

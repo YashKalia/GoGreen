@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -33,6 +34,19 @@ public class EnergyController {
 
     @FXML
     private Button temperature;
+    
+    @FXML
+    private Label lowtemplabel;
+    
+    @FXML
+    private Label gettempcount;
+    
+    @FXML
+    private Label sp;
+    
+    @FXML
+    private Label getsp;
+    
 
     @SuppressWarnings("deprecation")
 	@FXML
@@ -50,22 +64,25 @@ public class EnergyController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Installing solar panels"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            solarpanel.setText("Thanks for your submission!");
+            
+        }
+        else {
+        	sp.setText("Thanks for the submission!");
         }
     }
 
     @FXML
     void getsolarpanel(ActionEvent event) {
-        getsolarpanel.setText("You've installed a total of "
+        getsp.setText("You've installed a total of "
                 + Integer.toString(Client.getSolarPanels(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " solar panels. Click to update.");
+                Client.getUser(), Client.getRestTemplate())) + " solar panels.");
     }
 
     @FXML
     void gettemperature(ActionEvent event) {
-        gettemperature.setText("You've lowered the temperature of your home "
+        gettempcount.setText("You've lowered the temperature of your home "
                 + Integer.toString(Client.getLoweringTemperature(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " times. Click to update.");
+                Client.getUser(), Client.getRestTemplate())) + " times.");
     }
 
     @FXML
@@ -73,7 +90,10 @@ public class EnergyController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Lowering the temperature of your home"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            temperature.setText("Thanks for your submission!");
+            
+        }
+        else {
+        	lowtemplabel.setText("Thanks for the submission!");
         }
     }
 
