@@ -122,7 +122,7 @@ public class EnergyController {
     
     @FXML
     void getlowflow(ActionEvent event) {
-    	 getlowflow.setText("Used cold water "
+    	 lowflow.setText("Used cold water "
                  + Integer.toString(Client.getlowflow(Client.getUrl(),
                  Client.getUser(), Client.getRestTemplate())) + " times.");
     }
