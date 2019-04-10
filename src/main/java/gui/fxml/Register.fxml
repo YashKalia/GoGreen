@@ -1,11 +1,3 @@
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Button?>
-        import gui.controller.RegisterController;
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
@@ -16,12 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.RegisterController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegisterController">
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="500.0">
          <children>
-
             <DatePicker layoutX="142.0" layoutY="250.0" promptText="Date of Birth" />
             <Label alignment="CENTER" layoutX="157.0" layoutY="41.0" prefHeight="21.0" prefWidth="187.0" text="Register With Us">
                <font>
@@ -38,4 +28,4 @@
          </children>
       </AnchorPane>
    </children>
-</AnchorPane>
+</AnchorPane

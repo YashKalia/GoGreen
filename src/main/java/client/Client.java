@@ -159,7 +159,7 @@ public class Client {
      */
     public static int getcoldwashnumber(String url,User user, RestTemplate restTemplate) {
     	url+="/entries/coldwash/"+user.getUsername();
-    	return (int)restTemplate.getForObject(url, int.class);
+    	return restTemplate.getForObject(url, Integer.class);
     }
     
     /**gets number of low flow shower heads installed.
@@ -171,7 +171,7 @@ public class Client {
      */
     public static int getlowflow(String url,User user, RestTemplate restTemplate) {
     	url+="/entries/lowflow/"+user.getUsername();
-    	return (int)restTemplate.getForObject(url, int.class);
+    	return restTemplate.getForObject(url, Integer.class);
     }
     
     /**returns number of trees planted.
@@ -183,7 +183,7 @@ public class Client {
      */
     public static int gettreepLanted(String url,User user, RestTemplate restTemplate) {
     	url+="/entries/planttree/"+user.getUsername();
-    	return (int)restTemplate.getForObject(url, int.class);
+    	return (int)restTemplate.getForObject(url, Integer.class);
     }
     
     /**returns number of times you recycled.
@@ -195,7 +195,7 @@ public class Client {
      */
     public static int getrecycled(String url,User user, RestTemplate restTemplate) {
     	url+="/entries/recycle/"+user.getUsername();
-    	return (int)restTemplate.getForObject(url, int.class);
+    	return (int)restTemplate.getForObject(url, Integer.class);
     }
     
     

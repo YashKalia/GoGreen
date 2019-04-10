@@ -100,7 +100,7 @@ public class EnergyController {
     @FXML
     void temperature() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Washing your clothes with cold water"),
+                new Feature("Lowering the temperature of your home"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             
         }
@@ -112,7 +112,7 @@ public class EnergyController {
     @FXML
     void coldwash() {
     	if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Cold water laundry"),
+                new Feature("Washing your clothes with cold water"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             
         }
@@ -122,7 +122,7 @@ public class EnergyController {
     }
     
     @FXML
-    void getcoldwash(ActionEvent event) {
+    void getcoldwash(ActionEvent event) {        
         getcoldwater.setText("Used cold water "
                 + Integer.toString(Client.getcoldwashnumber(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate())) + " times.");
@@ -142,7 +142,7 @@ public class EnergyController {
     
     @FXML
     void getlowflow(ActionEvent event) {
-    	 getlowflow.setText("Used cold water "
+    	 getlowflow.setText("Installed "
                  + Integer.toString(Client.getlowflow(Client.getUrl(),
                  Client.getUser(), Client.getRestTemplate())) + " times.");
     }

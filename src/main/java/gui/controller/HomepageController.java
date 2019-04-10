@@ -25,7 +25,7 @@ public class HomepageController {
      * @throws Exception in case the file isn't found
      */
     @SuppressWarnings("deprecation")
-	public void clickyourprogress(ActionEvent event) throws Exception {
+    public void clickyourprogress(ActionEvent event) throws Exception {
 
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/YourProgress.fxml").toURL();
@@ -42,7 +42,7 @@ public class HomepageController {
      * @throws Exception in case the file isn't found
      */
     @SuppressWarnings("deprecation")
-	public void clickabouttheapp(ActionEvent event) throws Exception {
+    public void clickabouttheapp(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/AboutTheAppVideo.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -57,7 +57,7 @@ public class HomepageController {
      * @throws Exception in case the file isn't found
      */
     @SuppressWarnings("deprecation")
-	public void foodclicked() throws Exception {
+    public void foodclicked() throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Food.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -72,7 +72,7 @@ public class HomepageController {
      * @throws Exception in case the file isn't found
      */
     @SuppressWarnings("deprecation")
-	public void energyclicked() throws Exception {
+    public void energyclicked() throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Energy.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -87,7 +87,7 @@ public class HomepageController {
      * @throws Exception in case the file isn't found
      */
     @SuppressWarnings("deprecation")
-	public void transportclicked() throws Exception {
+    public void transportclicked() throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Transport.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -104,10 +104,10 @@ public class HomepageController {
      */
 
     @SuppressWarnings("deprecation")
-	public void clickleaderboard(ActionEvent event) throws Exception {
+    public void clickleaderboard(ActionEvent event) throws Exception {
 
         Parent secondview;
-       // URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
+        // URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
         secondview = FXMLLoader.load(getClass().getResource("/gui/fxml/Leaderboard.fxml"));
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
@@ -118,33 +118,41 @@ public class HomepageController {
 
     /**
      * Opens the friends page.
+     *
      * @param event clicks
      * @throws Exception oops
      */
     @SuppressWarnings("deprecation")
-	@FXML
+    @FXML
     public void clickfriends(ActionEvent event) throws Exception {
         Parent secondview;
-      //  URL url = new File("src/main/java/gui/fxml/Friends.fxml").toURL();
+        //  URL url = new File("src/main/java/gui/fxml/Friends.fxml").toURL();
         secondview = FXMLLoader.load(getClass().getResource("/gui/fxml/Friends.fxml"));
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
     }
-    
+
+    /**Logs out the user.
+     *
+     * @param event activated on mouse click.
+     */
     @FXML
     public void logOut(ActionEvent event) {
-    	try {
-            File file=new File("src/main/java/gui/fxml/MainFXML.fxml");
+        try {
+            String pathname = "src/main/java/gui/fxml/MainFXML.fxml";
+            File file = new File(pathname);
             URL url = file.toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/gui/application.css").toExternalForm());
+            scene.getStylesheets()
+                    .add(getClass().getResource("/gui/application.css")
+                            .toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.sizeToScene();
             primaryStage.show();
-      
+
         } catch (IOException e) {
             e.printStackTrace();
         }

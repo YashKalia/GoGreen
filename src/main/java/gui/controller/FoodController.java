@@ -117,7 +117,7 @@ public class FoodController {
     void gettreecount(ActionEvent event) {
     	treecount.setText("You've planted "
                 + Integer.toString(Client.gettreepLanted(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())));
+                Client.getUser(), Client.getRestTemplate()))+" tree(s)");
     	
     }
     
@@ -134,9 +134,9 @@ public class FoodController {
     
     @FXML
     void getrecycle(ActionEvent event) {
-        recyclecount.setText("Times recycled:"
+        recyclecount.setText("You recycled:"
                 + Integer.toString(Client.getrecycled(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())));
+                Client.getUser(), Client.getRestTemplate()))+" times");
     }
     
 
