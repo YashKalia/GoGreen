@@ -107,8 +107,8 @@ public class HomepageController {
 	public void clickleaderboard(ActionEvent event) throws Exception {
 
         Parent secondview;
-        URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
-        secondview = FXMLLoader.load(url);
+       // URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
+        secondview = FXMLLoader.load(getClass().getResource("/gui/fxml/Leaderboard.fxml"));
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
@@ -125,21 +125,21 @@ public class HomepageController {
 	@FXML
     public void clickfriends(ActionEvent event) throws Exception {
         Parent secondview;
-        URL url = new File("src/main/java/gui/fxml/Friends.fxml").toURL();
-        secondview = FXMLLoader.load(url);
+      //  URL url = new File("src/main/java/gui/fxml/Friends.fxml").toURL();
+        secondview = FXMLLoader.load(getClass().getResource("/gui/fxml/Friends.fxml"));
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
     }
     
+    @FXML
     public void logOut(ActionEvent event) {
     	try {
             File file=new File("src/main/java/gui/fxml/MainFXML.fxml");
             URL url = file.toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Scene scene = new Scene(root);
-            //scene.getStylesheets().add(getClass()
-            // .getResource("application.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/gui/application.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.sizeToScene();

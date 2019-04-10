@@ -21,8 +21,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
 
-
-
 public class LeaderboardController implements Initializable {
 
     @FXML

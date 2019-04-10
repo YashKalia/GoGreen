@@ -46,7 +46,8 @@ public class FriendsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        HashSet<String> friendRequests = Client
+        HashSet<String> friendRequests;
+        friendRequests = Client
                 .getPendingRequests(Client.getUrl(), Client.getUser(), Client.getRestTemplate());
         for (String friendRequest : friendRequests) {
             Button b1 = new Button(friendRequest);

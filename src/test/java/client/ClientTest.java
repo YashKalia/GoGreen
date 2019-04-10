@@ -209,6 +209,31 @@ public class ClientTest {
 
         assertEquals(42,Client.getSolarPanels(localUrl,user5,restTemplate));
     }
+    
+    @Test
+    public void coldwashnumberTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/coldwash/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.coldwashnumber(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void addlowflowTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/lowflow/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.addlowflow(localUrl, user5, restTemplate));
+    	
+    }
+    
+    @Test
+    public void addtreeplantedTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/planttree/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.addtreeplanted(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void addrecycledTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/recycle/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.addtreeplanted(localUrl, user5, restTemplate));
+    }
 
     @Test
     public void getPublicTransport() {
