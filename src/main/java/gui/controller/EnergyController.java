@@ -47,6 +47,18 @@ public class EnergyController {
     @FXML
     private Label getsp;
     
+    @FXML
+    private Label coldwater;
+    
+    @FXML
+    private Label getcoldwater;
+    
+    @FXML
+    private Label lowflow;
+    
+    @FXML
+    private Label getlowflow;
+    
 
     @SuppressWarnings("deprecation")
 	@FXML
@@ -67,20 +79,20 @@ public class EnergyController {
             
         }
         else {
-        	sp.setText("Thanks for the submission!");
+        	sp.setText("Registered!");
         }
     }
 
     @FXML
     void getsolarpanel(ActionEvent event) {
-        getsp.setText("You've installed a total of "
+        getsp.setText("A total of "
                 + Integer.toString(Client.getSolarPanels(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate())) + " solar panels.");
     }
 
     @FXML
     void gettemperature(ActionEvent event) {
-        gettempcount.setText("You've lowered the temperature of your home "
+        gettempcount.setText("Lowered "
                 + Integer.toString(Client.getLoweringTemperature(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate())) + " times.");
     }
@@ -88,13 +100,52 @@ public class EnergyController {
     @FXML
     void temperature() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Lowering the temperature of your home"),
+                new Feature("Washing your clothes with cold water"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             
         }
         else {
-        	lowtemplabel.setText("Thanks for the submission!");
+        	lowtemplabel.setText("Registered!");
         }
     }
+    
+    @FXML
+    void coldwash() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Cold water laundry"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            
+        }
+        else {
+        	coldwater.setText("Registered!");
+        }
+    }
+    
+    @FXML
+    void getcoldwash(ActionEvent event) {
+        getcoldwater.setText("Used cold water "
+                + Integer.toString(Client.getcoldwashnumber(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())) + " times.");
+    }
+    
+    @FXML
+    void lowflow() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Installing slow-flow showerhead"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            
+        }
+        else {
+        	lowflow.setText("Registered!");
+        }
+    }
+    
+    @FXML
+    void getlowflow(ActionEvent event) {
+    	 getlowflow.setText("Used cold water "
+                 + Integer.toString(Client.getlowflow(Client.getUrl(),
+                 Client.getUser(), Client.getRestTemplate())) + " times.");
+    }
+    
 
 }

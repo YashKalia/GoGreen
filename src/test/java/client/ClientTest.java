@@ -1,6 +1,6 @@
 package client;
 
-import entity.Feature;
+import entity.Feature; 
 import entity.Friends;
 import entity.RequestUserFeature;
 import entity.User;
@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.HashSet;
 import java.util.Set;
 

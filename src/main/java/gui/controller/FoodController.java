@@ -105,7 +105,7 @@ public class FoodController {
     @FXML
     void addtreeplanted() {
     	if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Planted a tree"),
+                new Feature("Planting a tree"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             }
             else {
@@ -124,7 +124,7 @@ public class FoodController {
     @FXML
     void addrecycle() {
     	if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Recycled waste"),
+                new Feature("Recycling waste"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             }
             else {

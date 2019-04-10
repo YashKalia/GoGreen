@@ -157,7 +157,7 @@ public class Client {
      * @param resTemplate-resttemplate object for communication.
      * @return
      */
-    public static int getcoldwashnumber(String url,User user, RestTemplate resTemplate) {
+    public static int getcoldwashnumber(String url,User user, RestTemplate restTemplate) {
     	url+="/entries/coldwash/"+user.getUsername();
     	return (int)restTemplate.getForObject(url, int.class);
     }
@@ -169,7 +169,7 @@ public class Client {
      * @param resTemplate -resttemplate object for communication.
      * @return
      */
-    public static int getlowflow(String url,User user, RestTemplate resTemplate) {
+    public static int getlowflow(String url,User user, RestTemplate restTemplate) {
     	url+="/entries/lowflow/"+user.getUsername();
     	return (int)restTemplate.getForObject(url, int.class);
     }
@@ -181,7 +181,7 @@ public class Client {
      * @param resTemplate - restTemplate object.
      * @return
      */
-    public static int gettreepLanted(String url,User user, RestTemplate resTemplate) {
+    public static int gettreepLanted(String url,User user, RestTemplate restTemplate) {
     	url+="/entries/planttree/"+user.getUsername();
     	return (int)restTemplate.getForObject(url, int.class);
     }
@@ -193,7 +193,7 @@ public class Client {
      * @param resTemplate - restTemplate object.
      * @return
      */
-    public static int getrecycled(String url,User user, RestTemplate resTemplate) {
+    public static int getrecycled(String url,User user, RestTemplate restTemplate) {
     	url+="/entries/recycle/"+user.getUsername();
     	return (int)restTemplate.getForObject(url, int.class);
     }
