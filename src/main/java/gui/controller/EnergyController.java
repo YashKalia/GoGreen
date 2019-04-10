@@ -23,8 +23,7 @@ public class EnergyController {
     @FXML
     private Button clickhome;
 
-    @FXML
-    private Button solarpanel;
+    
 
     @FXML
     private Button getsolarpanel;
@@ -35,29 +34,10 @@ public class EnergyController {
     @FXML
     private Button temperature;
     
-    @FXML
-    private Label lowtemplabel;
-    
-    @FXML
-    private Label gettempcount;
-    
-    @FXML
-    private Label sp;
-    
-    @FXML
-    private Label getsp;
-    
-    @FXML
-    private Label coldwater;
-    
-    @FXML
-    private Label getcoldwater;
-    
-    @FXML
+     @FXML
     private Label lowflow;
     
-    @FXML
-    private Label getlowflow;
+    
     
 
     @SuppressWarnings("deprecation")
