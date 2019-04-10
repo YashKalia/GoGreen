@@ -24,14 +24,8 @@ public class TransportController {
     private Button clickhome;
     
     @FXML
-    private Label trainlabel;
-    
-    @FXML
     private Label cyclelabel;
-    @FXML
-    private Label treglabel;
-    @FXML
-    private Label creglabel;
+    
     
     
     @SuppressWarnings("deprecation")
@@ -52,14 +46,14 @@ public class TransportController {
     		
     	}
     	else {
-        	treglabel.setText("Thanks for the submission!");
+        	cyclelabel.setText("Thanks for the submission!");
         }
     	
     }
     
     @FXML
     void getUsedTrain(ActionEvent event) {
-    	trainlabel.setText("You've taken the train "
+    	cyclelabel.setText("You've taken a public transport "
                 + Integer.toString(Client.getPublicTransport(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate())) + " times.");
     }
@@ -71,13 +65,13 @@ public class TransportController {
     		
     	}
     	else {
-        	creglabel.setText("Thanks for the submission!");
+        	cyclelabel.setText("Thanks for the submission!");
         }
     }
     
     @FXML
     void getCycles(ActionEvent event) {
-    	cyclelabel.setText("You've cycled to work  "
+    	cyclelabel.setText("You've cycled to work "
                 + Integer.toString(Client.getBikeRides(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate())) + " times.");
     }
