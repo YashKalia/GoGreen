@@ -211,28 +211,28 @@ public class ClientTest {
     }
     
     @Test
-    public void coldwashnumberTest() {
+    public void getcoldwashnumberTest() {
     	when(restTemplate.getForObject(localUrl+"/entries/coldwash/user5",Integer.class)).thenReturn(1);
-    	assertEquals(1,Client.coldwashnumber(localUrl, user5, restTemplate));
+    	assertEquals(1,Client.getcoldwashnumber(localUrl, user5, restTemplate));
     }
     
     @Test
-    public void addlowflowTest() {
+    public void getlowflowTest() {
     	when(restTemplate.getForObject(localUrl+"/entries/lowflow/user5",Integer.class)).thenReturn(1);
-    	assertEquals(1,Client.addlowflow(localUrl, user5, restTemplate));
+    	assertEquals(1,Client.getlowflow(localUrl, user5, restTemplate));
     	
     }
     
     @Test
-    public void addtreeplantedTest() {
+    public void gettreepLantedTest() {
     	when(restTemplate.getForObject(localUrl+"/entries/planttree/user5",Integer.class)).thenReturn(1);
-    	assertEquals(1,Client.addtreeplanted(localUrl, user5, restTemplate));
+    	assertEquals(1,Client.gettreepLanted(localUrl, user5, restTemplate));
     }
     
     @Test
-    public void addrecycledTest() {
+    public void getrecycledTest() {
     	when(restTemplate.getForObject(localUrl+"/entries/recycle/user5",Integer.class)).thenReturn(1);
-    	assertEquals(1,Client.addtreeplanted(localUrl, user5, restTemplate));
+    	assertEquals(1,Client.getrecycled(localUrl, user5, restTemplate));
     }
 
     @Test

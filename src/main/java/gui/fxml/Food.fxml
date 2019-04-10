@@ -16,41 +16,41 @@
   <children>
     <AnchorPane layoutX="-8.0" layoutY="-6.0" prefHeight="567.0" prefWidth="531.0">
       <children>
-        <ImageView fitHeight="561.0" fitWidth="624.0" layoutX="8.0" layoutY="3.0" pickOnBounds="true" preserveRatio="false">
+        <ImageView fitHeight="567.0" fitWidth="727.0" layoutX="0.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="false">
           <image>
             <Image url="@../resources/greenleaves.jpeg" />
           </image>
         </ImageView>
-        <ImageView fitHeight="126.25" fitWidth="73.0" layoutX="69.0" layoutY="157.0" pickOnBounds="true" preserveRatio="false">
+        <ImageView fitHeight="126.25" fitWidth="73.0" layoutX="21.0" layoutY="134.0" pickOnBounds="true" preserveRatio="false">
           <image>
             <Image url="@../resources/clickpic.jpeg" />
           </image>
         </ImageView>
-        <Label layoutX="256.0" layoutY="14.0" prefWidth="252.0" text="Food" textFill="#10cc00">
+        <Label layoutX="167.0" layoutY="2.0" prefWidth="361.0" text="Food and Home" textFill="#10cc00">
           <font>
             <Font name="System Bold Italic" size="44.0" />
           </font>
         </Label>
-        <Label layoutX="199.0" layoutY="73.0" text="Did you have a Veg meal today?">
+        <Label layoutX="96.0" layoutY="73.0" text="Did you have a Veg meal today?">
           <font>
             <Font name="Arial Narrow Bold" size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <ImageView fitHeight="175.25" fitWidth="277.0" layoutX="163.0" layoutY="94.0" onMouseClicked="#addvegetarian" pickOnBounds="true" preserveRatio="false">
+        <ImageView fitHeight="159.25" fitWidth="212.0" layoutX="96.0" layoutY="101.0" onMouseClicked="#addvegetarian" pickOnBounds="true" preserveRatio="false">
           <image>
             <Image url="@../resources/newvegmeal.jpeg" />
           </image>
         </ImageView>
-        <Button fx:id="getvegetarian" layoutX="163.0" layoutY="275.0" mnemonicParsing="false" onAction="#getvegetarian" prefHeight="33.0" prefWidth="277.0" text="Show the amount of vegetarian meals I've had." />
-        <Label font="$x1" layoutX="220.0" layoutY="318.0" text="Did you buy Local Produce?" />
-        <ImageView fitHeight="167.0" fitWidth="277.0" layoutX="167.0" layoutY="340.0" onMouseClicked="#localproduce" pickOnBounds="true" preserveRatio="false">
+        <Button fx:id="getvegetarian" layoutX="94.0" layoutY="267.0" mnemonicParsing="false" onAction="#getvegetarian" prefHeight="33.0" prefWidth="285.0" text="Show the amount of vegetarian meals I've had." />
+        <Label font="$x1" layoutX="109.0" layoutY="315.0" text="Did you buy Local Produce?" />
+        <ImageView fitHeight="167.0" fitWidth="212.0" layoutX="96.0" layoutY="339.0" onMouseClicked="#localproduce" pickOnBounds="true" preserveRatio="false">
           <image>
             <Image url="@../resources/localproduce.jpeg" />
           </image>
         </ImageView>
-        <Button fx:id="getlocalproduce" layoutX="158.0" layoutY="520.0" mnemonicParsing="false" onAction="#getlocalproduce" prefHeight="33.0" prefWidth="314.0" text="Show the amount of times I've bought local produce." />
-        <Button fx:id="clickhome" layoutX="42.0" layoutY="480.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="42.0" prefWidth="73.0" text="Home" />
-        <Label id="getvegetarian" fx:id="getvegmeals" layoutX="444.0" layoutY="182.0" prefHeight="59.0" prefWidth="192.0" text="">
+        <Button fx:id="getlocalproduce" layoutX="94.0" layoutY="520.0" mnemonicParsing="false" onAction="#getlocalproduce" prefHeight="33.0" prefWidth="285.0" text="Show the amount of times I've bought local produce." />
+        <Button fx:id="clickhome" layoutX="13.0" layoutY="480.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="42.0" prefWidth="73.0" text="Home" />
+        <Label id="getvegetarian" fx:id="getvegmeals" layoutX="309.0" layoutY="181.0" prefHeight="59.0" prefWidth="80.0" text="">
           <font>
             <Font name="System Bold" size="12.0" fx:id="x2" />
           </font>
@@ -58,9 +58,27 @@
             <Color blue="0.000" green="0.047" red="0.200" fx:id="x5" />
           </textFill>
         </Label>
-        <Label id="getvegetarian" fx:id="localproducecount" font="$x2" layoutX="447.0" layoutY="421.0" prefHeight="59.0" prefWidth="178.0" text="" textFill="$x5" />
-        <Label fx:id="meal" font="$x2" layoutX="454.0" layoutY="108.0" prefHeight="49.0" prefWidth="164.0" text="" />
-        <Label fx:id="localproduce" font="$x2" layoutX="454.0" layoutY="350.0" prefHeight="49.0" prefWidth="164.0" text="" />
+        <Label id="getvegetarian" fx:id="localproducecount" font="$x2" layoutX="308.0" layoutY="423.0" prefHeight="59.0" prefWidth="73.0" text="" textFill="$x5" />
+        <Label fx:id="meal" font="$x2" layoutX="308.0" layoutY="109.0" prefHeight="49.0" prefWidth="80.0" text="" />
+        <Label fx:id="localproduce" font="$x2" layoutX="309.0" layoutY="350.0" prefHeight="49.0" prefWidth="80.0" text="" />
+        <ImageView fitHeight="159.24998474121094" fitWidth="212.95782664918872" layoutX="397.0" layoutY="101.0" onMouseClicked="#addtreeplanted" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../resources/treepic.jpg" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="166.0" fitWidth="197.49406901041667" layoutX="397.0" layoutY="340.0" onMouseClicked="#addrecycle" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../resources/recycle.jpg" />
+          </image>
+        </ImageView>
+        <Label font="$x1" layoutX="397.0" layoutY="71.0" prefHeight="21.0" prefWidth="153.0" text="Did you plant a tree?" />
+        <Label font="$x1" layoutX="397.0" layoutY="315.0" prefHeight="21.0" prefWidth="178.45849609375" text="Did you recycle waste?" />
+        <Label fx:id="tree" font="$x2" layoutX="620.0" layoutY="109.0" prefHeight="33.0" prefWidth="107.0" text="" />
+        <Label fx:id="treecount" font="$x2" layoutX="610.0" layoutY="181.0" prefHeight="45.0" prefWidth="117.0" text="" />
+        <Label id="tree" fx:id="recycle" font="$x2" layoutX="594.0" layoutY="358.0" prefHeight="33.0" prefWidth="107.0" text="" />
+        <Label id="treecount" fx:id="recyclecount" font="$x2" layoutX="596.0" layoutY="430.0" prefHeight="45.0" prefWidth="117.0" text="" />
+        <Button layoutX="397.0" layoutY="271.0" mnemonicParsing="false" onAction="#addtreeplanted" prefHeight="29.0" prefWidth="243.0" text="Show how many trees have I planted." />
+        <Button layoutX="397.0" layoutY="520.0" mnemonicParsing="false" onAction="#addrecycle" prefHeight="29.0" prefWidth="243.0" text="Show how many times I recycled." />
       </children>
     </AnchorPane>
   </children>

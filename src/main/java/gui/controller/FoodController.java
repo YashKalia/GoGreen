@@ -42,6 +42,18 @@ public class FoodController {
     private Label localproducecount;
     
     @FXML
+    private Label tree;
+    
+    @FXML
+    private Label treecount;
+    
+    @FXML
+    private Label recycle;
+    
+    @FXML
+    private Label recyclecount;
+    
+    @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         @SuppressWarnings("deprecation")
@@ -60,13 +72,13 @@ public class FoodController {
           
         }
         else {
-        	localproduce.setText("Thanks for your submission!");
+        	localproduce.setText("Submitted!");
         }
     }
 
     @FXML
     void getlocalproduce() {
-    	localproducecount.setText("local produce bought :"
+    	localproducecount.setText("bought :"
                 + Integer.toString(Client.getLocalProduce(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate())) + " times.");
     }
@@ -75,8 +87,7 @@ public class FoodController {
     void getvegetarian() {
         getvegmeals.setText("You've had "
                 + Integer.toString(Client.getVegetarianMeals(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate()))
-                + " vegetarian meals.");
+                Client.getUser(), Client.getRestTemplate())));
     }
 
     @FXML
@@ -86,9 +97,49 @@ public class FoodController {
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             }
             else {
-            	meal.setText("Thanks for the submission!");
+            	meal.setText("Submitted");
             }
 
     }
+    
+    @FXML
+    void addtreeplanted() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Planted a tree"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            }
+            else {
+            	tree.setText("Submitted");
+            }
+    }
+    
+    @FXML
+    void gettreecount(ActionEvent event) {
+    	treecount.setText("You've planted "
+                + Integer.toString(Client.gettreepLanted(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())));
+    	
+    }
+    
+    @FXML
+    void addrecycle() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Recycled waste"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            }
+            else {
+            	recycle.setText("Submitted");
+            }
+    }
+    
+    @FXML
+    void getrecycle(ActionEvent event) {
+        recyclecount.setText("Times recycled:"
+                + Integer.toString(Client.getrecycled(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())));
+    }
+    
+
+    
 
 }

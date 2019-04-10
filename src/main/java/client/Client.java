@@ -157,7 +157,7 @@ public class Client {
      * @param resTemplate-resttemplate object for communication.
      * @return
      */
-    public static int coldwashnumber(String url,User user, RestTemplate resTemplate) {
+    public static int getcoldwashnumber(String url,User user, RestTemplate resTemplate) {
     	url+="/entries/coldwash/"+user.getUsername();
     	return (int)restTemplate.getForObject(url, int.class);
     }
@@ -169,7 +169,7 @@ public class Client {
      * @param resTemplate -resttemplate object for communication.
      * @return
      */
-    public static int addlowflow(String url,User user, RestTemplate resTemplate) {
+    public static int getlowflow(String url,User user, RestTemplate resTemplate) {
     	url+="/entries/lowflow/"+user.getUsername();
     	return (int)restTemplate.getForObject(url, int.class);
     }
@@ -181,22 +181,24 @@ public class Client {
      * @param resTemplate - restTemplate object.
      * @return
      */
-    public static int addtreeplanted(String url,User user, RestTemplate resTemplate) {
+    public static int gettreepLanted(String url,User user, RestTemplate resTemplate) {
     	url+="/entries/planttree/"+user.getUsername();
     	return (int)restTemplate.getForObject(url, int.class);
     }
     
-    /**retunrns number of times you recycled.
+    /**returns number of times you recycled.
      * 
      * @param url - corresponding url
      * @param user - current user.
      * @param resTemplate - restTemplate object.
      * @return
      */
-    public static int addrecycled(String url,User user, RestTemplate resTemplate) {
+    public static int getrecycled(String url,User user, RestTemplate resTemplate) {
     	url+="/entries/recycle/"+user.getUsername();
     	return (int)restTemplate.getForObject(url, int.class);
     }
+    
+    
     
     /**
      * Gets the total number of vegetarian meals for one user.
