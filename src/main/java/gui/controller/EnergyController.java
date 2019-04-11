@@ -23,7 +23,6 @@ public class EnergyController {
     @FXML
     private Button clickhome;
 
-    
 
     @FXML
     private Button getsolarpanel;
@@ -33,32 +32,31 @@ public class EnergyController {
 
     @FXML
     private Button temperature;
-    
+
     @FXML
     private Label lowtemplabel;
-    
+
     @FXML
     private Label gettempcount;
-    
+
     @FXML
     private Label sp;
-    
+
     @FXML
     private Label getsp;
-    
+
     @FXML
     private Label coldwater;
-    
+
     @FXML
     private Label getcoldwater;
-    
-     @FXML
+
+    @FXML
     private Label lowflow;
-   
-    
+
 
     @SuppressWarnings("deprecation")
-	@FXML
+    @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
@@ -73,10 +71,8 @@ public class EnergyController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Installing solar panels"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            
-        }
-        else {
-        	lowflow.setText("Registered!");
+
+            lowflow.setText("Registered!");
         }
     }
 
@@ -99,49 +95,43 @@ public class EnergyController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Washing your clothes with cold water"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            
-        }
-        else {
-        	lowflow.setText("Registered!");
+            lowflow.setText("Registered!");
         }
     }
-    
+
     @FXML
     void coldwash() {
-    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Cold water laundry"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            
-        }
-        else {
-        	lowflow.setText("Registered!");
+            lowflow.setText("Registered!");
         }
     }
-    
+
     @FXML
     void getcoldwash(ActionEvent event) {
         lowflow.setText("Used cold water "
                 + Integer.toString(Client.getcoldwashnumber(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate())) + " times.");
     }
-    
-    
+
+
     @FXML
     void getveganmeal(ActionEvent event) {
-    	 lowflow.setText("Used cold water "
-                 + Integer.toString(Client.getveganmeal(Client.getUrl(),
-                 Client.getUser(), Client.getRestTemplate())) + " times.");
+        lowflow.setText("Used cold water "
+                + Integer.toString(Client.getveganmeal(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())) + " times.");
     }
-    
+
     @FXML
     void lowflow() {
-    	
+
     }
-    
+
     @FXML
     void getlowflow() {
-    	
+
     }
-    
+
 
 }

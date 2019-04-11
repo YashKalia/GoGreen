@@ -38,7 +38,6 @@ public class MainController {
     }
 
 
-
     /**
      * Tries to log in a user.
      * If the response of the client is the boolean true, the username and password are correct.
@@ -50,13 +49,13 @@ public class MainController {
      * @throws Exception HUGE OFF
      */
     @SuppressWarnings("deprecation")
-	public void login(ActionEvent event) throws IOException {
+    public void login(ActionEvent event) throws IOException {
 
         User newuser = new User(txtUsername.getText(), txtPassword.getText());
         Client.setUser(newuser);
         try {
             Client.enableBasicAuthentication();
-            if (Client.sendLoginRequest(Client.getUrl(),newuser,Client.getRestTemplate())) {
+            if (Client.sendLoginRequest(Client.getUrl(), newuser, Client.getRestTemplate())) {
                 lblStatus.setText("Login Success");
                 Stage primaryStage = new Stage();
                 URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
@@ -80,11 +79,12 @@ public class MainController {
 
     /**
      * Empty for now, just brings up new screen.
+     *
      * @param event on click
      * @throws IOException GIGANTIC OOF
      */
-	@SuppressWarnings("deprecation")
-	public void register(ActionEvent event) throws IOException {
+    @SuppressWarnings("deprecation")
+    public void register(ActionEvent event) throws IOException {
 
         Stage primaryStage = new Stage();
         URL url = new File("src/main/java/gui/fxml/Register.fxml").toURL();

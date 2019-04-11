@@ -23,20 +23,21 @@ public class FoodController {
     @FXML
     private AnchorPane rootpane;
 
-       
+
     @FXML
     private Label treecount;
+
     @FXML
     private Label veganmeal;
-    
+
     @FXML
     private Label getveganmeal;
-    
+
     @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         @SuppressWarnings("deprecation")
-		URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
+        URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
@@ -48,33 +49,31 @@ public class FoodController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Buying local produce"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-          
-        }
-        else {
-        	treecount.setText("Submitted!");
+            treecount.setText("Submitted!");
+
         }
     }
 
     @FXML
     void getlocalproduce() {
-    	treecount.setText("You have bought Local Produce "
+        treecount.setText("You have bought Local Produce "
                 + (Client.getLocalProduce(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate()))+ " "+ "Times.");
+                Client.getUser(), Client.getRestTemplate())) + " " + "Times.");
     }
 
     @FXML
     void getvegetarian() {
-      treecount.setText("You've had "
+        treecount.setText("You've had "
                 + (Client.getVegetarianMeals(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate()))+ " "+"Vegetarian Meals.");
+                Client.getUser(), Client.getRestTemplate())) + " " + "Vegetarian Meals.");
     }
-    
+
     @FXML
-    void gettreecount(ActionEvent event) {    	
+    void gettreecount() {
         treecount.setText("You've planted "
                 + (Client.gettreepLanted(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate()))+ " "+" Trees");
-    	
+                Client.getUser(), Client.getRestTemplate())) + " Trees");
+
     }
 
     @FXML
@@ -82,66 +81,54 @@ public class FoodController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Eating a vegetarian meal"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            }
-            else {
-            	treecount.setText("Submitted!");
-            }
+            treecount.setText("Submitted!");
+        }
+
 
     }
-    
+
     @FXML
     void addtreeplanted() {
-    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Planting a tree"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            }
-            else {
-            	treecount.setText("Submitted!");
-            }
+            treecount.setText("Submitted!");
+        }
     }
-    
 
-    
+
     @FXML
     void addrecycle() {
-    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Recycling waste"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            }
-            else {
-            	treecount.setText("Submitted!");
-            }
+            treecount.setText("Submitted!");
+        }
     }
-    
+
     @FXML
-    void getrecycle(ActionEvent event) {        
+    void getrecycle() {
         treecount.setText("You've recycled: "
                 + (Client.getrecycled(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate()))+ " "+" times!");
+                Client.getUser(), Client.getRestTemplate())) + " " + " times!");
     }
-    
-    
+
 
     @FXML
     void veganmeal() {
-    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Eating a vegan meal"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            
-        }
-        else {
-        	treecount.setText("Registered!");
+            treecount.setText("Registered!");
         }
     }
-    
+
     @FXML
     void getveganmeal(ActionEvent event) {
-    	 treecount.setText("Ate "
-                 + Integer.toString(Client.getveganmeal(Client.getUrl(),
-                 Client.getUser(), Client.getRestTemplate())) + " times.");
+        treecount.setText("Ate "
+                + Integer.toString(Client.getveganmeal(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())) + " times.");
     }
-    
 
-    
 
 }

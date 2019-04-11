@@ -233,6 +233,18 @@ public class ClientTest {
     	when(restTemplate.getForObject(localUrl+"/entries/recycle/user5",Integer.class)).thenReturn(1);
     	assertEquals(1,Client.getrecycled(localUrl, user5, restTemplate));
     }
+    
+    @Test
+    public void testgetsecondhandnumber() {
+    	when(restTemplate.getForObject(localUrl+"/entries/secondhand/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getsecondhandnumber(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void testgethanddrying() {
+    	when(restTemplate.getForObject(localUrl+"/entries/hangdry/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.gethanddrying(localUrl, user5, restTemplate));
+    }
 
     @Test
     public void getPublicTransport() {
