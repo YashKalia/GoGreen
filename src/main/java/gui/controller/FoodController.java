@@ -58,15 +58,23 @@ public class FoodController {
     @FXML
     void getlocalproduce() {
     	treecount.setText("You have bought Local Produce "
-                + Integer.toString(Client.getLocalProduce(Client.getUrl(),
+                + (Client.getLocalProduce(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate()))+ " "+ "Times.");
     }
 
     @FXML
     void getvegetarian() {
       treecount.setText("You've had "
-                + Integer.toString(Client.getVegetarianMeals(Client.getUrl(),
+                + (Client.getVegetarianMeals(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate()))+ " "+"Vegetarian Meals.");
+    }
+    
+    @FXML
+    void gettreecount(ActionEvent event) {    	
+        treecount.setText("You've planted "
+                + (Client.gettreepLanted(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate()))+ " "+" Trees");
+    	
     }
 
     @FXML
@@ -92,13 +100,7 @@ public class FoodController {
             }
     }
     
-    @FXML
-    void gettreecount(ActionEvent event) {
-    	treecount.setText("You've planted "
-                + Integer.toString(Client.gettreepLanted(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())));
-    	
-    }
+
     
     @FXML
     void addrecycle() {
@@ -112,10 +114,10 @@ public class FoodController {
     }
     
     @FXML
-    void getrecycle(ActionEvent event) {
-        treecount.setText("Times recycled:"
-                + Integer.toString(Client.getrecycled(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())));
+    void getrecycle(ActionEvent event) {        
+        treecount.setText("You've recycled: "
+                + (Client.getrecycled(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate()))+ " "+" times!");
     }
     
     
@@ -128,13 +130,13 @@ public class FoodController {
             
         }
         else {
-        	veganmeal.setText("Registered!");
+        	treecount.setText("Registered!");
         }
     }
     
     @FXML
     void getveganmeal(ActionEvent event) {
-    	 getveganmeal.setText("Ate "
+    	 treecount.setText("Ate "
                  + Integer.toString(Client.getveganmeal(Client.getUrl(),
                  Client.getUser(), Client.getRestTemplate())) + " times.");
     }
