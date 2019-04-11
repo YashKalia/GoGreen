@@ -107,11 +107,12 @@ public class HomepageController {
     public void clickleaderboard(ActionEvent event) throws Exception {
 
         Parent secondview;
-        // URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
-        secondview = FXMLLoader.load(getClass().getResource("/gui/fxml/Leaderboard.fxml"));
+        URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
+        secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
+
 
 
     }
