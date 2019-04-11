@@ -5,20 +5,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane fx:id="Rootpane"
-	style="-fx-background-color: white;"
-	xmlns="http://javafx.com/javafx/8.0.171"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="application.VideoController">
+<AnchorPane fx:id="Rootpane" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.VideoController">
 	<children>
 		<BorderPane prefHeight="867.0" prefWidth="915.0">
 			<center>
-				<MediaView fx:id="mv" fitHeight="800.0" fitWidth="800.0"
-					BorderPane.alignment="CENTER" />
+				<MediaView fx:id="mv" fitHeight="800.0" fitWidth="800.0" BorderPane.alignment="CENTER" />
 			</center>
 			<top>
-				<Button fx:id="Back" mnemonicParsing="false" onAction="#Back"
-					text="Back" BorderPane.alignment="CENTER" />
+				<Button fx:id="Back" mnemonicParsing="false" onAction="#Back" text="Back" BorderPane.alignment="CENTER" />
 			</top>
 		</BorderPane>
 	</children>
