@@ -42,7 +42,7 @@
         <Button layoutX="23.0" layoutY="584.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="45.0" prefWidth="90.0" text="&lt;--Home" />
         <Label fx:id="cyclelabel" alignment="CENTER" layoutX="178.0" layoutY="473.0" prefHeight="95.0" prefWidth="418.0" text="" textAlignment="CENTER" textFill="WHITE">
           <font>
-            <Font size="23.0" fx:id="x4" />
+            <Font name="System Bold Italic" size="20.0" fx:id="x4" />
           </font>
         </Label>
       </children>
