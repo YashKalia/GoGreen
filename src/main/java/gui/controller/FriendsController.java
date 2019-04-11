@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import entity.Friends;
 import entity.User;
@@ -16,7 +18,6 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.File;
 import java.net.URL;
@@ -45,7 +46,8 @@ public class FriendsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        HashSet<String> friendRequests = Client
+        HashSet<String> friendRequests;
+        friendRequests = Client
                 .getPendingRequests(Client.getUrl(), Client.getUser(), Client.getRestTemplate());
         for (String friendRequest : friendRequests) {
             Button b1 = new Button("Accept Invite");
@@ -56,7 +58,8 @@ public class FriendsController implements Initializable {
                 public void handle(ActionEvent event) {
                     User friend = new User(l1.getText(), null);
                     Friends newFriend = new Friends(Client.getUser(), friend);
-                    if (Client.addFriend(Client.getUrl(), newFriend, Client.getRestTemplate())) {
+                    if (Client.addFriend(Client.getUrl(), newFriend,
+                            Client.getRestTemplate()).equals("Friend added successfully")) {
                         b1.setText("Invite Accepted");
                     } else {
                         b1.setText("Accept Failed");
@@ -75,7 +78,8 @@ public class FriendsController implements Initializable {
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
-    public void clickyourprogress(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickyourprogress(ActionEvent event) throws Exception {
 
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/YourProgress.fxml").toURL();
@@ -91,7 +95,8 @@ public class FriendsController implements Initializable {
      * @param event onClick
      * @throws Exception in case the file isn't found
      */
-    public void clickabouttheapp(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickabouttheapp(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/AboutTheAppVideo.fxml").toURL();
         secondview = FXMLLoader.load(url);
@@ -107,7 +112,8 @@ public class FriendsController implements Initializable {
      * @throws Exception in case the fxml file is not found
      */
 
-    public void clickleaderboard(ActionEvent event) throws Exception {
+    @SuppressWarnings("deprecation")
+	public void clickleaderboard(ActionEvent event) throws Exception {
 
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Leaderboard.fxml").toURL();
@@ -124,11 +130,10 @@ public class FriendsController implements Initializable {
         User friend = new User(friendSearch.getText(), null);
         Friends newFriend = new Friends(Client.getUser(), friend);
         try {
-            if (Client.addFriend(Client.getUrl(), newFriend, Client.getRestTemplate())) {
-                friendSearchButton.setText("Friend Added");
-            }
-        } catch (HttpServerErrorException e) {
-            friendSearchButton.setText("User invalid");
+            friendSearchButton.setText(Client.addFriend(Client.getUrl(),
+                    newFriend, Client.getRestTemplate()));
+        } catch (IllegalArgumentException e) {
+            friendSearchButton.setText(e.getMessage());
         }
     }
 

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,12 +49,14 @@ public class MainController {
      * @param event on click
      * @throws Exception HUGE OFF
      */
-    public void login(ActionEvent event) throws IOException {
+    @SuppressWarnings("deprecation")
+	public void login(ActionEvent event) throws IOException {
 
         User newuser = new User(txtUsername.getText(), txtPassword.getText());
+        Client.setUser(newuser);
         try {
+            Client.enableBasicAuthentication();
             if (Client.sendLoginRequest(Client.getUrl(),newuser,Client.getRestTemplate())) {
-                Client.setUser(newuser);
                 lblStatus.setText("Login Success");
                 Stage primaryStage = new Stage();
                 URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
@@ -70,6 +73,8 @@ public class MainController {
             }
         } catch (IOException e) {
             lblStatus.setText("Error in creating a new request!");
+        } catch (HttpClientErrorException e) {
+            lblStatus.setText("Invalid credentials!");
         }
     }
 
@@ -78,13 +83,14 @@ public class MainController {
      * @param event on click
      * @throws IOException GIGANTIC OOF
      */
-    public void register(ActionEvent event) throws IOException {
+	@SuppressWarnings("deprecation")
+	public void register(ActionEvent event) throws IOException {
 
         Stage primaryStage = new Stage();
         URL url = new File("src/main/java/gui/fxml/Register.fxml").toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        
         primaryStage.setScene(scene);
         primaryStage.show();
 

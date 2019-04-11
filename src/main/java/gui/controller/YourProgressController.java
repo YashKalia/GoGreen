@@ -1,4 +1,4 @@
-package application;
+package gui.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,7 +40,8 @@ public class YourProgressController implements Initializable {
         weeklyseries.getData().add(new XYChart.Data("4", 2));
         weekly.getData().addAll(weeklyseries);
 
-        XYChart.Series monthlyseries = new XYChart.Series<>();
+        @SuppressWarnings("unused")
+		XYChart.Series monthlyseries = new XYChart.Series<>();
     }
 
 }

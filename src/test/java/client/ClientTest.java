@@ -1,6 +1,6 @@
 package client;
 
-import entity.Feature;
+import entity.Feature; 
 import entity.Friends;
 import entity.RequestUserFeature;
 import entity.User;
@@ -8,14 +8,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ClientTest {
@@ -27,6 +28,7 @@ public class ClientTest {
     private User user2;
     private Feature vegetarianMeal;
     private static final String localUrl = "http://localhost:8080/";
+    private static final String herokuUrl = "https://projectgogreen.herokuapp.com/";
 
     @Before
     public void setup() {
@@ -34,6 +36,15 @@ public class ClientTest {
         user2 = new User("user2",null);
         vegetarianMeal = new Feature("Eating a vegetarian meal");
         Client.setUser(user5);
+    }
+
+    @Test
+    public void testEnableBasicAuthentication() {
+
+        Client.setUser(user5);
+
+        Client.enableBasicAuthentication();
+
     }
 
 //    @Test
@@ -57,6 +68,16 @@ public class ClientTest {
     }
 
     @Test
+    public void getUrlTest() {
+        assertEquals(herokuUrl, Client.getUrl());
+    }
+
+//    @Test
+//    public void getRestTemplateTest() {
+//        assertEquals(restTemplate,Client.getRestTemplate());
+//    }
+
+    @Test
     public void setUser() {
 
         Client.setUser(user2);
@@ -78,9 +99,9 @@ public class ClientTest {
 
         RequestUserFeature re = new RequestUserFeature(vegetarianMeal,user5);
 
-        when(restTemplate.postForObject(localUrl+"/entries/add",re,Boolean.class)).thenReturn(true);
+        when(restTemplate.postForObject(localUrl+"/entries/add",re,String.class)).thenReturn("cute");
 
-        assertEquals(true, Client.addEntry(localUrl,user5,vegetarianMeal,restTemplate));
+        assertEquals("cute", Client.addEntry(localUrl,user5,vegetarianMeal,restTemplate));
     }
 
     @Test
@@ -94,20 +115,20 @@ public class ClientTest {
 
     @Test
     public void registerTest() {
-        when(restTemplate.postForObject(localUrl+"/users/register",user5,Boolean.class))
-                .thenReturn(false);
+        when(restTemplate.postForObject(localUrl+"/users/register",user5,String.class))
+                .thenReturn("lol");
 
-        assertEquals(false,Client.register(localUrl,user5,restTemplate));
+        assertEquals("lol",Client.register(localUrl,user5,restTemplate));
     }
 
     @Test
     public void addFriendTest() {
         Friends fr = new Friends(user5,user2);
 
-        when(restTemplate.postForObject(localUrl+"/friends/add",fr,Boolean.class))
-                .thenReturn(true);
+        when(restTemplate.postForObject(localUrl+"/friends/add",fr,String.class))
+                .thenReturn("nice");
 
-        assertEquals(true, Client.addFriend(localUrl,fr,restTemplate));
+        assertEquals("nice", Client.addFriend(localUrl,fr,restTemplate));
     }
 
     @Test
@@ -197,6 +218,31 @@ public class ClientTest {
                 .thenReturn(42);
 
         assertEquals(42,Client.getSolarPanels(localUrl,user5,restTemplate));
+    }
+    
+    @Test
+    public void getcoldwashnumberTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/coldwash/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getcoldwashnumber(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void getlowflowTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/lowflow/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getlowflow(localUrl, user5, restTemplate));
+    	
+    }
+    
+    @Test
+    public void gettreepLantedTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/planttree/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.gettreepLanted(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void getrecycledTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/recycle/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getrecycled(localUrl, user5, restTemplate));
     }
 
     @Test

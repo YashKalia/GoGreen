@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 
 import entity.User;
@@ -31,17 +33,16 @@ public class RegisterController {
     public void checkregistration(ActionEvent event) throws InterruptedException {
         if (passwordfield.getText().equals(passwordconfirm.getText())) {
             User newUser = new User(usernamefield.getText(), passwordfield.getText());
-
-            if (Client.register(Client.getUrl(), newUser, Client.getRestTemplate())) {
+            String str = Client.register(Client.getUrl(), newUser, Client.getRestTemplate());
+            if (str.equals("Registration successful")) {
+                Client.setUser(newUser);
                 lblregisterstatus.setText("Registration Confirmed");
                 TimeUnit.SECONDS.sleep(2);
                 Stage firstStage = (Stage) passwordfield.getScene().getWindow();
                 firstStage.close();
             } else {
-                lblregisterstatus.setText("Username already exists");
+                lblregisterstatus.setText(str);
             }
-
-
         } else {
             lblregisterstatus.setText("Password Do Not Match");
         }

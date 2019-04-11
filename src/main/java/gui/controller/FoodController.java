@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import entity.Feature;
 import javafx.event.ActionEvent;
@@ -6,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -20,22 +23,14 @@ public class FoodController {
     @FXML
     private AnchorPane rootpane;
 
+       
     @FXML
-    private Button getvegetarian;
-
-    @FXML
-    private Button getlocalproduce;
-
-    @FXML
-    private Button vegeteraininin;
-
-    @FXML
-    private Button locolproduce;
-
+    private Label treecount;
     @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
-        URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
+        @SuppressWarnings("deprecation")
+		URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
@@ -43,35 +38,81 @@ public class FoodController {
     }
 
     @FXML
-    void locolproduce(ActionEvent event) {
+    void localproduce() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Buying local produce"), Client.getRestTemplate())) {
-            locolproduce.setText("Thanks for your submission!");
+                new Feature("Buying local produce"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+          
+        }
+        else {
+        	treecount.setText("Submitted!");
         }
     }
 
     @FXML
     void getlocalproduce() {
-        getlocalproduce.setText("You've bought local produce "
+    	treecount.setText("You have bought Local Produce "
                 + Integer.toString(Client.getLocalProduce(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " times. Click again to update.");
+                Client.getUser(), Client.getRestTemplate()))+ " "+ "Times.");
     }
 
     @FXML
     void getvegetarian() {
-        getvegetarian.setText("You've had "
+      treecount.setText("You've had "
                 + Integer.toString(Client.getVegetarianMeals(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate()))
-                + " vegetarian meals. Click again to update.");
+                Client.getUser(), Client.getRestTemplate()))+ " "+"Vegetarian Meals.");
     }
 
     @FXML
-    void vegeteraininin(ActionEvent event) {
+    void addvegetarian() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Eating a vegetarian meal"), Client.getRestTemplate())) {
-            vegeteraininin.setText("Thanks for your submission!");
-        }
+                new Feature("Eating a vegetarian meal"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            }
+            else {
+            	treecount.setText("Submitted!");
+            }
 
     }
+    
+    @FXML
+    void addtreeplanted() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Planting a tree"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            }
+            else {
+            	treecount.setText("Submitted!");
+            }
+    }
+    
+    @FXML
+    void gettreecount(ActionEvent event) {
+    	treecount.setText("You've planted "
+                + Integer.toString(Client.gettreepLanted(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())));
+    	
+    }
+    
+    @FXML
+    void addrecycle() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Recycling waste"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            }
+            else {
+            	treecount.setText("Submitted!");
+            }
+    }
+    
+    @FXML
+    void getrecycle(ActionEvent event) {
+        treecount.setText("Times recycled:"
+                + Integer.toString(Client.getrecycled(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())));
+    }
+    
+
+    
 
 }

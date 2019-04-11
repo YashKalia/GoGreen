@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
-
-
 <?import javafx.scene.control.Button?>
-<AnchorPane fx:id="rootpane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171"
-            fx:controller="application.LeaderboardController">
+<AnchorPane fx:id="rootpane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gui.controller.LeaderboardController">
     <children>
         <AnchorPane prefHeight="669.0" prefWidth="650.0">
             <children>
