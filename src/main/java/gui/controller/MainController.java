@@ -49,7 +49,8 @@ public class MainController {
      * @param event on click
      * @throws Exception HUGE OFF
      */
-    public void login(ActionEvent event) throws IOException {
+    @SuppressWarnings("deprecation")
+	public void login(ActionEvent event) throws IOException {
 
         User newuser = new User(txtUsername.getText(), txtPassword.getText());
         Client.setUser(newuser);
@@ -82,13 +83,14 @@ public class MainController {
      * @param event on click
      * @throws IOException GIGANTIC OOF
      */
-    public void register(ActionEvent event) throws IOException {
+	@SuppressWarnings("deprecation")
+	public void register(ActionEvent event) throws IOException {
 
         Stage primaryStage = new Stage();
         URL url = new File("src/main/java/gui/fxml/Register.fxml").toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        
         primaryStage.setScene(scene);
         primaryStage.show();
 

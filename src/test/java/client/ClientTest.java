@@ -1,6 +1,6 @@
 package client;
 
-import entity.Feature;
+import entity.Feature; 
 import entity.Friends;
 import entity.RequestUserFeature;
 import entity.User;
@@ -8,9 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -208,6 +207,31 @@ public class ClientTest {
                 .thenReturn(42);
 
         assertEquals(42,Client.getSolarPanels(localUrl,user5,restTemplate));
+    }
+    
+    @Test
+    public void getcoldwashnumberTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/coldwash/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getcoldwashnumber(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void getlowflowTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/lowflow/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getlowflow(localUrl, user5, restTemplate));
+    	
+    }
+    
+    @Test
+    public void gettreepLantedTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/planttree/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.gettreepLanted(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void getrecycledTest() {
+    	when(restTemplate.getForObject(localUrl+"/entries/recycle/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getrecycled(localUrl, user5, restTemplate));
     }
 
     @Test

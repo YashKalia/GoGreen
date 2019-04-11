@@ -149,7 +149,57 @@ public class Client {
         url += "/badgesearned/getmybadges/" + user.getUsername();
         return (HashSet<String>) restTemplate.getForObject(url, Set.class);
     }
-
+    
+    /**Gets number of cold laundry washes instead of hot washes.
+     * 
+     * @param url-corresponding url.
+     * @param user-current user.
+     * @param resTemplate-resttemplate object for communication.
+     * @return
+     */
+    public static int getcoldwashnumber(String url,User user, RestTemplate restTemplate) {
+    	url+="/entries/coldwash/"+user.getUsername();
+    	return restTemplate.getForObject(url, Integer.class);
+    }
+    
+    /**gets number of low flow shower heads installed.
+     * 
+     * @param url -corresponding url.
+     * @param user -current user.
+     * @param resTemplate -resttemplate object for communication.
+     * @return
+     */
+    public static int getlowflow(String url,User user, RestTemplate restTemplate) {
+    	url+="/entries/lowflow/"+user.getUsername();
+    	return restTemplate.getForObject(url, Integer.class);
+    }
+    
+    /**returns number of trees planted.
+     * 
+     * @param url - corresponding url.
+     * @param user - current user.
+     * @param resTemplate - restTemplate object.
+     * @return
+     */
+    public static int gettreepLanted(String url,User user, RestTemplate restTemplate) {
+    	url+="/entries/planttree/"+user.getUsername();
+    	return (int)restTemplate.getForObject(url, Integer.class);
+    }
+    
+    /**returns number of times you recycled.
+     * 
+     * @param url - corresponding url
+     * @param user - current user.
+     * @param resTemplate - restTemplate object.
+     * @return
+     */
+    public static int getrecycled(String url,User user, RestTemplate restTemplate) {
+    	url+="/entries/recycle/"+user.getUsername();
+    	return (int)restTemplate.getForObject(url, Integer.class);
+    }
+    
+    
+    
     /**
      * Gets the total number of vegetarian meals for one user.
      *

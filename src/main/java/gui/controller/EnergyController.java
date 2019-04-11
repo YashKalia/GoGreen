@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import entity.Feature;
 import javafx.event.ActionEvent;
@@ -6,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -20,8 +23,7 @@ public class EnergyController {
     @FXML
     private Button clickhome;
 
-    @FXML
-    private Button solarpanel;
+    
 
     @FXML
     private Button getsolarpanel;
@@ -31,8 +33,15 @@ public class EnergyController {
 
     @FXML
     private Button temperature;
+    
+     @FXML
+    private Label lowflow;
+    
+    
+    
 
-    @FXML
+    @SuppressWarnings("deprecation")
+	@FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
@@ -43,35 +52,80 @@ public class EnergyController {
     }
 
     @FXML
-    void solarpanel(ActionEvent event) {
+    void solarpanel() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Installing solar panels"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            solarpanel.setText("Thanks for your submission!");
+            
+        }
+        else {
+        	lowflow.setText("Registered!");
         }
     }
 
     @FXML
     void getsolarpanel(ActionEvent event) {
-        getsolarpanel.setText("You've installed a total of "
+        lowflow.setText("A total of "
                 + Integer.toString(Client.getSolarPanels(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " solar panels. Click to update.");
+                Client.getUser(), Client.getRestTemplate())) + " solar panels.");
     }
 
     @FXML
     void gettemperature(ActionEvent event) {
-        gettemperature.setText("You've lowered the temperature of your home "
+        lowflow.setText("Lowered "
                 + Integer.toString(Client.getLoweringTemperature(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " times. Click to update.");
+                Client.getUser(), Client.getRestTemplate())) + " times.");
     }
 
     @FXML
-    void temperature(ActionEvent event) {
+    void temperature() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Lowering the temperature of your home"),
+                new Feature("Washing your clothes with cold water"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            temperature.setText("Thanks for your submission!");
+            
+        }
+        else {
+        	lowflow.setText("Registered!");
         }
     }
+    
+    @FXML
+    void coldwash() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Cold water laundry"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            
+        }
+        else {
+        	lowflow.setText("Registered!");
+        }
+    }
+    
+    @FXML
+    void getcoldwash(ActionEvent event) {
+        lowflow.setText("Used cold water "
+                + Integer.toString(Client.getcoldwashnumber(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())) + " times.");
+    }
+    
+    @FXML
+    void lowflow() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Installing slow-flow showerhead"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            
+        }
+        else {
+        	lowflow.setText("Registered!");
+        }
+    }
+    
+    @FXML
+    void getlowflow(ActionEvent event) {
+    	 lowflow.setText("Used cold water "
+                 + Integer.toString(Client.getlowflow(Client.getUrl(),
+                 Client.getUser(), Client.getRestTemplate())) + " times.");
+    }
+    
 
 }
