@@ -54,6 +54,12 @@ public class FoodController {
     private Label recyclecount;
     
     @FXML
+    private Label veganmeal;
+    
+    @FXML
+    private Label getveganmeal;
+    
+    @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         @SuppressWarnings("deprecation")
@@ -137,6 +143,27 @@ public class FoodController {
         recyclecount.setText("You recycled:"
                 + Integer.toString(Client.getrecycled(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate()))+" times");
+    }
+    
+    
+
+    @FXML
+    void veganmeal() {
+    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Eating a vegan meal"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            
+        }
+        else {
+        	veganmeal.setText("Registered!");
+        }
+    }
+    
+    @FXML
+    void getveganmeal(ActionEvent event) {
+    	 getveganmeal.setText("Ate "
+                 + Integer.toString(Client.getveganmeal(Client.getUrl(),
+                 Client.getUser(), Client.getRestTemplate())) + " times.");
     }
     
 

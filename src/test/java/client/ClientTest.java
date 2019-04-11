@@ -217,8 +217,8 @@ public class ClientTest {
     
     @Test
     public void getlowflowTest() {
-    	when(restTemplate.getForObject(localUrl+"/entries/lowflow/user5",Integer.class)).thenReturn(1);
-    	assertEquals(1,Client.getlowflow(localUrl, user5, restTemplate));
+    	when(restTemplate.getForObject(localUrl+"/entries/veganmeal/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getveganmeal(localUrl, user5, restTemplate));
     	
     }
     

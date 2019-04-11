@@ -169,8 +169,8 @@ public class Client {
      * @param resTemplate -resttemplate object for communication.
      * @return
      */
-    public static int getlowflow(String url,User user, RestTemplate restTemplate) {
-    	url+="/entries/lowflow/"+user.getUsername();
+    public static int getveganmeal(String url,User user, RestTemplate restTemplate) {
+    	url+="/entries/veganmeal/"+user.getUsername();
     	return restTemplate.getForObject(url, Integer.class);
     }
     

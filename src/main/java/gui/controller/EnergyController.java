@@ -53,11 +53,7 @@ public class EnergyController {
     @FXML
     private Label getcoldwater;
     
-    @FXML
-    private Label lowflow;
-    
-    @FXML
-    private Label getlowflow;
+
     
 
     @SuppressWarnings("deprecation")
@@ -128,24 +124,8 @@ public class EnergyController {
                 Client.getUser(), Client.getRestTemplate())) + " times.");
     }
     
-    @FXML
-    void lowflow() {
-    	if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Installing slow-flow showerhead"),
-                Client.getRestTemplate()).equals("Entry added successfully")) {
-            
-        }
-        else {
-        	lowflow.setText("Registered!");
-        }
-    }
     
-    @FXML
-    void getlowflow(ActionEvent event) {
-    	 getlowflow.setText("Installed "
-                 + Integer.toString(Client.getlowflow(Client.getUrl(),
-                 Client.getUser(), Client.getRestTemplate())) + " times.");
-    }
+
     
 
 }
