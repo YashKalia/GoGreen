@@ -50,7 +50,7 @@ public class VideoController implements Initializable {
 	public void Back() throws Exception {
 		mp.stop();
 		Parent secondview;
-		secondview = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
+		secondview = FXMLLoader.load(getClass().getResource("src/main/java/gui/fxml/Homepage.fxml"));
 		Scene newscene = new Scene(secondview);
 		Stage curstage = (Stage) Rootpane.getScene().getWindow();
 		curstage.setScene(newscene);
