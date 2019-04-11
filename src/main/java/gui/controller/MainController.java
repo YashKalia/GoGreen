@@ -83,11 +83,11 @@ public class MainController {
      * @param event on click
      * @throws IOException GIGANTIC OOF
      */
+	@SuppressWarnings("deprecation")
 	public void register(ActionEvent event) throws IOException {
 
         Stage primaryStage = new Stage();
-        File file=new File("src/main/java/gui/fxml/Register.fxml");
-        URL url = file.toURI().toURL();
+        URL url = new File("src/main/java/gui/fxml/Register.fxml").toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

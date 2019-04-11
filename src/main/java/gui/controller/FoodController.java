@@ -23,36 +23,9 @@ public class FoodController {
     @FXML
     private AnchorPane rootpane;
 
-    @FXML
-    private Button getvegetarian;
-
-    @FXML
-    private Button getlocalproduce;
-    
-    @FXML
-    private Label meal;
-    
-    @FXML
-    private Label localproduce;
-    
-    @FXML
-    private Label getvegmeals;
-    
-    @FXML
-    private Label localproducecount;
-    
-    @FXML
-    private Label tree;
-    
+       
     @FXML
     private Label treecount;
-    
-    @FXML
-    private Label recycle;
-    
-    @FXML
-    private Label recyclecount;
-    
     @FXML
     private Label veganmeal;
     
@@ -78,22 +51,22 @@ public class FoodController {
           
         }
         else {
-        	localproduce.setText("Submitted!");
+        	treecount.setText("Submitted!");
         }
     }
 
     @FXML
     void getlocalproduce() {
-    	localproducecount.setText("bought :"
+    	treecount.setText("You have bought Local Produce "
                 + Integer.toString(Client.getLocalProduce(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " times.");
+                Client.getUser(), Client.getRestTemplate()))+ " "+ "Times.");
     }
 
     @FXML
     void getvegetarian() {
-        getvegmeals.setText("You've had "
+      treecount.setText("You've had "
                 + Integer.toString(Client.getVegetarianMeals(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())));
+                Client.getUser(), Client.getRestTemplate()))+ " "+"Vegetarian Meals.");
     }
 
     @FXML
@@ -103,7 +76,7 @@ public class FoodController {
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             }
             else {
-            	meal.setText("Submitted");
+            	treecount.setText("Submitted!");
             }
 
     }
@@ -115,7 +88,7 @@ public class FoodController {
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             }
             else {
-            	tree.setText("Submitted");
+            	treecount.setText("Submitted!");
             }
     }
     
@@ -123,7 +96,7 @@ public class FoodController {
     void gettreecount(ActionEvent event) {
     	treecount.setText("You've planted "
                 + Integer.toString(Client.gettreepLanted(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate()))+" tree(s)");
+                Client.getUser(), Client.getRestTemplate())));
     	
     }
     
@@ -134,15 +107,15 @@ public class FoodController {
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             }
             else {
-            	recycle.setText("Submitted");
+            	treecount.setText("Submitted!");
             }
     }
     
     @FXML
     void getrecycle(ActionEvent event) {
-        recyclecount.setText("You recycled:"
+        treecount.setText("Times recycled:"
                 + Integer.toString(Client.getrecycled(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate()))+" times");
+                Client.getUser(), Client.getRestTemplate())));
     }
     
     
