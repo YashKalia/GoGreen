@@ -113,7 +113,6 @@ public class FoodController {
                 Client.getUser(), Client.getRestTemplate())) + " " + " times!");
     }
 
-
     @FXML
     void veganmeal() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
@@ -123,12 +122,27 @@ public class FoodController {
         }
     }
 
+
     @FXML
     void getveganmeal(ActionEvent event) {
-        treecount.setText("Ate "
+        treecount.setText("You've eaten "
                 + Integer.toString(Client.getveganmeal(Client.getUrl(),
-                Client.getUser(), Client.getRestTemplate())) + " times.");
+                Client.getUser(), Client.getRestTemplate())) + " Vegan meals.");
     }
 
+    @FXML
+    void secondhand() {
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Buying second-hand clothing"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            treecount.setText("Registered!");
+        }
+    }
 
+    @FXML
+    void getsecondhand() {
+        treecount.setText("You've bought second hand clothing "
+                + Integer.toString(Client.getsecondhandnumber(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate())) + " times.");
+    }
 }

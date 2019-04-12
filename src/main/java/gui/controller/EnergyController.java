@@ -108,6 +108,7 @@ public class EnergyController {
         }
     }
 
+
     @FXML
     void getcoldwash(ActionEvent event) {
         lowflow.setText("Used cold water "
@@ -115,22 +116,20 @@ public class EnergyController {
                 Client.getUser(), Client.getRestTemplate())) + " times.");
     }
 
+    @FXML
+    void hangdry() {
+        if (Client.addEntry(Client.getUrl(), Client.getUser(),
+                new Feature("Air drying your clothes"),
+                Client.getRestTemplate()).equals("Entry added successfully")) {
+            lowflow.setText("Registered!");
+        }
+    }
 
     @FXML
-    void getveganmeal(ActionEvent event) {
-        lowflow.setText("Used cold water "
-                + Integer.toString(Client.getveganmeal(Client.getUrl(),
+    void gethangdry() {
+        lowflow.setText("You've hand dried your clothes "
+                + Integer.toString(Client.gethanddrying(Client.getUrl(),
                 Client.getUser(), Client.getRestTemplate())) + " times.");
-    }
-
-    @FXML
-    void lowflow() {
-
-    }
-
-    @FXML
-    void getlowflow() {
-
     }
 
 

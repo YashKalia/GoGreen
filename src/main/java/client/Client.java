@@ -48,6 +48,8 @@ public class Client {
     public static String getUrl() {
         return herokuUrl;
     }
+    
+ 
 
     /**
      * Sends a login request with username,password.
@@ -159,7 +161,8 @@ public class Client {
      * @return integer.
      */
     public static int getcoldwashnumber(String url, User user, RestTemplate restTemplate) {
-        url += "/entries/coldwash/" + user.getUsername();
+        url += "/entries/coldwash/";
+        url += user.getUsername();
         return restTemplate.getForObject(url, Integer.class);
     }
 
@@ -172,7 +175,8 @@ public class Client {
      * @return
      */
     public static int getveganmeal(String url, User user, RestTemplate restTemplate) {
-        url += "/entries/veganmeal/" + user.getUsername();
+        url += "/entries/veganmeal/";
+        url += user.getUsername();
         return restTemplate.getForObject(url, Integer.class);
     }
 
@@ -185,8 +189,9 @@ public class Client {
      * @return
      */
     public static int gettreepLanted(String url, User user, RestTemplate restTemplate) {
-        url += "/entries/planttree/" + user.getUsername();
-        return (int) restTemplate.getForObject(url, Integer.class);
+        url += "/entries/planttree/";
+        url += user.getUsername();
+        return  restTemplate.getForObject(url, Integer.class);
     }
 
     /**
@@ -198,8 +203,9 @@ public class Client {
      * @return
      */
     public static int getrecycled(String url, User user, RestTemplate restTemplate) {
-        url += "/entries/recycle/" + user.getUsername();
-        return (int) restTemplate.getForObject(url, Integer.class);
+        url += "/entries/recycle/";
+        url += user.getUsername();
+        return  restTemplate.getForObject(url, Integer.class);
     }
 
 
