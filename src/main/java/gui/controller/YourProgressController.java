@@ -41,7 +41,7 @@ public class YourProgressController implements Initializable {
         weekly.getData().addAll(weeklyseries);
 
         @SuppressWarnings("unused")
-		XYChart.Series monthlyseries = new XYChart.Series<>();
+        XYChart.Series monthlyseries = new XYChart.Series<>();
     }
 
 }

@@ -1,64 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootpane" prefWidth="595.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.FoodController">
-	<children>
-		<AnchorPane prefHeight="655.0" prefWidth="719.0">
-			<children>
-            <ImageView fitHeight="655.0" fitWidth="719.0">
-               <image>
-                  <Image url="@../resources/FoodBackground.jpg" />
-               </image>
-            </ImageView>
-				<Label alignment="CENTER" layoutX="184.0" prefWidth="361.0" text="Food and Home" textAlignment="CENTER" textFill="#10cc00">
-					<font>
-						<Font name="System Bold Italic" size="44.0" />
-					</font>
-				</Label>
-				<Label alignment="CENTER" layoutX="52.0" layoutY="66.0" text="Did you have a Vegetarian meal today?" textFill="WHITE">
-					<font>
-						<Font name="Arial Narrow Bold" size="18.0" fx:id="x1" />
-					</font>
-				</Label>
-				<Button fx:id="getvegetarian" layoutX="46.0" layoutY="281.0" mnemonicParsing="false" onAction="#getvegetarian" prefHeight="31.0" prefWidth="285.0" style="-fx-background-radius: 42px;" text="Show Number of Vegetarian Meals had" />
-				<Label alignment="CENTER" font="$x1" layoutX="89.0" layoutY="317.0" text="Did you buy Local Produce?" textFill="WHITE" />
-				<ImageView fitHeight="194.0" fitWidth="274.0" layoutX="52.0" layoutY="338.0" onMouseClicked="#localproduce" pickOnBounds="true" preserveRatio="false">
-					<image>
-						<Image url="@../resources/localproduce.jpeg" />
-					</image>
-				</ImageView>
-				<Button fx:id="getlocalproduce" layoutX="46.0" layoutY="534.0" mnemonicParsing="false" onAction="#getlocalproduce" prefHeight="33.0" prefWidth="285.0" style="-fx-background-radius: 42px;" text="Show Number of Local Produce Bought" />
-				<Button fx:id="clickhome" layoutX="21.0" layoutY="585.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="42.0" prefWidth="73.0" text="Home" />
-				<Label alignment="CENTER" font="$x1" layoutX="473.0" layoutY="66.0" prefHeight="21.0" prefWidth="153.0" text="Did you plant a tree?" textAlignment="CENTER" textFill="WHITE" />
-				<Label alignment="CENTER" font="$x1" layoutX="461.0" layoutY="317.0" prefHeight="21.0" prefWidth="178.45849609375" text="Did you recycle waste?" textAlignment="CENTER" textFill="WHITE" />
-				<Label fx:id="treecount" alignment="CENTER" layoutX="157.0" layoutY="590.0" prefHeight="65.0" prefWidth="415.0" text="" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font></Label>
-				<Button layoutX="407.0" layoutY="281.0" mnemonicParsing="false" onAction="#addtreeplanted" prefHeight="31.0" prefWidth="285.0" style="-fx-background-radius: 42px;" text="Show Number of Trees I Planted" />
-				<Button layoutX="408.0" layoutY="534.0" mnemonicParsing="false" onAction="#addrecycle" prefHeight="33.0" prefWidth="285.0" style="-fx-background-radius: 42px;" text="Show Number of Times I Recycled" />
-            <ImageView fitHeight="194.0" fitWidth="285.0" layoutX="47.0" layoutY="87.0" onMouseClicked="#addvegetarian">
-               <image>
-                  <Image url="@../resources/newvegmeal.jpeg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="194.0" fitWidth="274.0" layoutX="414.0" layoutY="87.0" onMouseClicked="#addtreeplanted">
-               <image>
-                  <Image url="@../resources/Trees.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="194.0" fitWidth="285.0" layoutX="407.0" layoutY="338.0" onMouseClicked="#addrecycle">
-               <image>
-                  <Image url="@../resources/Recycle.jpg" />
-               </image>
-            </ImageView>
-			</children>
-		</AnchorPane>
-	</children>
+<AnchorPane fx:id="rootpane" prefHeight="655.0" prefWidth="719.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controller.FoodController">
+  <children>
+    <AnchorPane prefHeight="655.0" prefWidth="719.0">
+      <children>
+        <ImageView fitHeight="655.0" fitWidth="719.0">
+          <image>
+            <Image url="@../resources/FoodBackground.jpg" />
+          </image>
+        </ImageView>
+        <Label alignment="CENTER" layoutX="184.0" prefWidth="361.0" text="Food and Home" textAlignment="CENTER" textFill="#10cc00">
+          <font>
+            <Font name="System Bold Italic" size="44.0" />
+          </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="25.0" layoutY="59.0" text="Did you have a Vegetarian meal?" textFill="WHITE">
+          <font>
+            <Font name="Arial Narrow Bold" size="18.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Button fx:id="getvegetarian" layoutX="5.0" layoutY="261.0" mnemonicParsing="false" onAction="#getvegetarian" prefHeight="31.0" prefWidth="251.0" style="-fx-background-radius: 42px;" text="Show Number of Vegetarian Meals I've had" />
+        <Label alignment="CENTER" font="$x1" layoutX="28.0" layoutY="307.0" text="Did you buy Local Produce?" textFill="WHITE" />
+        <ImageView fitHeight="165.0" fitWidth="194.0" layoutX="31.0" layoutY="338.0" onMouseClicked="#localproduce" pickOnBounds="true" preserveRatio="false">
+          <image>
+            <Image url="@../resources/localproduce.jpeg" />
+          </image>
+        </ImageView>
+        <Button fx:id="getlocalproduce" layoutX="4.0" layoutY="522.0" mnemonicParsing="false" onAction="#getlocalproduce" prefHeight="33.0" prefWidth="242.0" style="-fx-background-radius: 42px;" text="Show Number of Local Produce Bought" />
+        <Button fx:id="clickhome" layoutX="21.0" layoutY="585.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="42.0" prefWidth="73.0" text="Home" />
+        <Label alignment="CENTER" font="$x1" layoutX="510.0" layoutY="59.0" prefHeight="21.0" prefWidth="153.0" text="Did you plant a tree?" textAlignment="CENTER" textFill="WHITE" />
+        <Label alignment="CENTER" font="$x1" layoutX="516.0" layoutY="307.0" prefHeight="21.0" prefWidth="178.45849609375" text="Did you recycle waste?" textAlignment="CENTER" textFill="WHITE" />
+        <Label fx:id="treecount" alignment="CENTER" layoutX="157.0" layoutY="590.0" prefHeight="65.0" prefWidth="415.0" text="" textAlignment="CENTER" textFill="WHITE">
+          <font>
+            <Font name="System Bold Italic" size="20.0" />
+          </font>
+        </Label>
+        <Button layoutX="501.0" layoutY="261.0" mnemonicParsing="false" onAction="#gettreecount" prefHeight="31.0" prefWidth="209.0" style="-fx-background-radius: 42px;" text="Show Number of Trees I Planted" />
+        <Button layoutX="495.0" layoutY="522.0" mnemonicParsing="false" onAction="#getrecycle" prefHeight="33.0" prefWidth="221.0" style="-fx-background-radius: 42px;" text="Show Number of Times I Recycled" />
+        <ImageView fitHeight="159.0" fitWidth="209.0" layoutX="31.0" layoutY="87.0" onMouseClicked="#addvegetarian">
+          <image>
+            <Image url="@../resources/newvegmeal.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="158.99998474121094" fitWidth="209.0" layoutX="496.0" layoutY="87.0" onMouseClicked="#addtreeplanted">
+          <image>
+            <Image url="@../resources/Trees.jpg" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="165.0" fitWidth="200.0" layoutX="496.0" layoutY="339.0" onMouseClicked="#addrecycle">
+          <image>
+            <Image url="@../resources/Recycle.jpg" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="159.00011525878654" fitWidth="208.99998474121094" layoutX="265.0" layoutY="87.0" onMouseClicked="#veganmeal" pickOnBounds="true" preserveRatio="false">
+          <image>
+            <Image url="@../resources/veganmeal.jpg" />
+          </image>
+        </ImageView>
+        <Label alignment="CENTER" font="$x1" layoutX="279.0" layoutY="59.0" text="Did you have a Vegan meal?" textFill="WHITE" />
+        <Button id="getvegetarian" layoutX="262.0" layoutY="261.0" mnemonicParsing="false" onAction="#getveganmeal" prefHeight="31.0" prefWidth="231.0" style="-fx-background-radius: 42px;" text="Show Number of Vegan Meals I've had" />
+        <ImageView fitHeight="158.99996185302734" fitWidth="216.6666717529297" layoutX="257.0" layoutY="339.0" onMouseClicked="#secondhand" pickOnBounds="true" preserveRatio="false">
+          <image>
+            <Image url="@../resources/secondhand.jpg" />
+          </image>
+        </ImageView>
+        <Label alignment="CENTER" font="$x1" layoutX="246.0" layoutY="307.0" text="Did you but second hand clothing?" textFill="WHITE" />
+        <Button id="getlocalproduce" layoutX="254.0" layoutY="522.0" mnemonicParsing="false" onAction="#getsecondhand" prefHeight="33.0" prefWidth="231.0" style="-fx-background-radius: 42px;" text="Show Number of Second hand clothing" />
+      </children>
+    </AnchorPane>
+  </children>
 </AnchorPane>
