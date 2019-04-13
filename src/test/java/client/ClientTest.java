@@ -228,8 +228,8 @@ public class ClientTest {
     
     @Test
     public void getlowflowTest() {
-    	when(restTemplate.getForObject(localUrl+"/entries/lowflow/user5",Integer.class)).thenReturn(1);
-    	assertEquals(1,Client.getlowflow(localUrl, user5, restTemplate));
+    	when(restTemplate.getForObject(localUrl+"/entries/veganmeal/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getveganmeal(localUrl, user5, restTemplate));
     	
     }
     
@@ -243,6 +243,18 @@ public class ClientTest {
     public void getrecycledTest() {
     	when(restTemplate.getForObject(localUrl+"/entries/recycle/user5",Integer.class)).thenReturn(1);
     	assertEquals(1,Client.getrecycled(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void testgetsecondhandnumber() {
+    	when(restTemplate.getForObject(localUrl+"/entries/secondhand/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.getsecondhandnumber(localUrl, user5, restTemplate));
+    }
+    
+    @Test
+    public void testgethanddrying() {
+    	when(restTemplate.getForObject(localUrl+"/entries/hangdry/user5",Integer.class)).thenReturn(1);
+    	assertEquals(1,Client.gethanddrying(localUrl, user5, restTemplate));
     }
 
     @Test

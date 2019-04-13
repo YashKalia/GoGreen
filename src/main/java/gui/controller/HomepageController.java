@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class HomepageController {
@@ -147,7 +148,9 @@ public class HomepageController {
     /**Logs out the user.
      *
      * @param event activated on mouse click.
+     * @throws Exception 
      */
+
     @FXML
     public void logOut(ActionEvent event) {
         try {

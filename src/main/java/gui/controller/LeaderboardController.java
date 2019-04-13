@@ -30,7 +30,7 @@ public class LeaderboardController implements Initializable {
     @FXML
     private NumberAxis y1;
     @SuppressWarnings("rawtypes")
-	@FXML
+    @FXML
     private BarChart leaderboard;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -62,7 +62,7 @@ public class LeaderboardController implements Initializable {
     }
 
     @SuppressWarnings("deprecation")
-	@FXML
+    @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
