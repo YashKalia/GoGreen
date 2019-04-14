@@ -44,6 +44,7 @@ public class RegisterController {
      * @param event on Button click
      * @throws Exception 
      */
+    @SuppressWarnings("deprecation")
     public void checkregistration(ActionEvent event) throws InterruptedException, Exception {
         if (passwordfield.getText().equals(passwordconfirm.getText())) {
             User newUser = new User(usernamefield.getText(), passwordfield.getText());
