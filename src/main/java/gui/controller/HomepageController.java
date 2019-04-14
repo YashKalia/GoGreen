@@ -116,7 +116,6 @@ public class HomepageController {
         curstage.setScene(newscene);
 
 
-
     }
 
     /**
@@ -144,11 +143,13 @@ public class HomepageController {
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
+    }
 
-    /**Logs out the user.
+    /**
+     * Logs out the user.
      *
      * @param event activated on mouse click.
-     * @throws Exception 
+     * @throws Exception
      */
 
     @FXML

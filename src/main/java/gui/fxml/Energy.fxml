@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootpane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controller.EnergyController">
+<AnchorPane fx:id="rootpane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.EnergyController">
   <children>
     <AnchorPane prefHeight="500.0" prefWidth="500.0">
       <children>
-        <ImageView fitHeight="641.0" fitWidth="698.0">
+        <ImageView fitHeight="641.0" fitWidth="701.0">
           <image>
             <Image url="@../resources/bluesky.jpeg" />
           </image>
@@ -31,9 +26,9 @@
             <Font name="Arial Narrow Bold Italic" size="44.0" />
           </font>
         </Label>
-        <Button fx:id="clickhome" layoutX="34.0" layoutY="592.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="42.0" prefWidth="83.0" text="&lt;--Home" />
-        <Button fx:id="gettemperature" layoutX="20.0" layoutY="252.0" mnemonicParsing="false" onAction="#gettemperature" prefHeight="35.0" prefWidth="312.0" text="How many times I lowered the temperature?" />
-        <Button fx:id="getsolarpanel" alignment="CENTER" layoutX="25.0" layoutY="505.0" mnemonicParsing="false" onAction="#getsolarpanel" prefHeight="35.0" prefWidth="312.0" text="Get amount of solar panels installed" textAlignment="CENTER" />
+        <Button fx:id="clickhome" layoutX="40.0" layoutY="578.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="42.0" prefWidth="83.0" text="Home" />
+        <Button fx:id="gettemperature" layoutX="31.0" layoutY="258.0" mnemonicParsing="false" onAction="#gettemperature" prefHeight="30.0" prefWidth="303.0" style="-fx-background-radius: 42;" text="Number of times I lowered the temperature" />
+        <Button fx:id="getsolarpanel" alignment="CENTER" layoutX="38.0" layoutY="509.0" mnemonicParsing="false" onAction="#getsolarpanel" prefHeight="30.0" prefWidth="281.0" style="-fx-background-radius: 42;" text="Number of times I installed solar panels" textAlignment="CENTER" />
         <ImageView fitHeight="155.0" fitWidth="289.0" layoutX="34.0" layoutY="100.0" onMouseClicked="#temperature" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@../resources/temperature.jpeg" />
@@ -44,26 +39,32 @@
             <Image url="@../resources/solarpanel.jpeg" />
           </image>
         </ImageView>
-        <Label alignment="CENTER" layoutX="13.0" layoutY="299.0" prefWidth="326.0" text="Have you installed a solar panel?" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="57.0" layoutY="297.0" prefHeight="24.0" prefWidth="249.0" text="Installing solar panels" textAlignment="CENTER" textFill="WHITE">
           <font>
-            <Font name="System Bold" size="18.0" fx:id="x1" />
+            <Font name="System Bold Italic" size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <ImageView fitHeight="183.0" fitWidth="281.0" layoutX="390.0" layoutY="326.0" onMouseClicked="#hangdry" pickOnBounds="true" preserveRatio="false">
+        <ImageView fitHeight="183.0" fitWidth="281.0" layoutX="392.0" layoutY="321.0" onMouseClicked="#hangdry" pickOnBounds="true" preserveRatio="false">
           <image>
             <Image url="@../resources/hangdry.jpg" />
           </image>
         </ImageView>
-        <Label font="$x1" layoutX="391.0" layoutY="73.0" prefHeight="24.0" prefWidth="281.0" text="Did you use cold water over hot?" />
-        <Label alignment="CENTER" font="$x1" layoutX="360.0" layoutY="299.0" prefHeight="27.0" prefWidth="336.0" text="Did you hang dry your clothes?" textAlignment="CENTER" />
+        <Label layoutX="441.0" layoutY="75.0" prefHeight="24.0" prefWidth="181.0" text="Using cold water" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font></Label>
+        <Label alignment="CENTER" font="$x1" layoutX="365.0" layoutY="296.0" prefHeight="27.0" prefWidth="336.0" text="Hang drying clothes" textAlignment="CENTER" textFill="WHITE" />
         <Label id="lowtemplabel" fx:id="lowflow" alignment="CENTER" layoutX="158.0" layoutY="550.0" prefHeight="70.0" prefWidth="405.0" text="" textAlignment="CENTER" textFill="WHITE">
           <font>
             <Font name="System Bold Italic" size="18.0" />
           </font>
         </Label>
-        <Button layoutX="375.0" layoutY="252.0" mnemonicParsing="false" onAction="#getcoldwash" prefHeight="35.0" prefWidth="312.0" text="Show number of times I used cold water." />
-        <Button alignment="CENTER" layoutX="372.0" layoutY="505.0" mnemonicParsing="false" onAction="#gethangdry" prefHeight="35.0" prefWidth="312.0" text="Show number of times I hang dried clothes" />
-        <Label alignment="CENTER" font="$x1" layoutX="3.0" layoutY="73.0" prefHeight="27.0" prefWidth="354.0" text="Have you lowered temperature at home?" textAlignment="CENTER" />
+        <Button layoutX="406.0" layoutY="258.0" mnemonicParsing="false" onAction="#getcoldwash" prefHeight="30.0" prefWidth="249.0" style="-fx-background-radius: 42;" text="Number of times I used cold water" />
+        <Button alignment="CENTER" layoutX="398.0" layoutY="509.0" mnemonicParsing="false" onAction="#gethangdry" prefHeight="30.0" prefWidth="270.0" style="-fx-background-radius: 42;" text="Number of times I hang dried clothes" />
+        <Label alignment="CENTER" layoutX="3.0" layoutY="73.0" prefHeight="27.0" prefWidth="354.0" text="Lowering home temperature" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font></Label>
       </children>
     </AnchorPane>
   </children>
