@@ -1,28 +1,22 @@
 import client.Client;
-import entity.Friends;
-import entity.User;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.springframework.web.client.HttpServerErrorException;
 
-import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
-
 
 public class ProfileController implements Initializable {
     @FXML
@@ -45,32 +39,30 @@ public class ProfileController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         usernamelabel.setText("Username: " + Client.getUser().getUsername());
-        HashSet<String> allBadges = Client.getAllBadges(Client.getUrl(),Client.getUser(), Client.getRestTemplate());
-        HashSet<String> myBadges = Client.getMyBadges(Client.getUrl(), Client.getUser(), Client.getRestTemplate());
+        HashSet<String> allBadges = Client.getAllBadges(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate());
+        HashSet<String> myBadges = Client.getMyBadges(Client.getUrl(),
+                Client.getUser(), Client.getRestTemplate());
         System.out.println(allBadges.toString());
         System.out.println(myBadges.toString());
 
-        for (String badge : allBadges){
+        for (String badge : allBadges) {
             Label label = new Label(badge);
             String[] splitBadge = badge.split(" ");
-            if (splitBadge[0].equals("First")){
+            if (splitBadge[0].equals("First")) {
                 label.setText("1 time " + badge.replaceAll("First ", ""));
-            }
-            else if (splitBadge[0].equals("Bronze")){
+            } else if (splitBadge[0].equals("Bronze")) {
                 label.setText("5 times " + badge.replaceAll("Bronze ", ""));
-            }
-            else if (splitBadge[0].equals("Silver")){
+            } else if (splitBadge[0].equals("Silver")) {
                 label.setText("20 times " + badge.replaceAll("Silver ", ""));
-            }
-            else if (splitBadge[0].equals("Gold")){
+            } else if (splitBadge[0].equals("Gold")) {
                 label.setText("50 times " + badge.replaceAll("Gold ", ""));
             }
 
-            if (myBadges.contains(badge)){
+            if (myBadges.contains(badge)) {
                 label.setStyle("-fx-text-fill: #d2ad00;");
             }
             vbox1.getChildren().add(label);
-
 
 
         }
@@ -144,6 +136,11 @@ public class ProfileController implements Initializable {
         curstage.setScene(newscene);
     }
 
+    /**
+     * Opens the friends tab.
+     * @param event on click
+     * @throws Exception in case url is invalid
+     */
     public void clickfriends(ActionEvent event) throws Exception {
         Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Friends.fxml").toURL();
@@ -152,10 +149,6 @@ public class ProfileController implements Initializable {
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
     }
-
-
-
-
 
 
 }

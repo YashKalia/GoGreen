@@ -219,7 +219,7 @@ public class Client {
     }
 
     /**
-     * Gets the total number of vegetarian meals for one user
+     * Gets the total number of vegetarian meals for one user.
      *
      * @param url          the url to send the request to (heroku/localhost)
      * @param user         the user.

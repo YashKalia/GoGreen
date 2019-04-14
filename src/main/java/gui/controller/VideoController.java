@@ -23,13 +23,13 @@ public class VideoController implements Initializable {
     @FXML
     private MediaView mv;
     @FXML
-    private Button Back;
+    private Button back;
 
     private MediaPlayer mp;
     private Media me;
 
     @FXML
-    private AnchorPane Rootpane;
+    private AnchorPane rootpane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,14 +46,18 @@ public class VideoController implements Initializable {
 
     }
 
-    public void Back() throws Exception {
+    /**
+     * back button tot he homepage.
+     * @throws Exception in case url is invalid.
+     */
+    public void back() throws Exception {
         mp.stop();
         Parent secondview;
         @SuppressWarnings("deprecation")
         URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
-        Stage curstage = (Stage) Rootpane.getScene().getWindow();
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
     }
 }

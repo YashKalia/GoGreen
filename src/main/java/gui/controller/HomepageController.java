@@ -8,10 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class HomepageController {
@@ -135,6 +133,12 @@ public class HomepageController {
         curstage.setScene(newscene);
     }
 
+    /**
+     * Opens the profile.
+     *
+     * @param event activated on mouse click.
+     */
+
     @FXML
     public void clickyourprofile(ActionEvent event) throws Exception {
         Parent secondview;
@@ -149,7 +153,6 @@ public class HomepageController {
      * Logs out the user.
      *
      * @param event activated on mouse click.
-     * @throws Exception
      */
 
     @FXML
