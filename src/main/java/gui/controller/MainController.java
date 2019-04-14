@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -28,6 +29,9 @@ public class MainController {
 
     @FXML
     private Label lblStatus;
+    
+    @FXML
+    private AnchorPane rootpane;
 
     public static User getUser() {
         return user;
@@ -86,12 +90,12 @@ public class MainController {
     @SuppressWarnings("deprecation")
     public void register(ActionEvent event) throws IOException {
 
-        Stage primaryStage = new Stage();
+    	Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Register.fxml").toURL();
-        Parent root = FXMLLoader.load(url);
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        secondview = FXMLLoader.load(url);
+        Scene newscene = new Scene(secondview);
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
+        curstage.setScene(newscene);
 
     }
 
