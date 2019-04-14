@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import entity.Friends;
 import entity.User;
