@@ -5,10 +5,17 @@ import client.Client;
 import entity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class RegisterController {
@@ -24,6 +31,12 @@ public class RegisterController {
 
     @FXML
     private TextField usernamefield;
+    
+    @FXML
+    private AnchorPane Rootpane;
+    
+    @FXML
+    private Button Home;
 
     /**
      * Checks if the first password supplied by the user matches the second one.
@@ -46,6 +59,17 @@ public class RegisterController {
         } else {
             lblregisterstatus.setText("Password Do Not Match");
         }
+    }
+    
+    @FXML
+    void clickhome(ActionEvent event) throws Exception {
+        Parent secondview;
+        @SuppressWarnings("deprecation")
+		URL url = new File("src/main/java/gui/fxml/MainFXML.fxml").toURL();
+        secondview = FXMLLoader.load(url);
+        Scene newscene = new Scene(secondview);
+        Stage curstage = (Stage) Rootpane.getScene().getWindow();
+        curstage.setScene(newscene);
     }
 
 

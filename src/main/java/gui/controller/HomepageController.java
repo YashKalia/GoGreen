@@ -144,6 +144,7 @@ public class HomepageController {
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
+    }
 
     /**Logs out the user.
      *
@@ -152,27 +153,15 @@ public class HomepageController {
      */
 
     @FXML
-    public void logOut(ActionEvent event) {
-        try {
-            String pathname = "src/main/java/gui/fxml/MainFXML.fxml";
-            File file = new File(pathname);
-            URL url = file.toURI().toURL();
-            Parent root = FXMLLoader.load(url);
-            Scene scene = new Scene(root);
-            scene.getStylesheets()
-                    .add(getClass().getResource("/gui/application.css")
-                            .toExternalForm());
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.sizeToScene();
-            primaryStage.show();
+     public void logOut(ActionEvent event) throws Exception {
+    	Parent secondview;
+        URL url = new File("src/main/java/gui/fxml/MainFXML.fxml").toURL();
+        secondview = FXMLLoader.load(url);
+        Scene newscene = new Scene(secondview);
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
+        curstage.setScene(newscene);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
+}
 }
 
 
