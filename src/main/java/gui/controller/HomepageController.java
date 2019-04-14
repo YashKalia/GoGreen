@@ -9,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 public class HomepageController {
@@ -156,15 +155,15 @@ public class HomepageController {
      */
 
     @FXML
-     public void logOut(ActionEvent event) throws Exception {
-    	Parent secondview;
+    public void logOut(ActionEvent event) throws Exception {
+        Parent secondview;
         URL url = new File("src/main/java/gui/fxml/MainFXML.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
         Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
 
-}
+    }
 }
 
 

@@ -45,7 +45,7 @@ public class FriendsController implements Initializable {
     private VBox vbox;
     
     @FXML
-    private Button Home;
+    private Button home;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -36,9 +36,9 @@ public class YourProgressController implements Initializable {
     @FXML
     private LineChart<?, ?> monthly;
     @FXML
-    private Button Home;
+    private Button home;
     @FXML
-    private AnchorPane Rootpane;
+    private AnchorPane rootpane;
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
@@ -63,14 +63,15 @@ public class YourProgressController implements Initializable {
         }
         monthly.getData().add(monthlyseries);
     }
+
     @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         @SuppressWarnings("deprecation")
-		URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
+        URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
-        Stage curstage = (Stage) Rootpane.getScene().getWindow();
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
     }
 

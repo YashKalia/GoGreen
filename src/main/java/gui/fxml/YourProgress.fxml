@@ -9,7 +9,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.YourProgressController">
   <children>
-    <AnchorPane fx:id="Rootpane" layoutY="-14.0" prefHeight="806.0" prefWidth="970.0">
+    <AnchorPane fx:id="rootpane" layoutY="-14.0" prefHeight="806.0" prefWidth="970.0">
       <children>
         <LineChart fx:id="weekly" layoutX="229.0" layoutY="55.0" prefHeight="376.0" prefWidth="442.0">
           <xAxis>
@@ -31,6 +31,6 @@
         <Label layoutX="395.0" layoutY="420.0" text="Monthly Progress" />
       </children>
     </AnchorPane>
-      <Button fx:id="Home" layoutX="27.0" layoutY="735.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="31.0" prefWidth="70.0" text="Home" />
+      <Button fx:id="home" layoutX="27.0" layoutY="735.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="31.0" prefWidth="70.0" text="Home" />
   </children>
 </AnchorPane>

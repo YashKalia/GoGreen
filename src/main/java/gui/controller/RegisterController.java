@@ -31,12 +31,12 @@ public class RegisterController {
 
     @FXML
     private TextField usernamefield;
-    
+
     @FXML
-    private AnchorPane Rootpane;
-    
+    private AnchorPane rootpane;
+
     @FXML
-    private Button Home;
+    private Button home;
 
     /**
      * Checks if the first password supplied by the user matches the second one.
@@ -60,15 +60,15 @@ public class RegisterController {
             lblregisterstatus.setText("Password Do Not Match");
         }
     }
-    
+
     @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         @SuppressWarnings("deprecation")
-		URL url = new File("src/main/java/gui/fxml/MainFXML.fxml").toURL();
+        URL url = new File("src/main/java/gui/fxml/MainFXML.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
-        Stage curstage = (Stage) Rootpane.getScene().getWindow();
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
     }
 
