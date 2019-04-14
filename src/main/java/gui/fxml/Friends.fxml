@@ -18,7 +18,7 @@
             <Button layoutX="15.0" layoutY="131.0" mnemonicParsing="false" onAction="#clickabouttheapp" text="About the App" />
             <Line endX="45.5" endY="500.0" layoutX="105.0" layoutY="8.0" startX="45.49998474121094" startY="-6.7071075439453125" />
 
-            <Button fx:id="friendsButton" layoutX="15.0" layoutY="172.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="107.0" text="Friends" />
+            <Button fx:id="friendsButton" layoutX="15.0" layoutY="172.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="118.0" text="Friends" />
             <Text layoutX="257.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friends">
                <font>
                   <Font size="36.0" />
@@ -35,6 +35,7 @@
             </TitledPane>
             <TextField fx:id="friendSearch" layoutX="174.0" layoutY="228.0" />
             <Button fx:id="friendSearchButton" layoutX="352.0" layoutY="228.0" mnemonicParsing="false" onAction="#addFriend" text="Search for friend" />
+            <Button fx:id="Home" layoutX="15.0" layoutY="213.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="31.0" prefWidth="118.0" text="Home" />
          </children>
       </AnchorPane>
    </children>
