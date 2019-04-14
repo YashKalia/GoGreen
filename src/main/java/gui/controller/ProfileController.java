@@ -1,3 +1,5 @@
+package gui.controller;
+
 import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
