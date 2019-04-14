@@ -42,17 +42,24 @@ public class RegisterController {
      * Checks if the first password supplied by the user matches the second one.
      *
      * @param event on Button click
+     * @throws Exception 
      */
-    public void checkregistration(ActionEvent event) throws InterruptedException {
+    @SuppressWarnings("deprecation")
+    public void checkregistration(ActionEvent event) throws InterruptedException, Exception {
         if (passwordfield.getText().equals(passwordconfirm.getText())) {
             User newUser = new User(usernamefield.getText(), passwordfield.getText());
             String str = Client.register(Client.getUrl(), newUser, Client.getRestTemplate());
             if (str.equals("Registration successful")) {
-                Client.setUser(newUser);
+                Parent secondview;
+            	Client.setUser(newUser);
                 lblregisterstatus.setText("Registration Confirmed");
                 TimeUnit.SECONDS.sleep(2);
-                Stage firstStage = (Stage) passwordfield.getScene().getWindow();
-                firstStage.close();
+                URL url = new File("src/main/java/gui/fxml/MainFXML.fxml").toURL();
+                secondview = FXMLLoader.load(url);
+                Scene newscene = new Scene(secondview);
+                Stage curstage = (Stage) rootpane.getScene().getWindow();
+                curstage.setScene(newscene);
+                
             } else {
                 lblregisterstatus.setText(str);
             }
