@@ -43,6 +43,9 @@ public class FriendsController implements Initializable {
 
     @FXML
     private VBox vbox;
+    
+    @FXML
+    private Button Home;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -135,6 +138,16 @@ public class FriendsController implements Initializable {
         } catch (IllegalArgumentException e) {
             friendSearchButton.setText(e.getMessage());
         }
+    }
+    
+    @FXML
+    void clickhome(ActionEvent event) throws Exception {
+        Parent secondview;
+        URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
+        secondview = FXMLLoader.load(url);
+        Scene newscene = new Scene(secondview);
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
+        curstage.setScene(newscene);
     }
 
 
