@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProfileController">
+   <children>
+      <AnchorPane fx:id="rootpane" prefHeight="500.0" prefWidth="500.0">
+         <children>
+            <Line endX="45.5" endY="500.0" layoutX="105.0" layoutY="8.0" startX="45.49998474121094" startY="-6.7071075439453125" />
+            <Text layoutX="257.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Label fx:id="usernamelabel" layoutX="366.0" layoutY="74.0" text="Name" />
+            <Button layoutX="15.0" layoutY="89.0" mnemonicParsing="false" onAction="#clickyourprogress" prefHeight="31.0" prefWidth="118.0" text="Your Progress" />
+            <Button layoutX="15.0" layoutY="136.0" mnemonicParsing="false" onAction="#clickleaderboard" prefHeight="31.0" prefWidth="118.0" text="Leaderboard" />
+            <Button layoutX="15.0" layoutY="184.0" mnemonicParsing="false" onAction="#clickabouttheapp" prefHeight="27.0" prefWidth="118.0" text="About the App" />
+            <Button layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#clickfriends" prefHeight="27.0" prefWidth="118.0" text="Friends" />
+            <Button layoutX="14.0" layoutY="47.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="118.0" text="Profile" />
+            <Button layoutX="25.0" layoutY="443.0" mnemonicParsing="false" onAction="#clickhomepage" prefHeight="27.0" prefWidth="102.0" text="Home" />
+            <ScrollPane layoutX="178.0" layoutY="139.0" prefHeight="237.0" prefWidth="301.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="281.0">
+                     <children>
+                        <VBox fx:id="vbox1" layoutX="14.0" layoutY="-1.0" prefHeight="1000.0" prefWidth="281.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <Label layoutX="178.0" layoutY="120.0" text="Badges" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

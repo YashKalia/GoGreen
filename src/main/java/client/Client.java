@@ -144,7 +144,6 @@ public class Client {
      * Get all the badges you have earned from the database.
      *
      * @return a String containing the badges
-     * @throws IOException Uh-oh
      */
     public static HashSet<String> getMyBadges(String url,
                                               User user, RestTemplate restTemplate) {
@@ -210,7 +209,17 @@ public class Client {
 
 
     /**
-     * Gets the total number of vegetarian meals for one user.
+     * Get all badges that a user can earn.
+     *
+     * @return a String hashset containing all of the badges
+     */
+    public static HashSet<String> getAllBadges(String url, User user, RestTemplate restTemplate) {
+        url += "/badges/getallbadges";
+        return (HashSet<String>) restTemplate.getForObject(url, Set.class);
+    }
+
+    /**
+     * Gets the total number of vegetarian meals for one user
      *
      * @param url          the url to send the request to (heroku/localhost)
      * @param user         the user.

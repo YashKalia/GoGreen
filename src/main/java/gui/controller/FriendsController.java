@@ -50,12 +50,13 @@ public class FriendsController implements Initializable {
         friendRequests = Client
                 .getPendingRequests(Client.getUrl(), Client.getUser(), Client.getRestTemplate());
         for (String friendRequest : friendRequests) {
-            Button b1 = new Button(friendRequest);
-            vbox.getChildren().add(new ToolBar(new Label("Accept Invite"), b1));
+            Button b1 = new Button("Accept Invite");
+            Label l1 = new Label(friendRequest);
+            vbox.getChildren().add(new ToolBar(l1, b1));
             b1.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    User friend = new User(b1.getText(), null);
+                    User friend = new User(l1.getText(), null);
                     Friends newFriend = new Friends(Client.getUser(), friend);
                     if (Client.addFriend(Client.getUrl(), newFriend,
                             Client.getRestTemplate()).equals("Friend added successfully")) {
