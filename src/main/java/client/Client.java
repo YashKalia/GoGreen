@@ -15,7 +15,6 @@ import java.util.Set;
 public class Client {
 
     private static RestTemplate restTemplate = new RestTemplate();
-    private static boolean isInitiated = false;
     private static User user = new User();
     private static final String herokuUrl = "https://projectgogreen.herokuapp.com/";
     private static final String localUrl = "http://localhost:8080/";
@@ -24,12 +23,9 @@ public class Client {
      * Enables basic authentication with the user stored on login.
      */
     public static void enableBasicAuthentication() {
-        if (!Client.isInitiated) {
-            Client.restTemplate = new RestTemplateBuilder()
-                    .basicAuthentication(Client.getUser().getUsername(),
-                            Client.getUser().getPassword()).build();
-            Client.isInitiated = true;
-        }
+        Client.restTemplate = new RestTemplateBuilder()
+                .basicAuthentication(Client.getUser().getUsername(),
+                        Client.getUser().getPassword()).build();
     }
 
     public static User getUser() {
@@ -48,8 +44,7 @@ public class Client {
     public static String getUrl() {
         return herokuUrl;
     }
-    
- 
+
 
     /**
      * Sends a login request with username,password.
@@ -154,8 +149,8 @@ public class Client {
     /**
      * Gets number of cold laundry washes instead of hot washes.
      *
-     * @param url corresponding url.
-     * @param user current user.
+     * @param url          corresponding url.
+     * @param user         current user.
      * @param restTemplate restTemplate object for communication.
      * @return integer.
      */
@@ -168,8 +163,8 @@ public class Client {
     /**
      * gets number of low flow shower heads installed.
      *
-     * @param url         corresponding url.
-     * @param user        current user.
+     * @param url          corresponding url.
+     * @param user         current user.
      * @param restTemplate restTemplate object for communication.
      * @return
      */
@@ -182,29 +177,29 @@ public class Client {
     /**
      * returns number of trees planted.
      *
-     * @param url         - corresponding url.
-     * @param user        - current user.
+     * @param url          - corresponding url.
+     * @param user         - current user.
      * @param restTemplate - restTemplate object.
      * @return
      */
     public static int gettreepLanted(String url, User user, RestTemplate restTemplate) {
         url += "/entries/planttree/";
         url += user.getUsername();
-        return  restTemplate.getForObject(url, Integer.class);
+        return restTemplate.getForObject(url, Integer.class);
     }
 
     /**
      * returns number of times you recycled.
      *
-     * @param url         - corresponding url
-     * @param user        - current user.
+     * @param url          - corresponding url
+     * @param user         - current user.
      * @param restTemplate - restTemplate object.
      * @return
      */
     public static int getrecycled(String url, User user, RestTemplate restTemplate) {
         url += "/entries/recycle/";
         url += user.getUsername();
-        return  restTemplate.getForObject(url, Integer.class);
+        return restTemplate.getForObject(url, Integer.class);
     }
 
 
@@ -219,7 +214,7 @@ public class Client {
     }
 
     /**
-     * Gets the total number of vegetarian meals for one user
+     * Gets the total number of vegetarian meals for one user.
      *
      * @param url          the url to send the request to (heroku/localhost)
      * @param user         the user.

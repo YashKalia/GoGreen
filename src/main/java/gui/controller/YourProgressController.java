@@ -1,5 +1,6 @@
 package gui.controller;
 
+import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 
@@ -34,35 +36,42 @@ public class YourProgressController implements Initializable {
     @FXML
     private LineChart<?, ?> monthly;
     @FXML
-    private Button Home;
+    private Button home;
     @FXML
-    private AnchorPane Rootpane;
+    private AnchorPane rootpane;
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         XYChart.Series weeklyseries = new XYChart.Series<>();
-
-        weeklyseries.getData().add(new XYChart.Data("1", 23));
-        // Replace the number "23" with the server
-        // method to find CO2 consumption for that particular week.
-        weeklyseries.getData().add(new XYChart.Data("2", 10));
-        weeklyseries.getData().add(new XYChart.Data("3", 12));
-        weeklyseries.getData().add(new XYChart.Data("4", 2));
+        for (int i = 1; i <= 52; i++) {
+            weeklyseries.getData().add(new XYChart.Data(Integer.toString(i),
+                    Client.getWeekCo2(Client.getUrl(), Client.getUser(),
+                            Client.getRestTemplate(), i)));
+        }
         weekly.getData().addAll(weeklyseries);
 
         @SuppressWarnings("unused")
         XYChart.Series monthlyseries = new XYChart.Series<>();
+        for (int i = 3; i >= 0; i--) {
+            monthlyseries.getData().add(new XYChart.Data(Integer
+                    .toString(new Date().getMonth() - i + 1),
+                    Client.getMonthCo2(Client.getUrl(), Client.getUser(),
+                            Client.getRestTemplate(), "0"
+                                    + Integer.toString(new Date().getMonth() - i + 1))));
+        }
+        monthly.getData().add(monthlyseries);
     }
+
     @FXML
     void clickhome(ActionEvent event) throws Exception {
         Parent secondview;
         @SuppressWarnings("deprecation")
-		URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
+        URL url = new File("src/main/java/gui/fxml/Homepage.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);
-        Stage curstage = (Stage) Rootpane.getScene().getWindow();
+        Stage curstage = (Stage) rootpane.getScene().getWindow();
         curstage.setScene(newscene);
     }
 

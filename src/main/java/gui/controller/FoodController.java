@@ -118,7 +118,7 @@ public class FoodController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Eating a vegan meal"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            treecount.setText("Registered!");
+            treecount.setText("Submitted!");
         }
     }
 
@@ -135,7 +135,7 @@ public class FoodController {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
                 new Feature("Buying second-hand clothing"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
-            treecount.setText("Registered!");
+            treecount.setText("Submitted!");
         }
     }
 

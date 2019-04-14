@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootpane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TransportController">
+<AnchorPane fx:id="rootpane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TransportController">
   <children>
     <AnchorPane prefHeight="500.0" prefWidth="727.0">
       <children>
@@ -21,7 +21,7 @@
             <Font name="Arial Bold Italic" size="44.0" />
           </font>
         </Label>
-        <Label alignment="CENTER" layoutX="379.0" layoutY="66.0" prefWidth="377.0" text="Did you use public transport ?" textAlignment="CENTER" textFill="WHITE">
+        <Label alignment="CENTER" layoutX="379.0" layoutY="66.0" prefWidth="377.0" text="Taken public transport" textAlignment="CENTER" textFill="WHITE">
           <font>
             <Font name="System Bold Italic" size="18.0" fx:id="x1" />
           </font>
@@ -36,11 +36,11 @@
             <Image url="@../resources/cycle.jpeg" />
           </image>
         </ImageView>
-        <Label alignment="CENTER" font="$x1" layoutX="93.0" layoutY="64.0" prefHeight="31.0" prefWidth="206.0" text="Did you cycle to work?" textAlignment="CENTER" textFill="WHITE" />
-        <Button alignment="CENTER" layoutX="386.0" layoutY="338.0" mnemonicParsing="false" onAction="#getUsedTrain" prefHeight="31.0" prefWidth="363.0" style="-fx-background-radius: 42px;" text="Number of Times I've Taken The Public Transport?" />
-        <Button alignment="CENTER" layoutX="14.0" layoutY="338.0" mnemonicParsing="false" onAction="#getCycles" prefHeight="31.0" prefWidth="363.0" style="-fx-background-radius: 42px;" text="Number of Times I've Cycled to Work?" />
-        <Button layoutX="23.0" layoutY="584.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="45.0" prefWidth="90.0" text="&lt;--Home" />
-        <Label fx:id="cyclelabel" alignment="CENTER" layoutX="178.0" layoutY="473.0" prefHeight="95.0" prefWidth="418.0" text="" textAlignment="CENTER" textFill="WHITE">
+        <Label alignment="CENTER" font="$x1" layoutX="34.0" layoutY="61.0" prefHeight="31.0" prefWidth="323.0" text="Cycling to work" textAlignment="CENTER" textFill="WHITE" />
+        <Button alignment="CENTER" layoutX="386.0" layoutY="338.0" mnemonicParsing="false" onAction="#getUsedTrain" prefHeight="30.0" prefWidth="363.0" style="-fx-background-radius: 42px;" text="Number of times I used public transport" />
+        <Button alignment="CENTER" layoutX="14.0" layoutY="338.0" mnemonicParsing="false" onAction="#getCycles" prefHeight="30.0" prefWidth="363.0" style="-fx-background-radius: 42px;" text="Number of times I cycled" />
+        <Button layoutX="14.0" layoutY="570.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="45.0" prefWidth="90.0" text="Home" />
+        <Label fx:id="cyclelabel" alignment="CENTER" layoutX="42.0" layoutY="458.0" prefHeight="95.0" prefWidth="690.0" text="" textAlignment="CENTER" textFill="WHITE">
           <font>
             <Font name="System Bold Italic" size="20.0" fx:id="x4" />
           </font>

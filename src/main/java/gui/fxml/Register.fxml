@@ -11,7 +11,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.RegisterController">
    <children>
-      <AnchorPane fx:id="Rootpane" prefHeight="500.0" prefWidth="500.0">
+      <AnchorPane fx:id="rootpane" prefHeight="500.0" prefWidth="500.0">
          <children>
             <ImageView fitHeight="500.0" fitWidth="500.0">
                <image>
@@ -28,7 +28,7 @@
             <PasswordField fx:id="passwordconfirm" layoutX="141.0" layoutY="267.0" prefHeight="31.0" prefWidth="218.0" promptText="Confirm Password" style="-fx-background-radius: 42px;" />
             <Button layoutX="212.0" layoutY="371.0" mnemonicParsing="false" onAction="#checkregistration" prefHeight="31.0" prefWidth="80.0" style="-fx-background-radius: 42px;" text="Register" />
             <Label fx:id="lblregisterstatus" alignment="CENTER" layoutX="145.0" layoutY="350.0" prefHeight="21.0" prefWidth="210.0" textAlignment="CENTER" textFill="WHITE" />
-            <Button fx:id="Home" layoutX="13.0" layoutY="449.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="31.0" prefWidth="80.0" style="-fx-background-radius: 42px;" text="Home" />
+            <Button fx:id="home" layoutX="13.0" layoutY="449.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="31.0" prefWidth="80.0" style="-fx-background-radius: 42px;" text="Home" />
          </children>
       </AnchorPane>
    </children>

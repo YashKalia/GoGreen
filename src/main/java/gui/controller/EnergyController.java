@@ -93,7 +93,7 @@ public class EnergyController {
     @FXML
     void temperature() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Washing your clothes with cold water"),
+                new Feature("Lowering the temperature of your home"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             lowflow.setText("Registered!");
         }
@@ -102,7 +102,7 @@ public class EnergyController {
     @FXML
     void coldwash() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Cold water laundry"),
+                new Feature("Washing your clothes with cold water"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             lowflow.setText("Registered!");
         }
@@ -119,7 +119,7 @@ public class EnergyController {
     @FXML
     void hangdry() {
         if (Client.addEntry(Client.getUrl(), Client.getUser(),
-                new Feature("Air drying your clothes"),
+                new Feature("Air-drying your clothes"),
                 Client.getRestTemplate()).equals("Entry added successfully")) {
             lowflow.setText("Registered!");
         }

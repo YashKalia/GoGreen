@@ -35,7 +35,7 @@
             </TitledPane>
             <TextField fx:id="friendSearch" layoutX="174.0" layoutY="228.0" />
             <Button fx:id="friendSearchButton" layoutX="352.0" layoutY="228.0" mnemonicParsing="false" onAction="#addFriend" text="Search for friend" />
-            <Button fx:id="Home" layoutX="15.0" layoutY="213.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="31.0" prefWidth="118.0" text="Home" />
+            <Button fx:id="home" layoutX="15.0" layoutY="213.0" mnemonicParsing="false" onAction="#clickhome" prefHeight="31.0" prefWidth="118.0" text="Home" />
          </children>
       </AnchorPane>
    </children>

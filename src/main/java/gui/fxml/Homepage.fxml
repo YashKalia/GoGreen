@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.HomepageController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.HomepageController">
   <children>
     <AnchorPane fx:id="rootpane" prefHeight="661.0" prefWidth="650.0">
       <children>
@@ -17,13 +17,13 @@
                   <Image url="@../resources/greenleaves.jpeg" />
                </image>
             </ImageView>
-        <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickyourprofile" prefHeight="31.0" prefWidth="118.0" style="-fx-background-radius: 42px;" text="Profile" />
-        <Button layoutX="15.0" layoutY="208.0" mnemonicParsing="false" onAction="#clickyourprogress" prefHeight="31.0" prefWidth="118.0" style="-fx-background-radius: 42px;" text="Your Progress" />
-        <Button layoutX="15.0" layoutY="85.0" mnemonicParsing="false" onAction="#clickleaderboard" prefHeight="31.0" prefWidth="118.0" style="-fx-background-radius: 42px;" text="Leaderboard" />
-        <Button layoutX="14.0" layoutY="127.0" mnemonicParsing="false" onAction="#clickabouttheapp" style="-fx-background-radius: 42px;" text="About the App" />
+        <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickyourprofile" prefHeight="30.0" prefWidth="118.0" style="-fx-background-radius: 42px;" text="Profile" />
+        <Button layoutX="15.0" layoutY="208.0" mnemonicParsing="false" onAction="#clickyourprogress" prefHeight="30.0" prefWidth="118.0" style="-fx-background-radius: 42px;" text="Your Progress" />
+        <Button layoutX="15.0" layoutY="85.0" mnemonicParsing="false" onAction="#clickleaderboard" prefHeight="30.0" prefWidth="118.0" style="-fx-background-radius: 42px;" text="Leaderboard" />
+        <Button layoutX="19.0" layoutY="129.0" mnemonicParsing="false" onAction="#clickabouttheapp" prefHeight="30.0" style="-fx-background-radius: 42px;" text="About the App" />
         <Line endX="45.5" endY="647.0" layoutX="105.0" layoutY="8.0" startX="45.49998474121094" startY="-6.7071075439453125" />
-        <Button fx:id="friendsButton" layoutX="14.0" layoutY="165.0" mnemonicParsing="false" onAction="#clickfriends" prefHeight="31.0" prefWidth="118.0" style="-fx-background-radius: 42px;" text="Friends" />
-        <Label layoutX="41.0" layoutY="14.0" prefHeight="31.0" prefWidth="81.0" text="Welcome" textAlignment="CENTER" textFill="#2c08ff" underline="false" wrapText="false">
+        <Button fx:id="friendsButton" layoutX="16.0" layoutY="167.0" mnemonicParsing="false" onAction="#clickfriends" prefHeight="30.0" prefWidth="118.0" style="-fx-background-radius: 42px;" text="Friends" />
+        <Label layoutX="30.0" layoutY="14.0" prefHeight="26.0" prefWidth="89.0" text="Welcome" textAlignment="CENTER" underline="false" wrapText="false">
           <font>
             <Font name="System Bold" size="17.0" />
           </font>
