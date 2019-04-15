@@ -29,7 +29,7 @@ public class MainController {
 
     @FXML
     private Label lblStatus;
-    
+
     @FXML
     private AnchorPane rootpane;
 
@@ -90,7 +90,7 @@ public class MainController {
     @SuppressWarnings("deprecation")
     public void register(ActionEvent event) throws IOException {
 
-    	Parent secondview;
+        Parent secondview;
         URL url = new File("src/main/java/gui/fxml/Register.fxml").toURL();
         secondview = FXMLLoader.load(url);
         Scene newscene = new Scene(secondview);

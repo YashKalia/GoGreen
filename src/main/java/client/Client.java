@@ -166,7 +166,7 @@ public class Client {
      * @param url          corresponding url.
      * @param user         current user.
      * @param restTemplate restTemplate object for communication.
-     * @return
+     * @return the amount of vegan meals the user has had
      */
     public static int getveganmeal(String url, User user, RestTemplate restTemplate) {
         url += "/entries/veganmeal/";
@@ -180,7 +180,7 @@ public class Client {
      * @param url          - corresponding url.
      * @param user         - current user.
      * @param restTemplate - restTemplate object.
-     * @return
+     * @return the amount of trees planted
      */
     public static int gettreepLanted(String url, User user, RestTemplate restTemplate) {
         url += "/entries/planttree/";
@@ -194,7 +194,7 @@ public class Client {
      * @param url          - corresponding url
      * @param user         - current user.
      * @param restTemplate - restTemplate object.
-     * @return
+     * @return the amount of times the user has recycled
      */
     public static int getrecycled(String url, User user, RestTemplate restTemplate) {
         url += "/entries/recycle/";
